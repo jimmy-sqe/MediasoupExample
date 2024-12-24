@@ -18,11 +18,15 @@ protocol NetworkAPIData {
 }
 
 extension NetworkAPIData {
+    var parameters: NetworkRequestParams {
+        NetworkRequestParams()
+    }
+    
     var method: NetworkHTTPMethod {
         .get
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         nil
     }
     

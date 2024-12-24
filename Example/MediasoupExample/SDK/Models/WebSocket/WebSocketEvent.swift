@@ -8,6 +8,7 @@
 enum WebSocketEvent: String, Codable {
     
     case webSocketConnected = "WEBSOCKET_CONNECTED"
+    case requestToJoinApproved = "REQUEST_TO_JOIN_APPROVED"
     case unknown = "UNKNOWN"
 
 }

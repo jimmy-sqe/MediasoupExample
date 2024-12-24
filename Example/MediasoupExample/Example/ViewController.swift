@@ -3,18 +3,16 @@ import Network
 import Mediasoup
 import AVFoundation
 import WebRTC
-import NWWebSocket
 
 final class ViewController: UIViewController {
-	@IBOutlet var label: UILabel!
-    
-    private var socket: NWWebSocket?
-
 	private let peerConnectionFactory = RTCPeerConnectionFactory()
 	private var mediaStream: RTCMediaStream?
 	private var audioTrack: RTCAudioTrack?
 
-	private var device: Device?
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    private var device: Device?
 	private var sendTransport: SendTransport?
 	private var producer: Producer?
     
@@ -24,18 +22,37 @@ final class ViewController: UIViewController {
 //        socket?.disconnect()
     }
     
+    @IBAction func makeACallButtonTapped(_ sender: Any) {
+        let currentDate = Date()
+
+        // Create a DateFormatter instance
+        let dateFormatter = DateFormatter()
+
+        // Set the desired date and time format
+        dateFormatter.dateFormat = "dd/HH:mm"
+
+        // Format the current date
+        let formattedDate = dateFormatter.string(from: currentDate)
+
+        let name = "Jimmy - \(formattedDate)"
+        nameLabel.text = name
+        makeCall.doAuthAndConnectWebSocket(name: name, phone: "085959011905")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         makeCall.setup()
-        makeCall.doAuthAndConnectWebSocket(name: "Jimmy Suhartono", phone: "085959011905")
-    }
-    
         
-//        API: POST - https://sqecc-be.stg.squantumengine.com/v1/widget/website-token/e6776bf9-ca05-4b57-94db-5003949f81e5/conversation/AUDIO_VIDEO
-        // Authorization -> jwt accessToken
-//    }
-    
+        makeCall.onStatusUpdated = { [weak self] status in
+            guard let self else { return }
+            
+            DispatchQueue.main.async {
+                self.statusLabel.text = status
+            }
+        }
+    }
+        
     private func sendSocketJoinMeetingRoom() {
 
 //        let uuid = UUID().uuidString
@@ -50,24 +67,6 @@ final class ViewController: UIViewController {
 //        print("DEBUG:WebSocket Send Signal -> \(payloadJSON)")
 //        
 //        sendSocketMessage(message: payloadJSON)
-    }
-    
-    private func sendSocketMessage(message: String) {
-        socket?.send(string: message)
-    }
-    
-    func convertDictionaryToJSON(_ dictionary: [String: Any]) -> String? {
-       guard let jsonData = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted) else {
-          print("Something is wrong while converting dictionary to JSON data.")
-          return nil
-       }
-
-       guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-          print("Something is wrong while converting JSON data to JSON string.")
-          return nil
-       }
-
-       return jsonString
     }
     
 //	override func viewDidLoad() {
@@ -213,55 +212,3 @@ final class ViewController: UIViewController {
 //		print("on transport close in \(producer)")
 //	}
 //}
-
-extension ViewController: WebSocketConnectionDelegate {
-    func webSocketDidConnect(connection: WebSocketConnection) {
-        print("DEBUG:WebSocket On Connected")
-    }
-    
-    func webSocketDidDisconnect(connection: WebSocketConnection, closeCode: NWProtocolWebSocket.CloseCode, reason: Data?) {
-        print("DEBUG:WebSocket On Disconnected")
-    }
-    
-    func webSocketViabilityDidChange(connection: WebSocketConnection, isViable: Bool) {
-        print("DEBUG:WebSocket On Viability Change")
-    }
-    
-    func webSocketDidAttemptBetterPathMigration(result: Result<WebSocketConnection, NWError>) {
-        print("DEBUG:WebSocket On Connection migrates to a better network path")
-    }
-    
-    func webSocketDidReceiveError(connection: WebSocketConnection, error: NWError) {
-        print("DEBUG:WebSocket On Error with error \(error.debugDescription)")
-    }
-    
-    func webSocketDidReceivePong(connection: WebSocketConnection) {
-        print("DEBUG:WebSocket On Receive Pong")
-    }
-    
-    func webSocketDidReceiveMessage(connection: WebSocketConnection, string: String) {
-        print("DEBUG:WebSocket On Receive Message string: \(string)")
-        
-        let dictionary = convertToDictionary(text: string)
-        
-        if dictionary?["event"] as? String == "WEBSOCKET_CONNECTED" {
-            sendSocketJoinMeetingRoom()
-        }
-    }
-    
-    func webSocketDidReceiveMessage(connection: WebSocketConnection, data: Data) {
-        print("DEBUG:WebSocket On Receive Message data: \(data)")
-    }
-    
-    private func convertToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        return nil
-    }
-    
-}

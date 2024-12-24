@@ -28,16 +28,16 @@ class AuthController: AuthControllerProtocol {
     }
     
     func doAuth(requestParam: AuthRequestParam, completion: @escaping (Result<Auth, NetworkError>) -> Void) {
-        self.loggerController.sendLog(name: "doAuth", properties: nil)
+        self.loggerController.sendLog(name: "API:doAuth", properties: nil)
         
         let apiData = AuthAPIData.auth(requestParam, wsToken)
         apiClient.call(request: apiData, basePath: baseUrl, keyDecodingStrategy: .convertFromSnakeCase) { [weak self] (result: Result<Auth, NetworkError>) in
             switch result {
             case .success(let auth):
-                self?.loggerController.sendLog(name: "doAuth succeed", properties: ["token": auth.token])
+                self?.loggerController.sendLog(name: "API:doAuth succeed", properties: ["token": auth.token])
                 completion(.success(auth))
             case .failure(let error):
-                self?.loggerController.sendLog(name: "doAuth failed", properties: ["error": error.errorDescription ?? "unknown"])
+                self?.loggerController.sendLog(name: "API:doAuth failed", properties: ["error": error.errorDescription ?? "unknown"])
                 completion(.failure(error))
             }
         }

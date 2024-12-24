@@ -10,7 +10,8 @@ import Foundation
 protocol WebSocketControllerDelegate: AnyObject {
     
     func onWebSocketConnected()
-    
+    func onRequestToJoinApproved()
+
 }
 
 protocol WebSocketControllerProtocol {
@@ -79,11 +80,12 @@ extension WebSocketController: WebSocketClientDelegate {
     
     private func triggerEvent(event: WebSocketEvent) {
         switch event {
-            case .webSocketConnected:
-                delegate?.onWebSocketConnected()
-                break
-            case .unknown:
-                break
+        case .webSocketConnected:
+            delegate?.onWebSocketConnected()
+        case .requestToJoinApproved:
+            delegate?.onRequestToJoinApproved()
+        case .unknown:
+            break
         }
     }
 }
