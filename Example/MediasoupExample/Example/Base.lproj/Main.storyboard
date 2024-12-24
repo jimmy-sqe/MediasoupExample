@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yF9-T4-xxV">
-                                <rect key="frame" x="151" y="430.5" width="112" height="35"/>
+                                <rect key="frame" x="145.5" y="430.5" width="123.5" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Make a Call"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Create Room"/>
                                 <connections>
-                                    <action selector="makeACallButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sYV-HP-1df"/>
+                                    <action selector="createRoomButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="36o-HL-tgH"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DK1-cO-Iwp">
@@ -37,6 +37,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lN1-jY-ZD7">
+                                <rect key="frame" x="155" y="518" width="104" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Join Room"/>
+                                <connections>
+                                    <action selector="createRoomButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2O1-Ea-tkg"/>
+                                    <action selector="joinRoomButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gZo-A9-uwt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -49,6 +58,8 @@
                             <constraint firstItem="yF9-T4-xxV" firstAttribute="top" secondItem="DK1-cO-Iwp" secondAttribute="bottom" constant="16" id="HPQ-4w-YLa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DK1-cO-Iwp" secondAttribute="trailing" constant="16" id="Lk4-dN-jdf"/>
                             <constraint firstItem="oqT-3E-RHF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="TZx-St-wgF"/>
+                            <constraint firstItem="lN1-jY-ZD7" firstAttribute="top" secondItem="oqT-3E-RHF" secondAttribute="bottom" constant="16" id="XkP-HZ-omb"/>
+                            <constraint firstItem="lN1-jY-ZD7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="y4m-dt-sUa"/>
                         </constraints>
                     </view>
                     <connections>

@@ -5,15 +5,23 @@
 //  Created by Jimmy Suhartono on 23/12/24.
 //
 
-class MakeCall {
+class ManageRoom {
     
     var onStatusUpdated: ((String) -> Void)? = nil
     
-    private var authToken: String?
+    private let AUTH_TOKEN_KEY: String = "AUTH_TOKEN_KEY"
+    
+    private var authToken: String? {
+        didSet {
+            storage.set(authToken, forKey: AUTH_TOKEN_KEY)
+        }
+    }
+    
     private var meetingRoomId: String?
     private let wsToken: String
     private let env: SqeCcEnvironment
     private let loggerController: LoggerControllerProtocol
+    private let storage: Storage
     private let authController: AuthControllerProtocol
     private let conversationController: ConversationControllerProtocol
     private let webSocketController: WebSocketControllerProtocol
@@ -21,6 +29,7 @@ class MakeCall {
     init(env: SqeCcEnvironment,
          wsToken: String,
          loggerController: LoggerControllerProtocol,
+         storage: Storage,
          authController: AuthControllerProtocol? = nil,
          conversationController: ConversationControllerProtocol? = nil,
          webSocketController: WebSocketControllerProtocol? = nil) {
@@ -28,6 +37,7 @@ class MakeCall {
         self.env = env
         self.wsToken = wsToken
         self.loggerController = loggerController
+        self.storage = storage
         
         self.authController = authController ?? AuthController(baseUrl: env.apiBaseUrl.absoluteString, wsToken: wsToken, loggerController: loggerController)
         self.conversationController = conversationController ?? ConversationController(baseUrl: env.apiBaseUrl.absoluteString, wsToken: wsToken, loggerController: loggerController)
@@ -37,6 +47,14 @@ class MakeCall {
     func setup() {
         if let webSocketController = self.webSocketController as? WebSocketController {
             webSocketController.delegate = self
+        }
+        
+        if let token: String = storage.get(forKey: AUTH_TOKEN_KEY) {
+            //TODO: Check whether token is still valid or not
+            
+            self.authToken = token
+            self.webSocketController.connect(wsToken: self.wsToken, cwToken: token)
+            self.checkStatus()
         }
     }
     
@@ -79,11 +97,16 @@ class MakeCall {
             
             switch result {
             case .success(let status):
+                self.meetingRoomId = status.meetingRoomId
                 self.onStatusUpdated?(status.callJoinStatus.displayText)
             case .failure:
                 break
             }
         }
+    }
+    
+    func joinMeetingRoom() {
+        
     }
     
     private func createConversation() {
@@ -105,7 +128,7 @@ class MakeCall {
     
 }
 
-extension MakeCall: WebSocketControllerDelegate {
+extension ManageRoom: WebSocketControllerDelegate {
     
     func onWebSocketConnected() {
         self.loggerController.sendLog(name: "MakeCall:OnWebSocketConnected", properties: nil)
@@ -115,6 +138,8 @@ extension MakeCall: WebSocketControllerDelegate {
     
     func onRequestToJoinApproved() {
         self.loggerController.sendLog(name: "MakeCall:OnRequestToJoinApproved", properties: nil)
+        
+        self.joinMeetingRoom()
     }
     
 }

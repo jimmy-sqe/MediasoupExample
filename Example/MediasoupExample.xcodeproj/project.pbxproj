@@ -84,7 +84,7 @@
 		ADED50552D196B1600344A65 /* AuthenticationBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FFF2D196B1600344A65 /* AuthenticationBaseViewModel.swift */; };
 		ADED50582D196BCA00344A65 /* AuthRequestParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED50572D196BC300344A65 /* AuthRequestParam.swift */; };
 		ADED505B2D196E7900344A65 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED505A2D196E6A00344A65 /* Auth.swift */; };
-		ADED505D2D1970FF00344A65 /* MakeCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED505C2D1970F200344A65 /* MakeCall.swift */; };
+		ADED505D2D1970FF00344A65 /* ManageRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED505C2D1970F200344A65 /* ManageRoom.swift */; };
 		ADED50602D19736300344A65 /* LoggerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED505F2D19735F00344A65 /* LoggerController.swift */; };
 		ADED50622D19769E00344A65 /* ClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED50612D19769C00344A65 /* ClientConfig.swift */; };
 		ADED50642D1976CB00344A65 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED50632D1976C800344A65 /* AppConfiguration.swift */; };
@@ -177,7 +177,7 @@
 		ADED50162D196B1600344A65 /* ViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtil.swift; sourceTree = "<group>"; };
 		ADED50572D196BC300344A65 /* AuthRequestParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestParam.swift; sourceTree = "<group>"; };
 		ADED505A2D196E6A00344A65 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
-		ADED505C2D1970F200344A65 /* MakeCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCall.swift; sourceTree = "<group>"; };
+		ADED505C2D1970F200344A65 /* ManageRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageRoom.swift; sourceTree = "<group>"; };
 		ADED505F2D19735F00344A65 /* LoggerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerController.swift; sourceTree = "<group>"; };
 		ADED50612D19769C00344A65 /* ClientConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfig.swift; sourceTree = "<group>"; };
 		ADED50632D1976C800344A65 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 		ADED4FA62D1964A000344A65 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				ADED505C2D1970F200344A65 /* MakeCall.swift */,
+				ADED505C2D1970F200344A65 /* ManageRoom.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -803,7 +803,7 @@
 				ADED503D2D196B1600344A65 /* APIError.swift in Sources */,
 				ADED503E2D196B1600344A65 /* EmptyResponse.swift in Sources */,
 				AD42176C2D1A57580023520E /* WebSocketClient.swift in Sources */,
-				ADED505D2D1970FF00344A65 /* MakeCall.swift in Sources */,
+				ADED505D2D1970FF00344A65 /* ManageRoom.swift in Sources */,
 				ADED503F2D196B1600344A65 /* SDKError.swift in Sources */,
 				AD42177A2D1AA0CE0023520E /* Conversation.swift in Sources */,
 				ADED50402D196B1600344A65 /* SqeCommonEnvironment.swift in Sources */,

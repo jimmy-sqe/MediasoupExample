@@ -16,13 +16,13 @@ final class ViewController: UIViewController {
 	private var sendTransport: SendTransport?
 	private var producer: Producer?
     
-    private let makeCall = MakeCall(env: .staging, wsToken: "e6776bf9-ca05-4b57-94db-5003949f81e5", loggerController: LoggerController())
+    private let manageRoom = ManageRoom(env: .staging, wsToken: "e6776bf9-ca05-4b57-94db-5003949f81e5", loggerController: LoggerController(), storage: LocalStorage())
     
     deinit {
 //        socket?.disconnect()
     }
     
-    @IBAction func makeACallButtonTapped(_ sender: Any) {
+    @IBAction func createRoomButtonTapped(_ sender: Any) {
         let currentDate = Date()
 
         // Create a DateFormatter instance
@@ -36,15 +36,19 @@ final class ViewController: UIViewController {
 
         let name = "Jimmy - \(formattedDate)"
         nameLabel.text = name
-        makeCall.doAuthAndConnectWebSocket(name: name, phone: "085959011905")
+        manageRoom.doAuthAndConnectWebSocket(name: name, phone: "085959011905")
+    }
+    
+    @IBAction func joinRoomButtonTapped(_ sender: Any) {
+        manageRoom.joinMeetingRoom()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeCall.setup()
+        manageRoom.setup()
         
-        makeCall.onStatusUpdated = { [weak self] status in
+        manageRoom.onStatusUpdated = { [weak self] status in
             guard let self else { return }
             
             DispatchQueue.main.async {
