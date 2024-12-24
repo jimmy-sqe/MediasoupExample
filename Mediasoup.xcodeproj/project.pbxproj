@@ -1,0 +1,800 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		FF61456C27F2FB790067B2C4 /* Mediasoup Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = FF61456D27F2FB790067B2C4 /* Build configuration list for PBXAggregateTarget "Mediasoup Framework" */;
+			buildPhases = (
+				FF61457127F2FC2A0067B2C4 /* Create XCFramework */,
+			);
+			dependencies = (
+			);
+			name = "Mediasoup Framework";
+			productName = "Mediasoup Famework";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		FF1E63582A5655830022A44A /* DataConsumerWrapper.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FF1E63522A5655830022A44A /* DataConsumerWrapper.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		FF1E635A2A5655830022A44A /* DataConsumerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF1E63542A5655830022A44A /* DataConsumerWrapper.mm */; };
+		FF1E635B2A5655830022A44A /* DataConsumerWrapperDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = FF1E63552A5655830022A44A /* DataConsumerWrapperDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FF1E635D2A5655830022A44A /* DataConsumerListenerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF1E63572A5655830022A44A /* DataConsumerListenerAdapter.mm */; };
+		FF1E635F2A566C500022A44A /* DataConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E635E2A566C500022A44A /* DataConsumer.swift */; };
+		FF1E63612A566C640022A44A /* DataConsumerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1E63602A566C640022A44A /* DataConsumerDelegate.swift */; };
+		FF3AEE0C27F2D67E001A81AB /* DeviceWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF3AEE0B27F2D67E001A81AB /* DeviceWrapper.mm */; };
+		FF422680282B9603004D9974 /* ConsumerListenerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF42267E282B958C004D9974 /* ConsumerListenerAdapter.mm */; };
+		FF49F0E82804049300B64D36 /* Consumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF49F0E72804049300B64D36 /* Consumer.swift */; };
+		FF49F0EA280404E400B64D36 /* ConsumerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF49F0E9280404E400B64D36 /* ConsumerDelegate.swift */; };
+		FF61457527F30FDC0067B2C4 /* DeviceWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = FF3AEE0D27F2D68B001A81AB /* DeviceWrapper.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FF7FA69127FAA8E9000B6470 /* SendTransportDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA69027FAA8E9000B6470 /* SendTransportDelegate.swift */; };
+		FF7FA69527FAA930000B6470 /* SendTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA69427FAA930000B6470 /* SendTransport.swift */; };
+		FF7FA69A27FAACEE000B6470 /* SendTransportWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA69927FAACEE000B6470 /* SendTransportWrapper.mm */; };
+		FF7FA6A027FAAEF2000B6470 /* SendTransportWrapper.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FF7FA69B27FAACFF000B6470 /* SendTransportWrapper.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		FF7FA6A227FAB803000B6470 /* SendTransportListenerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA6A127FAB803000B6470 /* SendTransportListenerAdapter.mm */; };
+		FF7FA6A427FAB838000B6470 /* SendTransportListenerAdapter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FF7FA6A327FAB829000B6470 /* SendTransportListenerAdapter.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		FF7FA6BD27FB0FB7000B6470 /* SendTransportWrapperDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = FF7FA6BC27FB0F93000B6470 /* SendTransportWrapperDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FF7FA6C227FD5EA5000B6470 /* TransportDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA6C127FD5EA5000B6470 /* TransportDelegate.swift */; };
+		FF7FA6C427FD5ECD000B6470 /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA6C327FD5ECD000B6470 /* Transport.swift */; };
+		FF7FA6CA27FE9674000B6470 /* ProducerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA6C927FE9674000B6470 /* ProducerWrapper.mm */; };
+		FF7FA6CD27FE985E000B6470 /* Producer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA6CC27FE985E000B6470 /* Producer.swift */; };
+		FF7FA6CE27FE9A4B000B6470 /* ProducerWrapper.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FF7FA6CB27FE9681000B6470 /* ProducerWrapper.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		FF7FA6D327FF18A5000B6470 /* ProducerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA6D227FF18A5000B6470 /* ProducerDelegate.swift */; };
+		FF7FA6D427FF1A08000B6470 /* ProducerWrapperDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = FF7FA6D127FF1755000B6470 /* ProducerWrapperDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FF7FA6D627FF1BA6000B6470 /* ProducerListenerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA6D527FF1BA6000B6470 /* ProducerListenerAdapter.mm */; };
+		FF89EFBD27F460F700EEF5CD /* MediasoupClientError.m in Sources */ = {isa = PBXBuildFile; fileRef = FF89EFBC27F460F700EEF5CD /* MediasoupClientError.m */; };
+		FF89EFBF27F461DB00EEF5CD /* MediasoupError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF89EFBE27F461DB00EEF5CD /* MediasoupError.swift */; };
+		FF89EFC027F462F200EEF5CD /* MediasoupClientError.h in Headers */ = {isa = PBXBuildFile; fileRef = FF89EFBB27F460A100EEF5CD /* MediasoupClientError.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FF89EFC227F5694900EEF5CD /* MediasoupClientErrorHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF89EFC127F5694900EEF5CD /* MediasoupClientErrorHandler.mm */; };
+		FF89EFC627F5B35900EEF5CD /* MediasoupClientErrorHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = FF89EFC327F5696600EEF5CD /* MediasoupClientErrorHandler.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FF89EFC827F5B5E600EEF5CD /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61457227F306BC0067B2C4 /* Device.swift */; };
+		FF89EFD527F6AEBB00EEF5CD /* MediasoupClientErrorConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF89EFD427F6AEBB00EEF5CD /* MediasoupClientErrorConverter.swift */; };
+		FFB7DDB12822891C00FE2CC2 /* ReceiveTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7DDB02822891C00FE2CC2 /* ReceiveTransport.swift */; };
+		FFB7DDB32822893C00FE2CC2 /* ReceiveTransportDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7DDB22822893C00FE2CC2 /* ReceiveTransportDelegate.swift */; };
+		FFB7DDB728228A2100FE2CC2 /* ReceiveTransportWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFB7DDB628228A2100FE2CC2 /* ReceiveTransportWrapper.mm */; };
+		FFB7DDB828228ABA00FE2CC2 /* ReceiveTransportWrapper.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FFB7DDB42822897300FE2CC2 /* ReceiveTransportWrapper.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		FFB7DDBB28228BE400FE2CC2 /* ReceiveTransportWrapperDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = FFB7DDBA28228B8C00FE2CC2 /* ReceiveTransportWrapperDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FFB7DDBD28229BA400FE2CC2 /* ConsumerWrapper.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FFB7DDBC28229AEF00FE2CC2 /* ConsumerWrapper.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		FFB7DDBF28229BC100FE2CC2 /* ConsumerWrapperDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = FFB7DDBE28229BBF00FE2CC2 /* ConsumerWrapperDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FFB7DDC22823989A00FE2CC2 /* ReceiveTransportListenerAdapter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FFB7DDC028238C8D00FE2CC2 /* ReceiveTransportListenerAdapter.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		FFB7DDC3282398A500FE2CC2 /* ReceiveTransportListenerAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFB7DDC128238C8D00FE2CC2 /* ReceiveTransportListenerAdapter.mm */; };
+		FFC2452127F6E8DF008F61DE /* MediaKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2452027F6E8DF008F61DE /* MediaKind.swift */; };
+		FFC2452427F6E9DB008F61DE /* MediasoupClientMediaKind.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFC2452327F6E9DB008F61DE /* MediasoupClientMediaKind.mm */; };
+		FFC2452527F6EA1C008F61DE /* MediasoupClientMediaKind.h in Headers */ = {isa = PBXBuildFile; fileRef = FFC2452227F6E931008F61DE /* MediasoupClientMediaKind.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FFC5AC702824F8FB00C92A96 /* ICETransportPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC5AC6F2824F8FB00C92A96 /* ICETransportPolicy.swift */; };
+		FFC5AC72282500A500C92A96 /* TransportConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC5AC71282500A500C92A96 /* TransportConnectionState.swift */; };
+		FFC5AC752825025100C92A96 /* MediasoupClientTransportConnectionState.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFC5AC732825025100C92A96 /* MediasoupClientTransportConnectionState.mm */; };
+		FFC5AC762825025100C92A96 /* MediasoupClientTransportConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = FFC5AC742825025100C92A96 /* MediasoupClientTransportConnectionState.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FFC5AC782825170500C92A96 /* ConsumerWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFC5AC772825170500C92A96 /* ConsumerWrapper.mm */; };
+		FFCD791827F419E800D26B4C /* mediasoupclient.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFCD791727F419E800D26B4C /* mediasoupclient.xcframework */; };
+		FFCD791D27F41A0900D26B4C /* sdptransform.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFCD791B27F41A0900D26B4C /* sdptransform.xcframework */; };
+		FFCD791F27F41A0900D26B4C /* WebRTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFCD791C27F41A0900D26B4C /* WebRTC.xcframework */; };
+		FFF004F92B592424007BA500 /* RTPParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF004F82B592424007BA500 /* RTPParameters.swift */; };
+		FFF004FB2B5986F6007BA500 /* ScalabilityMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF004FA2B5986F6007BA500 /* ScalabilityMode.swift */; };
+		FFF004FF2B598D59007BA500 /* ScalabilityMode.h in Headers */ = {isa = PBXBuildFile; fileRef = FFF004FE2B59881C007BA500 /* ScalabilityMode.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FFF005002B599102007BA500 /* ScalabilityMode.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFF004FC2B598806007BA500 /* ScalabilityMode.mm */; };
+		FFF005022B5A2968007BA500 /* WrappedRTPParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FFF005012B5A2832007BA500 /* WrappedRTPParameters.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		FFF005042B5A29B6007BA500 /* WrappedRTPParameters.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFF005032B5A29B6007BA500 /* WrappedRTPParameters.mm */; };
+		FFF005072B5A4304007BA500 /* WrappedRTPParameters+Internal.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFF005062B5A4304007BA500 /* WrappedRTPParameters+Internal.mm */; };
+		FFF0050B2B5A62FD007BA500 /* RTPEncodingParameters.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFF0050A2B5A62FD007BA500 /* RTPEncodingParameters.mm */; };
+		FFF0050D2B5A631D007BA500 /* RTPEncodingParameters+Internal.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFF0050C2B5A631D007BA500 /* RTPEncodingParameters+Internal.mm */; };
+		FFF0050E2B5A641C007BA500 /* RTPEncodingParameters.hpp in Headers */ = {isa = PBXBuildFile; fileRef = FFF005082B5A6192007BA500 /* RTPEncodingParameters.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FF1E63522A5655830022A44A /* DataConsumerWrapper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DataConsumerWrapper.hpp; sourceTree = "<group>"; };
+		FF1E63532A5655830022A44A /* DataConsumerListenerAdapterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataConsumerListenerAdapterDelegate.h; sourceTree = "<group>"; };
+		FF1E63542A5655830022A44A /* DataConsumerWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataConsumerWrapper.mm; sourceTree = "<group>"; };
+		FF1E63552A5655830022A44A /* DataConsumerWrapperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataConsumerWrapperDelegate.h; sourceTree = "<group>"; };
+		FF1E63562A5655830022A44A /* DataConsumerListenerAdapter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DataConsumerListenerAdapter.hpp; sourceTree = "<group>"; };
+		FF1E63572A5655830022A44A /* DataConsumerListenerAdapter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataConsumerListenerAdapter.mm; sourceTree = "<group>"; };
+		FF1E635E2A566C500022A44A /* DataConsumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConsumer.swift; sourceTree = "<group>"; };
+		FF1E63602A566C640022A44A /* DataConsumerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataConsumerDelegate.swift; sourceTree = "<group>"; };
+		FF2E23D6285890310008DC19 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FF3AEE0027F2CDD1001A81AB /* Mediasoup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mediasoup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF3AEE0B27F2D67E001A81AB /* DeviceWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DeviceWrapper.mm; sourceTree = "<group>"; };
+		FF3AEE0D27F2D68B001A81AB /* DeviceWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceWrapper.h; sourceTree = "<group>"; };
+		FF42267E282B958C004D9974 /* ConsumerListenerAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ConsumerListenerAdapter.mm; sourceTree = "<group>"; };
+		FF49F0E72804049300B64D36 /* Consumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consumer.swift; sourceTree = "<group>"; };
+		FF49F0E9280404E400B64D36 /* ConsumerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumerDelegate.swift; sourceTree = "<group>"; };
+		FF61456A27F2F5AD0067B2C4 /* Mediasoup.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Mediasoup.modulemap; sourceTree = "<group>"; };
+		FF61457227F306BC0067B2C4 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		FF7FA69027FAA8E9000B6470 /* SendTransportDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransportDelegate.swift; sourceTree = "<group>"; };
+		FF7FA69427FAA930000B6470 /* SendTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTransport.swift; sourceTree = "<group>"; };
+		FF7FA69927FAACEE000B6470 /* SendTransportWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SendTransportWrapper.mm; sourceTree = "<group>"; };
+		FF7FA69B27FAACFF000B6470 /* SendTransportWrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SendTransportWrapper.hpp; sourceTree = "<group>"; };
+		FF7FA6A127FAB803000B6470 /* SendTransportListenerAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SendTransportListenerAdapter.mm; sourceTree = "<group>"; };
+		FF7FA6A327FAB829000B6470 /* SendTransportListenerAdapter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SendTransportListenerAdapter.hpp; sourceTree = "<group>"; };
+		FF7FA6BC27FB0F93000B6470 /* SendTransportWrapperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendTransportWrapperDelegate.h; sourceTree = "<group>"; };
+		FF7FA6BF27FBFDF3000B6470 /* SendTransportListenerAdapterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendTransportListenerAdapterDelegate.h; sourceTree = "<group>"; };
+		FF7FA6C127FD5EA5000B6470 /* TransportDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportDelegate.swift; sourceTree = "<group>"; };
+		FF7FA6C327FD5ECD000B6470 /* Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transport.swift; sourceTree = "<group>"; };
+		FF7FA6C927FE9674000B6470 /* ProducerWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ProducerWrapper.mm; sourceTree = "<group>"; };
+		FF7FA6CB27FE9681000B6470 /* ProducerWrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProducerWrapper.hpp; sourceTree = "<group>"; };
+		FF7FA6CC27FE985E000B6470 /* Producer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Producer.swift; sourceTree = "<group>"; };
+		FF7FA6CF27FE9C06000B6470 /* ProducerListenerAdapter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProducerListenerAdapter.hpp; sourceTree = "<group>"; };
+		FF7FA6D027FEC402000B6470 /* ProducerListenerAdapterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerListenerAdapterDelegate.h; sourceTree = "<group>"; };
+		FF7FA6D127FF1755000B6470 /* ProducerWrapperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProducerWrapperDelegate.h; sourceTree = "<group>"; };
+		FF7FA6D227FF18A5000B6470 /* ProducerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProducerDelegate.swift; sourceTree = "<group>"; };
+		FF7FA6D527FF1BA6000B6470 /* ProducerListenerAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ProducerListenerAdapter.mm; sourceTree = "<group>"; };
+		FF89EFBB27F460A100EEF5CD /* MediasoupClientError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediasoupClientError.h; sourceTree = "<group>"; };
+		FF89EFBC27F460F700EEF5CD /* MediasoupClientError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediasoupClientError.m; sourceTree = "<group>"; };
+		FF89EFBE27F461DB00EEF5CD /* MediasoupError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediasoupError.swift; sourceTree = "<group>"; };
+		FF89EFC127F5694900EEF5CD /* MediasoupClientErrorHandler.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MediasoupClientErrorHandler.mm; sourceTree = "<group>"; };
+		FF89EFC327F5696600EEF5CD /* MediasoupClientErrorHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediasoupClientErrorHandler.h; sourceTree = "<group>"; };
+		FF89EFD027F5C79000EEF5CD /* Mediasoup_Private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Mediasoup_Private.modulemap; sourceTree = "<group>"; };
+		FF89EFD427F6AEBB00EEF5CD /* MediasoupClientErrorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediasoupClientErrorConverter.swift; sourceTree = "<group>"; };
+		FF89EFD627F6AFBD00EEF5CD /* Mediasoup-Client-Swift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = "Mediasoup-Client-Swift.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FFB7DDB02822891C00FE2CC2 /* ReceiveTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveTransport.swift; sourceTree = "<group>"; };
+		FFB7DDB22822893C00FE2CC2 /* ReceiveTransportDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveTransportDelegate.swift; sourceTree = "<group>"; };
+		FFB7DDB42822897300FE2CC2 /* ReceiveTransportWrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ReceiveTransportWrapper.hpp; sourceTree = "<group>"; };
+		FFB7DDB628228A2100FE2CC2 /* ReceiveTransportWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ReceiveTransportWrapper.mm; sourceTree = "<group>"; };
+		FFB7DDB928228B2600FE2CC2 /* ReceiveTransportListenerAdapterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveTransportListenerAdapterDelegate.h; sourceTree = "<group>"; };
+		FFB7DDBA28228B8C00FE2CC2 /* ReceiveTransportWrapperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveTransportWrapperDelegate.h; sourceTree = "<group>"; };
+		FFB7DDBC28229AEF00FE2CC2 /* ConsumerWrapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConsumerWrapper.hpp; sourceTree = "<group>"; };
+		FFB7DDBE28229BBF00FE2CC2 /* ConsumerWrapperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsumerWrapperDelegate.h; sourceTree = "<group>"; };
+		FFB7DDC028238C8D00FE2CC2 /* ReceiveTransportListenerAdapter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ReceiveTransportListenerAdapter.hpp; sourceTree = "<group>"; };
+		FFB7DDC128238C8D00FE2CC2 /* ReceiveTransportListenerAdapter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ReceiveTransportListenerAdapter.mm; sourceTree = "<group>"; };
+		FFC2452027F6E8DF008F61DE /* MediaKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKind.swift; sourceTree = "<group>"; };
+		FFC2452227F6E931008F61DE /* MediasoupClientMediaKind.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediasoupClientMediaKind.h; sourceTree = "<group>"; };
+		FFC2452327F6E9DB008F61DE /* MediasoupClientMediaKind.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MediasoupClientMediaKind.mm; sourceTree = "<group>"; };
+		FFC5AC6F2824F8FB00C92A96 /* ICETransportPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICETransportPolicy.swift; sourceTree = "<group>"; };
+		FFC5AC71282500A500C92A96 /* TransportConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportConnectionState.swift; sourceTree = "<group>"; };
+		FFC5AC732825025100C92A96 /* MediasoupClientTransportConnectionState.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MediasoupClientTransportConnectionState.mm; sourceTree = "<group>"; };
+		FFC5AC742825025100C92A96 /* MediasoupClientTransportConnectionState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediasoupClientTransportConnectionState.h; sourceTree = "<group>"; };
+		FFC5AC772825170500C92A96 /* ConsumerWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ConsumerWrapper.mm; sourceTree = "<group>"; };
+		FFC5AC79282526D000C92A96 /* ConsumerListenerAdapter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConsumerListenerAdapter.hpp; sourceTree = "<group>"; };
+		FFC5AC7A2825274F00C92A96 /* ConsumerListenerAdapterDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsumerListenerAdapterDelegate.h; sourceTree = "<group>"; };
+		FFCD791727F419E800D26B4C /* mediasoupclient.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = mediasoupclient.xcframework; path = bin/mediasoupclient.xcframework; sourceTree = "<group>"; };
+		FFCD791B27F41A0900D26B4C /* sdptransform.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = sdptransform.xcframework; path = bin/sdptransform.xcframework; sourceTree = "<group>"; };
+		FFCD791C27F41A0900D26B4C /* WebRTC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = WebRTC.xcframework; path = bin/WebRTC.xcframework; sourceTree = "<group>"; };
+		FFF004F82B592424007BA500 /* RTPParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTPParameters.swift; sourceTree = "<group>"; };
+		FFF004FA2B5986F6007BA500 /* ScalabilityMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalabilityMode.swift; sourceTree = "<group>"; };
+		FFF004FC2B598806007BA500 /* ScalabilityMode.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScalabilityMode.mm; sourceTree = "<group>"; };
+		FFF004FE2B59881C007BA500 /* ScalabilityMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScalabilityMode.h; sourceTree = "<group>"; };
+		FFF005012B5A2832007BA500 /* WrappedRTPParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = WrappedRTPParameters.hpp; sourceTree = "<group>"; };
+		FFF005032B5A29B6007BA500 /* WrappedRTPParameters.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = WrappedRTPParameters.mm; sourceTree = "<group>"; };
+		FFF005052B5A332F007BA500 /* WrappedRTPParameters+Internal.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "WrappedRTPParameters+Internal.hpp"; sourceTree = "<group>"; };
+		FFF005062B5A4304007BA500 /* WrappedRTPParameters+Internal.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "WrappedRTPParameters+Internal.mm"; sourceTree = "<group>"; };
+		FFF005082B5A6192007BA500 /* RTPEncodingParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RTPEncodingParameters.hpp; sourceTree = "<group>"; };
+		FFF005092B5A62B0007BA500 /* RTPEncodingParameters+Internal.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "RTPEncodingParameters+Internal.hpp"; sourceTree = "<group>"; };
+		FFF0050A2B5A62FD007BA500 /* RTPEncodingParameters.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RTPEncodingParameters.mm; sourceTree = "<group>"; };
+		FFF0050C2B5A631D007BA500 /* RTPEncodingParameters+Internal.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "RTPEncodingParameters+Internal.mm"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF3AEDFD27F2CDD1001A81AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFCD791D27F41A0900D26B4C /* sdptransform.xcframework in Frameworks */,
+				FFCD791827F419E800D26B4C /* mediasoupclient.xcframework in Frameworks */,
+				FFCD791F27F41A0900D26B4C /* WebRTC.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF1E63512A56555F0022A44A /* DataConsumer */ = {
+			isa = PBXGroup;
+			children = (
+				FF1E63562A5655830022A44A /* DataConsumerListenerAdapter.hpp */,
+				FF1E63572A5655830022A44A /* DataConsumerListenerAdapter.mm */,
+				FF1E63532A5655830022A44A /* DataConsumerListenerAdapterDelegate.h */,
+				FF1E63522A5655830022A44A /* DataConsumerWrapper.hpp */,
+				FF1E63542A5655830022A44A /* DataConsumerWrapper.mm */,
+				FF1E63552A5655830022A44A /* DataConsumerWrapperDelegate.h */,
+			);
+			path = DataConsumer;
+			sourceTree = "<group>";
+		};
+		FF3AEDF327F2C92E001A81AB = {
+			isa = PBXGroup;
+			children = (
+				FF2E23D6285890310008DC19 /* README.md */,
+				FF89EFD627F6AFBD00EEF5CD /* Mediasoup-Client-Swift.podspec */,
+				FF3AEE0227F2CDD1001A81AB /* Mediasoup */,
+				FF89EFCF27F5C51500EEF5CD /* Mediasoup_Private */,
+				FF3AEE0127F2CDD1001A81AB /* Products */,
+				FFCD791627F419E800D26B4C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FF3AEE0127F2CDD1001A81AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF3AEE0027F2CDD1001A81AB /* Mediasoup.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF3AEE0227F2CDD1001A81AB /* Mediasoup */ = {
+			isa = PBXGroup;
+			children = (
+				FF49F0E72804049300B64D36 /* Consumer.swift */,
+				FF49F0E9280404E400B64D36 /* ConsumerDelegate.swift */,
+				FF1E635E2A566C500022A44A /* DataConsumer.swift */,
+				FF1E63602A566C640022A44A /* DataConsumerDelegate.swift */,
+				FF61457227F306BC0067B2C4 /* Device.swift */,
+				FFC5AC6F2824F8FB00C92A96 /* ICETransportPolicy.swift */,
+				FFC2452027F6E8DF008F61DE /* MediaKind.swift */,
+				FF61456A27F2F5AD0067B2C4 /* Mediasoup.modulemap */,
+				FF89EFD427F6AEBB00EEF5CD /* MediasoupClientErrorConverter.swift */,
+				FF89EFBE27F461DB00EEF5CD /* MediasoupError.swift */,
+				FF7FA6CC27FE985E000B6470 /* Producer.swift */,
+				FF7FA6D227FF18A5000B6470 /* ProducerDelegate.swift */,
+				FFB7DDB02822891C00FE2CC2 /* ReceiveTransport.swift */,
+				FFB7DDB22822893C00FE2CC2 /* ReceiveTransportDelegate.swift */,
+				FF7FA69427FAA930000B6470 /* SendTransport.swift */,
+				FF7FA69027FAA8E9000B6470 /* SendTransportDelegate.swift */,
+				FF7FA6C327FD5ECD000B6470 /* Transport.swift */,
+				FFC5AC71282500A500C92A96 /* TransportConnectionState.swift */,
+				FF7FA6C127FD5EA5000B6470 /* TransportDelegate.swift */,
+				FFF004F82B592424007BA500 /* RTPParameters.swift */,
+				FFF004FA2B5986F6007BA500 /* ScalabilityMode.swift */,
+			);
+			path = Mediasoup;
+			sourceTree = "<group>";
+		};
+		FF7FA69827FAACB4000B6470 /* Transport */ = {
+			isa = PBXGroup;
+			children = (
+				FFB7DDC028238C8D00FE2CC2 /* ReceiveTransportListenerAdapter.hpp */,
+				FFB7DDC128238C8D00FE2CC2 /* ReceiveTransportListenerAdapter.mm */,
+				FFB7DDB928228B2600FE2CC2 /* ReceiveTransportListenerAdapterDelegate.h */,
+				FFB7DDB42822897300FE2CC2 /* ReceiveTransportWrapper.hpp */,
+				FFB7DDB628228A2100FE2CC2 /* ReceiveTransportWrapper.mm */,
+				FFB7DDBA28228B8C00FE2CC2 /* ReceiveTransportWrapperDelegate.h */,
+				FF7FA6A327FAB829000B6470 /* SendTransportListenerAdapter.hpp */,
+				FF7FA6A127FAB803000B6470 /* SendTransportListenerAdapter.mm */,
+				FF7FA6BF27FBFDF3000B6470 /* SendTransportListenerAdapterDelegate.h */,
+				FF7FA69B27FAACFF000B6470 /* SendTransportWrapper.hpp */,
+				FF7FA69927FAACEE000B6470 /* SendTransportWrapper.mm */,
+				FF7FA6BC27FB0F93000B6470 /* SendTransportWrapperDelegate.h */,
+			);
+			path = Transport;
+			sourceTree = "<group>";
+		};
+		FF7FA6C827FE9661000B6470 /* Producer */ = {
+			isa = PBXGroup;
+			children = (
+				FF7FA6CF27FE9C06000B6470 /* ProducerListenerAdapter.hpp */,
+				FF7FA6D527FF1BA6000B6470 /* ProducerListenerAdapter.mm */,
+				FF7FA6D027FEC402000B6470 /* ProducerListenerAdapterDelegate.h */,
+				FF7FA6CB27FE9681000B6470 /* ProducerWrapper.hpp */,
+				FF7FA6C927FE9674000B6470 /* ProducerWrapper.mm */,
+				FF7FA6D127FF1755000B6470 /* ProducerWrapperDelegate.h */,
+				FFF005082B5A6192007BA500 /* RTPEncodingParameters.hpp */,
+				FFF0050A2B5A62FD007BA500 /* RTPEncodingParameters.mm */,
+				FFF005092B5A62B0007BA500 /* RTPEncodingParameters+Internal.hpp */,
+				FFF0050C2B5A631D007BA500 /* RTPEncodingParameters+Internal.mm */,
+				FFF005012B5A2832007BA500 /* WrappedRTPParameters.hpp */,
+				FFF005032B5A29B6007BA500 /* WrappedRTPParameters.mm */,
+				FFF005052B5A332F007BA500 /* WrappedRTPParameters+Internal.hpp */,
+				FFF005062B5A4304007BA500 /* WrappedRTPParameters+Internal.mm */,
+			);
+			path = Producer;
+			sourceTree = "<group>";
+		};
+		FF89EFCF27F5C51500EEF5CD /* Mediasoup_Private */ = {
+			isa = PBXGroup;
+			children = (
+				FF1E63512A56555F0022A44A /* DataConsumer */,
+				FFB7DDB5282289AD00FE2CC2 /* Consumer */,
+				FF7FA6C827FE9661000B6470 /* Producer */,
+				FF7FA69827FAACB4000B6470 /* Transport */,
+				FF89EFD027F5C79000EEF5CD /* Mediasoup_Private.modulemap */,
+				FFC2452227F6E931008F61DE /* MediasoupClientMediaKind.h */,
+				FFC2452327F6E9DB008F61DE /* MediasoupClientMediaKind.mm */,
+				FFC5AC742825025100C92A96 /* MediasoupClientTransportConnectionState.h */,
+				FFC5AC732825025100C92A96 /* MediasoupClientTransportConnectionState.mm */,
+				FF89EFD127F5C97000EEF5CD /* MediasoupClientError */,
+				FF89EFD227F5C99C00EEF5CD /* Device */,
+				FFF004FC2B598806007BA500 /* ScalabilityMode.mm */,
+				FFF004FE2B59881C007BA500 /* ScalabilityMode.h */,
+			);
+			path = Mediasoup_Private;
+			sourceTree = "<group>";
+		};
+		FF89EFD127F5C97000EEF5CD /* MediasoupClientError */ = {
+			isa = PBXGroup;
+			children = (
+				FF89EFBB27F460A100EEF5CD /* MediasoupClientError.h */,
+				FF89EFBC27F460F700EEF5CD /* MediasoupClientError.m */,
+				FF89EFC327F5696600EEF5CD /* MediasoupClientErrorHandler.h */,
+				FF89EFC127F5694900EEF5CD /* MediasoupClientErrorHandler.mm */,
+			);
+			path = MediasoupClientError;
+			sourceTree = "<group>";
+		};
+		FF89EFD227F5C99C00EEF5CD /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				FF3AEE0D27F2D68B001A81AB /* DeviceWrapper.h */,
+				FF3AEE0B27F2D67E001A81AB /* DeviceWrapper.mm */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		FFB7DDB5282289AD00FE2CC2 /* Consumer */ = {
+			isa = PBXGroup;
+			children = (
+				FFC5AC79282526D000C92A96 /* ConsumerListenerAdapter.hpp */,
+				FF42267E282B958C004D9974 /* ConsumerListenerAdapter.mm */,
+				FFC5AC7A2825274F00C92A96 /* ConsumerListenerAdapterDelegate.h */,
+				FFB7DDBC28229AEF00FE2CC2 /* ConsumerWrapper.hpp */,
+				FFC5AC772825170500C92A96 /* ConsumerWrapper.mm */,
+				FFB7DDBE28229BBF00FE2CC2 /* ConsumerWrapperDelegate.h */,
+			);
+			path = Consumer;
+			sourceTree = "<group>";
+		};
+		FFCD791627F419E800D26B4C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FFCD791B27F41A0900D26B4C /* sdptransform.xcframework */,
+				FFCD791C27F41A0900D26B4C /* WebRTC.xcframework */,
+				FFCD791727F419E800D26B4C /* mediasoupclient.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FF3AEDFB27F2CDD1001A81AB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFB7DDBD28229BA400FE2CC2 /* ConsumerWrapper.hpp in Headers */,
+				FFC2452527F6EA1C008F61DE /* MediasoupClientMediaKind.h in Headers */,
+				FFC5AC762825025100C92A96 /* MediasoupClientTransportConnectionState.h in Headers */,
+				FF89EFC627F5B35900EEF5CD /* MediasoupClientErrorHandler.h in Headers */,
+				FFB7DDBB28228BE400FE2CC2 /* ReceiveTransportWrapperDelegate.h in Headers */,
+				FFB7DDB828228ABA00FE2CC2 /* ReceiveTransportWrapper.hpp in Headers */,
+				FF1E63582A5655830022A44A /* DataConsumerWrapper.hpp in Headers */,
+				FFF004FF2B598D59007BA500 /* ScalabilityMode.h in Headers */,
+				FF89EFC027F462F200EEF5CD /* MediasoupClientError.h in Headers */,
+				FF7FA6A027FAAEF2000B6470 /* SendTransportWrapper.hpp in Headers */,
+				FF7FA6BD27FB0FB7000B6470 /* SendTransportWrapperDelegate.h in Headers */,
+				FF7FA6A427FAB838000B6470 /* SendTransportListenerAdapter.hpp in Headers */,
+				FFF0050E2B5A641C007BA500 /* RTPEncodingParameters.hpp in Headers */,
+				FF7FA6D427FF1A08000B6470 /* ProducerWrapperDelegate.h in Headers */,
+				FFF005022B5A2968007BA500 /* WrappedRTPParameters.hpp in Headers */,
+				FFB7DDBF28229BC100FE2CC2 /* ConsumerWrapperDelegate.h in Headers */,
+				FF7FA6CE27FE9A4B000B6470 /* ProducerWrapper.hpp in Headers */,
+				FF1E635B2A5655830022A44A /* DataConsumerWrapperDelegate.h in Headers */,
+				FFB7DDC22823989A00FE2CC2 /* ReceiveTransportListenerAdapter.hpp in Headers */,
+				FF61457527F30FDC0067B2C4 /* DeviceWrapper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FF3AEDFF27F2CDD1001A81AB /* Mediasoup */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF3AEE0727F2CDD1001A81AB /* Build configuration list for PBXNativeTarget "Mediasoup" */;
+			buildPhases = (
+				FF61457027F2FBAA0067B2C4 /* Copy Headers */,
+				FF3AEDFB27F2CDD1001A81AB /* Headers */,
+				FF3AEDFC27F2CDD1001A81AB /* Sources */,
+				FF3AEDFD27F2CDD1001A81AB /* Frameworks */,
+				FF3AEDFE27F2CDD1001A81AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mediasoup;
+			productName = Mediasoup;
+			productReference = FF3AEE0027F2CDD1001A81AB /* Mediasoup.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF3AEDF427F2C92E001A81AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1320;
+				ORGANIZATIONNAME = VLProjects;
+				TargetAttributes = {
+					FF3AEDFF27F2CDD1001A81AB = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					FF61456C27F2FB790067B2C4 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = FF3AEDF727F2C92E001A81AB /* Build configuration list for PBXProject "Mediasoup" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF3AEDF327F2C92E001A81AB;
+			productRefGroup = FF3AEE0127F2CDD1001A81AB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF3AEDFF27F2CDD1001A81AB /* Mediasoup */,
+				FF61456C27F2FB790067B2C4 /* Mediasoup Framework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF3AEDFE27F2CDD1001A81AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FF61457027F2FBAA0067B2C4 /* Copy Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Headers";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Script to copy mediasoup/webrtc header files to project\n#cd \"${SRCROOT}/Mediasoup/dependencies/libmediasoupclient/include\"\n\n#echo \"Copying mediasoup header files to the Framework\"\n# Copy mediasoup headers to framework\n#for header in `find . -name \"*.hpp\" -o -name \"*.h\"`; do\n#    echo \"copying ${header} to ${BUILT_PROJECTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${header}\"\n#    cp -rf \"${header}\" \"${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${header}\"\n#done\n\n#cd \"${SRCROOT}/Mediasoup/dependencies/webrtc/src/\"\n\n#echo \"Copying webrtc header files to the framework\"\n# Copy webrtc api to the framework\n#for header in `find ./api -name \"*.hpp\" -o -name \"*.h\"`; do\n#    echo \"copying ${header} to ${BUILT_PROJECTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${header}\"\n#    ditto \"${header}\" \"${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${header}\"\n#done\n\n# Copy webrtc third_party abseil-cpp\n#echo \"Copying webrtc third party header files\"\n#cd \"${SRCROOT}/vl-mediasoup-client-ios/dependencies/webrtc/src/third_party/abseil-cpp\"\n\n#for header in `find . -name \"*.hpp\" -o -name \"*.h\"`; do\n#    echo \"copying ${header} to ${BUILT_PROJECTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${header}\"\n#    ditto \"${header}\" \"${BUILT_PRODUCTS_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/${header}\"\n#done\n";
+		};
+		FF61457127F2FC2A0067B2C4 /* Create XCFramework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Create XCFramework";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nFRAMEWORK_NAME=\"Mediasoup\"\nBUILD_DIR=\"${SRCROOT}/build/Mediasoup\"\nOUTPUT_DIR=\"${SRCROOT}/bin\"\n\n# Remove build directory if it exists\nif [ -d \"${BUILD_DIR}\" ]; then\n\trm -rf \"${BUILD_DIR}\"\nfi\n\n# Build the framework for both device and simulator\nxcodebuild -project \"${PROJECT_NAME}.xcodeproj\" \\\n    -scheme \"${FRAMEWORK_NAME}\" \\\n    -configuration Release \\\n    -arch arm64 only_active_arch=no \\\n    -sdk \"iphoneos\" \\\n    -derivedDataPath \"${BUILD_DIR}\"\n\nxcodebuild -project \"${PROJECT_NAME}.xcodeproj\" \\\n    -scheme \"${FRAMEWORK_NAME}\" \\\n    -configuration Release \\\n    -arch x86_64 -arch arm64 only_active_arch=no \\\n    -sdk \"iphonesimulator\" \\\n    -derivedDataPath \"${BUILD_DIR}\"\n\n# Prepare output directory\nmkdir -p ${OUTPUT_DIR}\nif [ -d \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.xcframework\" ]; then\n\trm -rf \"${OUTPUT_DIR}/${FRAMEWORK_NAME}.xcframework\"\nfi\n\nxcodebuild -create-xcframework \\\n\t-framework ${BUILD_DIR}/Build/Products/Release-iphoneos/${FRAMEWORK_NAME}.framework \\\n\t-framework ${BUILD_DIR}/Build/Products/Release-iphonesimulator/${FRAMEWORK_NAME}.framework \\\n\t-output $OUTPUT_DIR/${FRAMEWORK_NAME}.xcframework\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF3AEDFC27F2CDD1001A81AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFF005042B5A29B6007BA500 /* WrappedRTPParameters.mm in Sources */,
+				FFF004FB2B5986F6007BA500 /* ScalabilityMode.swift in Sources */,
+				FFB7DDB32822893C00FE2CC2 /* ReceiveTransportDelegate.swift in Sources */,
+				FFF005072B5A4304007BA500 /* WrappedRTPParameters+Internal.mm in Sources */,
+				FFC5AC782825170500C92A96 /* ConsumerWrapper.mm in Sources */,
+				FFB7DDB12822891C00FE2CC2 /* ReceiveTransport.swift in Sources */,
+				FFC2452127F6E8DF008F61DE /* MediaKind.swift in Sources */,
+				FF7FA6C427FD5ECD000B6470 /* Transport.swift in Sources */,
+				FF1E635D2A5655830022A44A /* DataConsumerListenerAdapter.mm in Sources */,
+				FF7FA6C227FD5EA5000B6470 /* TransportDelegate.swift in Sources */,
+				FFB7DDC3282398A500FE2CC2 /* ReceiveTransportListenerAdapter.mm in Sources */,
+				FF7FA6A227FAB803000B6470 /* SendTransportListenerAdapter.mm in Sources */,
+				FFF005002B599102007BA500 /* ScalabilityMode.mm in Sources */,
+				FFC2452427F6E9DB008F61DE /* MediasoupClientMediaKind.mm in Sources */,
+				FFF004F92B592424007BA500 /* RTPParameters.swift in Sources */,
+				FF7FA6CA27FE9674000B6470 /* ProducerWrapper.mm in Sources */,
+				FFF0050D2B5A631D007BA500 /* RTPEncodingParameters+Internal.mm in Sources */,
+				FFF0050B2B5A62FD007BA500 /* RTPEncodingParameters.mm in Sources */,
+				FFC5AC72282500A500C92A96 /* TransportConnectionState.swift in Sources */,
+				FF7FA69A27FAACEE000B6470 /* SendTransportWrapper.mm in Sources */,
+				FF7FA69527FAA930000B6470 /* SendTransport.swift in Sources */,
+				FF49F0EA280404E400B64D36 /* ConsumerDelegate.swift in Sources */,
+				FF7FA69127FAA8E9000B6470 /* SendTransportDelegate.swift in Sources */,
+				FF89EFBF27F461DB00EEF5CD /* MediasoupError.swift in Sources */,
+				FFB7DDB728228A2100FE2CC2 /* ReceiveTransportWrapper.mm in Sources */,
+				FF7FA6D327FF18A5000B6470 /* ProducerDelegate.swift in Sources */,
+				FF1E635F2A566C500022A44A /* DataConsumer.swift in Sources */,
+				FF1E63612A566C640022A44A /* DataConsumerDelegate.swift in Sources */,
+				FF3AEE0C27F2D67E001A81AB /* DeviceWrapper.mm in Sources */,
+				FF422680282B9603004D9974 /* ConsumerListenerAdapter.mm in Sources */,
+				FF89EFD527F6AEBB00EEF5CD /* MediasoupClientErrorConverter.swift in Sources */,
+				FFC5AC702824F8FB00C92A96 /* ICETransportPolicy.swift in Sources */,
+				FF89EFC227F5694900EEF5CD /* MediasoupClientErrorHandler.mm in Sources */,
+				FF7FA6CD27FE985E000B6470 /* Producer.swift in Sources */,
+				FF89EFBD27F460F700EEF5CD /* MediasoupClientError.m in Sources */,
+				FFC5AC752825025100C92A96 /* MediasoupClientTransportConnectionState.mm in Sources */,
+				FF89EFC827F5B5E600EEF5CD /* Device.swift in Sources */,
+				FF1E635A2A5655830022A44A /* DataConsumerWrapper.mm in Sources */,
+				FF49F0E82804049300B64D36 /* Consumer.swift in Sources */,
+				FF7FA6D627FF1BA6000B6470 /* ProducerListenerAdapter.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FF3AEDF827F2C92E001A81AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+			};
+			name = Debug;
+		};
+		FF3AEDF927F2C92E001A81AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+			};
+			name = Release;
+		};
+		FF3AEE0827F2CDD1001A81AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					WEBRTC_POSIX,
+					WEBRTC_IOS,
+					WEBRTC_MAC,
+					DEBUG,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/Mediasoup/dependencies/libmediasoupclient/include",
+					"${SRCROOT}/build/libmediasoupclient/device/arm64/_deps/libsdptransform-src/include",
+					"$(SRCROOT)/Mediasoup/dependencies/webrtc/src",
+					"$(SRCROOT)/Mediasoup/dependencies/webrtc/src/third_party/abseil-cpp",
+					"$(SRCROOT)/Mediasoup/dependencies/webrtc/src/sdk/objc/api",
+					"$(SRCROOT)/Mediasoup/dependencies/webrtc/src/sdk/objc/base",
+					"$(SRCROOT)/Mediasoup/dependencies/webrtc/src/sdk/objc",
+				);
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 VLProjects. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULEMAP_FILE = "${SRCROOT}/Mediasoup/Mediasoup.modulemap";
+				MODULEMAP_PRIVATE_FILE = "${SRCROOT}/Mediasoup_Private/Mediasoup_Private.modulemap";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = pro.vlprojects.Mediasoup;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FF3AEE0927F2CDD1001A81AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					WEBRTC_POSIX,
+					WEBRTC_IOS,
+					WEBRTC_MAC,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/Mediasoup/dependencies/libmediasoupclient/include",
+					"${SRCROOT}/build/libmediasoupclient/device/arm64/_deps/libsdptransform-src/include",
+					"$(SRCROOT)/Mediasoup/dependencies/webrtc/src",
+					"$(SRCROOT)/Mediasoup/dependencies/webrtc/src/third_party/abseil-cpp",
+					"$(SRCROOT)/Mediasoup/dependencies/webrtc/src/sdk/objc/api",
+					"$(SRCROOT)/Mediasoup/dependencies/webrtc/src/sdk/objc/base",
+					"$(SRCROOT)/Mediasoup/dependencies/webrtc/src/sdk/objc",
+				);
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 VLProjects. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULEMAP_FILE = "${SRCROOT}/Mediasoup/Mediasoup.modulemap";
+				MODULEMAP_PRIVATE_FILE = "${SRCROOT}/Mediasoup_Private/Mediasoup_Private.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = pro.vlprojects.Mediasoup;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FF61456E27F2FB790067B2C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FF61456F27F2FB790067B2C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF3AEDF727F2C92E001A81AB /* Build configuration list for PBXProject "Mediasoup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF3AEDF827F2C92E001A81AB /* Debug */,
+				FF3AEDF927F2C92E001A81AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF3AEE0727F2CDD1001A81AB /* Build configuration list for PBXNativeTarget "Mediasoup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF3AEE0827F2CDD1001A81AB /* Debug */,
+				FF3AEE0927F2CDD1001A81AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF61456D27F2FB790067B2C4 /* Build configuration list for PBXAggregateTarget "Mediasoup Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF61456E27F2FB790067B2C4 /* Debug */,
+				FF61456F27F2FB790067B2C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF3AEDF427F2C92E001A81AB /* Project object */;
+}

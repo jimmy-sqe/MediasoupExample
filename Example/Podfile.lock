@@ -1,0 +1,42 @@
+PODS:
+  - DatadogCore (2.21.0):
+    - DatadogInternal (= 2.21.0)
+  - DatadogInternal (2.21.0)
+  - DatadogLogs (2.21.0):
+    - DatadogInternal (= 2.21.0)
+  - Mediasoup-Client-Swift (0.8.1):
+    - DatadogCore (= 2.21.0)
+    - DatadogLogs (= 2.21.0)
+    - NWWebSocket (= 0.5.4)
+    - Sentry (= 8.36.0)
+  - NWWebSocket (0.5.4)
+  - Sentry (8.36.0):
+    - Sentry/Core (= 8.36.0)
+  - Sentry/Core (8.36.0)
+
+DEPENDENCIES:
+  - Mediasoup-Client-Swift (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - DatadogCore
+    - DatadogInternal
+    - DatadogLogs
+    - NWWebSocket
+    - Sentry
+
+EXTERNAL SOURCES:
+  Mediasoup-Client-Swift:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DatadogCore: 20847d2db8c530468fbb5addb9019cf4e4815501
+  DatadogInternal: 0ec96370664be589280df720cf996e11916bb85f
+  DatadogLogs: bf56d4c17c8062d4bc06f3f9d48b3e7e75eed819
+  Mediasoup-Client-Swift: 86b73524f15013dcc942e0fc740f7d979abf0f7a
+  NWWebSocket: 040d22f23438cc09aaeabf537beff67699c3c76d
+  Sentry: f8374b5415bc38dfb5645941b3ae31230fbeae57
+
+PODFILE CHECKSUM: 2b17f50eee4030f434aaa6325263166ffff4d3d7
+
+COCOAPODS: 1.14.0
