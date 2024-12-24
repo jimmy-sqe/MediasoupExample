@@ -5,7 +5,12 @@
 //  Created by Jimmy Suhartono on 24/12/24.
 //
 
+import Foundation
+
 protocol WebSocketControllerDelegate: AnyObject {
+    
+    func onWebSocketConnected()
+    
 }
 
 protocol WebSocketControllerProtocol {
@@ -57,5 +62,28 @@ extension WebSocketController: WebSocketClientDelegate {
         self.loggerController.sendLog(name: "WebSocket:DidReceiveMessage", properties: [
             "message": message
         ])
+        
+        if let messageData = message.data(using: .utf8) {
+            let decoder = JSONDecoder()
+            
+            do {
+                let webSocketMessage = try decoder.decode(WebSocketMessage.self, from: messageData)
+                self.triggerEvent(event: webSocketMessage.event)
+            } catch(let error) {
+                self.loggerController.sendLog(name: "WebSocket:DidReceiveMessage:DecodeFailed", properties: [
+                    "error": error.localizedDescription
+                ])
+            }
+        }
+    }
+    
+    private func triggerEvent(event: WebSocketEvent) {
+        switch event {
+            case .webSocketConnected:
+                delegate?.onWebSocketConnected()
+                break
+            case .unknown:
+                break
+        }
     }
 }

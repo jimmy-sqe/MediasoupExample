@@ -11,6 +11,8 @@
 		AD4217672D1A53540023520E /* WebSocketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4217662D1A534F0023520E /* WebSocketController.swift */; };
 		AD4217692D1A549C0023520E /* WebSocketAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4217682D1A54920023520E /* WebSocketAPIData.swift */; };
 		AD42176C2D1A57580023520E /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42176B2D1A57540023520E /* WebSocketClient.swift */; };
+		AD42176E2D1A9A6E0023520E /* WebSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42176D2D1A9A690023520E /* WebSocketMessage.swift */; };
+		AD4217702D1A9CBE0023520E /* WebSocketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42176F2D1A9CBD0023520E /* WebSocketEvent.swift */; };
 		ADED4FBC2D1966D200344A65 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FBB2D1966B500344A65 /* AuthController.swift */; };
 		ADED4FBE2D19670400344A65 /* AuthAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FBD2D19670000344A65 /* AuthAPIData.swift */; };
 		ADED4FC12D196A9500344A65 /* SqeCcEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FC02D196A8000344A65 /* SqeCcEnvironment.swift */; };
@@ -97,6 +99,8 @@
 		AD4217662D1A534F0023520E /* WebSocketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketController.swift; sourceTree = "<group>"; };
 		AD4217682D1A54920023520E /* WebSocketAPIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketAPIData.swift; sourceTree = "<group>"; };
 		AD42176B2D1A57540023520E /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
+		AD42176D2D1A9A690023520E /* WebSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketMessage.swift; sourceTree = "<group>"; };
+		AD42176F2D1A9CBD0023520E /* WebSocketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketEvent.swift; sourceTree = "<group>"; };
 		ADED4FBB2D1966B500344A65 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		ADED4FBD2D19670000344A65 /* AuthAPIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIData.swift; sourceTree = "<group>"; };
 		ADED4FC02D196A8000344A65 /* SqeCcEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqeCcEnvironment.swift; sourceTree = "<group>"; };
@@ -220,6 +224,15 @@
 			isa = PBXGroup;
 			children = (
 				AD42176B2D1A57540023520E /* WebSocketClient.swift */,
+			);
+			path = WebSocket;
+			sourceTree = "<group>";
+		};
+		AD4217712D1A9F1B0023520E /* WebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				AD42176F2D1A9CBD0023520E /* WebSocketEvent.swift */,
+				AD42176D2D1A9A690023520E /* WebSocketMessage.swift */,
 			);
 			path = WebSocket;
 			sourceTree = "<group>";
@@ -535,6 +548,7 @@
 		ADED50592D196E5F00344A65 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AD4217712D1A9F1B0023520E /* WebSocket */,
 				ADED505A2D196E6A00344A65 /* Auth.swift */,
 			);
 			path = Models;
@@ -724,6 +738,7 @@
 				ADED50232D196B1600344A65 /* Analytic.swift in Sources */,
 				ADED50242D196B1600344A65 /* URLResponse.swift in Sources */,
 				ADED50252D196B1600344A65 /* AnalyticService.swift in Sources */,
+				AD4217702D1A9CBE0023520E /* WebSocketEvent.swift in Sources */,
 				ADED50262D196B1600344A65 /* NetworkProviderUtil.swift in Sources */,
 				ADED50272D196B1600344A65 /* NetworkManagerProtocol.swift in Sources */,
 				ADED50282D196B1600344A65 /* CommonEventNames.swift in Sources */,
@@ -772,6 +787,7 @@
 				ADED504C2D196B1600344A65 /* Dictionary.swift in Sources */,
 				ADED504D2D196B1600344A65 /* SDKConfigKey.swift in Sources */,
 				ADED504E2D196B1600344A65 /* PhoneNumberEncryptionUtil.swift in Sources */,
+				AD42176E2D1A9A6E0023520E /* WebSocketMessage.swift in Sources */,
 				ADED504F2D196B1600344A65 /* ClientConfigModelResponse.swift in Sources */,
 				ADED50622D19769E00344A65 /* ClientConfig.swift in Sources */,
 				ADED50502D196B1600344A65 /* Time.swift in Sources */,

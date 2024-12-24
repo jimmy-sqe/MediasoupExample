@@ -28,6 +28,12 @@ class MakeCall {
         self.webSocketController = webSocketController ?? WebSocketController(baseUrl: env.wsBaseUrl.absoluteString, loggerController: loggerController)
     }
     
+    func setup() {
+        if let webSocketController = self.webSocketController as? WebSocketController {
+            webSocketController.delegate = self
+        }
+    }
+    
     func doAuthAndConnectWebSocket(name: String, phone: String) {
         let requestParam = AuthRequestParam(name: name, phone: phone)
         authController.doAuth(requestParam: requestParam) { [weak self] result in
@@ -40,6 +46,14 @@ class MakeCall {
                 break
             }
         }
+    }
+    
+}
+
+extension MakeCall: WebSocketControllerDelegate {
+    
+    func onWebSocketConnected() {
+        self.loggerController.sendLog(name: "MakeCall:OnWebSocketConnected", properties: nil)
     }
     
 }

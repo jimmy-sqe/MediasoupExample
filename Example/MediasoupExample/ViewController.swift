@@ -27,21 +27,10 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        connectWebSocket()
+        makeCall.setup()
         makeCall.doAuthAndConnectWebSocket(name: "Jimmy Suhartono", phone: "085959011905")
     }
     
-//    private func connectWebSocket() {
-//        let socketURL = URL(string: "wss://sqecc-be.stg.squantumengine.com/web-widget/cable?websiteToken=e6776bf9-ca05-4b57-94db-5003949f81e5&cwToken=\(Constants.ConversationToken)")!
-//
-//        let socket = NWWebSocket(url: socketURL)
-//        self.socket = socket
-//        
-//        socket.delegate = self
-//        socket.connect()
-        
-        
         
 //        API: POST - https://sqecc-be.stg.squantumengine.com/v1/widget/website-token/e6776bf9-ca05-4b57-94db-5003949f81e5/conversation/AUDIO_VIDEO
         // Authorization -> jwt accessToken
