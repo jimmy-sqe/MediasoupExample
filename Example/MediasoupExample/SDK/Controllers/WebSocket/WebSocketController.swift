@@ -13,6 +13,7 @@ protocol WebSocketControllerDelegate: AnyObject {
     func onRequestToJoinApproved()
     func onUserJoinedMeetingRoom()
     func onRTPCapabilitiesReceived(rtpCapabilities: String)
+    func onWebRTCTransportReceived(originalRequestId: String, id: String, iceParameters: String, iceCandidates: String, dtlsParameters: String)
 
 }
 
@@ -26,6 +27,11 @@ protocol WebSocketControllerProtocol {
     func getRTPCapabilities(originalRequestId: String, meetingRoomId: String)
     func createWebRTCTransport(originalRequestId: String, meetingRoomId: String)
 
+}
+
+enum WebSocketRequestType {
+    case webRTCSendTransport
+    case webRTCReceiveTransport
 }
 
 class WebSocketController: WebSocketControllerProtocol {
@@ -110,7 +116,7 @@ extension WebSocketController: WebSocketClientDelegate {
                 let jsonObject = messageData.toDictionary()
                 let data = jsonObject?["data"] as? [String: Any]
                 
-                self.triggerEvent(event: webSocketReceiveMessage.event, data: data)
+                self.readMessage(message: webSocketReceiveMessage, data: data)
             } catch(let error) {
                 self.loggerController.sendLog(name: "WebSocket:DidReceiveMessage:DecodeMessageFailed", properties: [
                     "error": error.localizedDescription
@@ -119,8 +125,8 @@ extension WebSocketController: WebSocketClientDelegate {
         }
     }
     
-    private func triggerEvent(event: WebSocketReceiveEvent, data: [String: Any]?) {
-        switch event {
+    private func readMessage(message: WebSocketReceiveMessage, data: [String: Any]?) {
+        switch message.event {
         case .webSocketConnected:
             delegate?.onWebSocketConnected()
         case .requestToJoinApproved:
@@ -130,24 +136,23 @@ extension WebSocketController: WebSocketClientDelegate {
         case .rtpCapabilities:
             let rtpCapabilitiesString = (data?["rtpCapabilities"] as? [String: Any])?.toJSONString()
             delegate?.onRTPCapabilitiesReceived(rtpCapabilities: rtpCapabilitiesString ?? "unknown")
+        case .webRTCTransport:
+            let webRTCResponse = data?["webrtcResponse"] as? [String: Any]
+            
+            let id = webRTCResponse?["id"] as? String
+            let iceParameters = (webRTCResponse?["iceParameters"] as? [String: Any])?.toJSONString()
+            let iceCandidates = (webRTCResponse?["iceCandidates"] as? [String: Any])?.toJSONString()
+            let dtlsParameters = (webRTCResponse?["dtlsParameters"] as? [String: Any])?.toJSONString()
+            delegate?.onWebRTCTransportReceived(
+                originalRequestId: message.originalRequestId ?? "unknown",
+                id: id ?? "unknown",
+                iceParameters: iceParameters ?? "unknown",
+                iceCandidates: iceCandidates ?? "unknown",
+                dtlsParameters: dtlsParameters ?? "unknown"
+            )
         case .unknown:
             break
         }
     }
     
-//    private func decodeData<T: Codable>(messageData: String) -> T? {
-//        guard let messageData = messageData.data(using: .utf8) else { return nil }
-//        
-//        let decoder = JSONDecoder()
-//        
-//        do {
-//            let webSocketReceiveData = try decoder.decode(T.self, from: messageData)
-//            return webSocketReceiveData
-//        } catch(let error) {
-//            self.loggerController.sendLog(name: "WebSocket:DidReceiveMessage:DecodeDataFailed", properties: [
-//                "error": error.localizedDescription
-//            ])
-//            return nil
-//        }
-//    }
 }

@@ -22,7 +22,9 @@ protocol DeviceControllerProtocol {
     func checkAudioPermission()
     func setup()
     func loadDevice(rtpCapabilities: String)
-        
+    func createSendTransport(param: DeviceTransportParam)
+    func createReceiveTransport(param: DeviceTransportParam)
+
 }
 
 class DeviceController: DeviceControllerProtocol {
@@ -33,14 +35,22 @@ class DeviceController: DeviceControllerProtocol {
     private var mediaStream: RTCMediaStream?
     private var audioTrack: RTCAudioTrack?
     
-    private var device: Device?
+    private let device = Device()
+    
     private var sendTransport: SendTransport?
+    private let deviceSendTransportHandler: DeviceSendTransportHandler
+    private var receiveTransport: ReceiveTransport?
+    private let deviceReceiveTransportHandler: DeviceReceiveTransportHandler
+    
     private var producer: Producer?
 
     private let loggerController: LoggerControllerProtocol
     
     init(loggerController: LoggerControllerProtocol) {
         self.loggerController = loggerController
+        
+        self.deviceSendTransportHandler = DeviceSendTransportHandler(loggerController: loggerController)
+        self.deviceReceiveTransportHandler = DeviceReceiveTransportHandler(loggerController: loggerController)
     }
     
     func checkAudioPermission() {
@@ -55,15 +65,12 @@ class DeviceController: DeviceControllerProtocol {
         let audioTrack = peerConnectionFactory.audioTrack(withTrackId: TestData.MediaStream.audioTrackId)
         mediaStream?.addAudioTrack(audioTrack)
         self.audioTrack = audioTrack
-        
-        let device = Device()
-        self.device = device
     }
     
     func loadDevice(rtpCapabilities: String) {
         self.loggerController.sendLog(name: "Device:LoadDevice", properties: nil)
         
-        guard let device, AVCaptureDevice.authorizationStatus(for: .audio) == .authorized else {
+        guard AVCaptureDevice.authorizationStatus(for: .audio) == .authorized else {
             self.loggerController.sendLog(name: "Device:LoadDevice failed", properties: [
                 "error": "DeviceAuthorizationStatus: \(AVCaptureDevice.authorizationStatus(for: .audio))"
             ])
@@ -89,9 +96,51 @@ class DeviceController: DeviceControllerProtocol {
             if canProduceVideo && canProduceAudio {
                 self.delegate?.onDeviceLoaded()
             }
-            
-        } catch let error as MediasoupError {
-            let errorMessage: String
+        } catch {
+            self.handleError(error: error)
+        }
+    }
+    
+    func createSendTransport(param: DeviceTransportParam) {
+        self.loggerController.sendLog(name: "Device:CreateSendTransport", properties: nil)
+
+        do {
+            let sendTransport = try device.createSendTransport(
+                id: param.id,
+                iceParameters: param.iceParameters,
+                iceCandidates: param.iceCandidates,
+                dtlsParameters: param.dtlsParameters,
+                sctpParameters: nil,
+                appData: nil)
+            sendTransport.delegate = self.deviceSendTransportHandler
+            self.sendTransport = sendTransport
+        } catch {
+            self.handleError(error: error)
+        }
+    }
+    
+    func createReceiveTransport(param: DeviceTransportParam) {
+        self.loggerController.sendLog(name: "Device:CreateReceiveTransport", properties: nil)
+
+        do {
+            let receiveTransport = try device.createReceiveTransport(
+                id: param.id,
+                iceParameters: param.iceParameters,
+                iceCandidates: param.iceCandidates,
+                dtlsParameters: param.dtlsParameters,
+                sctpParameters: nil,
+                appData: nil)
+            receiveTransport.delegate = self.deviceReceiveTransportHandler
+            self.receiveTransport = receiveTransport
+        } catch {
+            self.handleError(error: error)
+        }
+    }
+    
+    private func handleError(error: Error) {
+        let errorMessage: String
+        
+        if let error = error as? MediasoupError {
             switch error {
             case let .unsupported(message):
                 errorMessage = "unsupported: \(message)"
@@ -106,47 +155,13 @@ class DeviceController: DeviceControllerProtocol {
             @unknown default:
                 errorMessage = "unknown"
             }
-            self.loggerController.sendLog(name: "Device:LoadDevice failed", properties: [
-                "error": errorMessage
-            ])
-        } catch {
-            self.loggerController.sendLog(name: "Device:LoadDevice failed", properties: [
-                "error": error.localizedDescription
-            ])
+        } else {
+            errorMessage = error.localizedDescription
         }
-    }
-    
-}
-
-extension DeviceController: SendTransportDelegate {
-    
-    func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {
         
-        self.loggerController.sendLog(name: "Device:OnProduce:\(kind)", properties: nil)
-        
-        //        print("on produce \(kind)")
-        //        //TODO:
-        //        //rtpParameters: diubah sedikit ditambah manual baris 150
-        //        //newRtpParam: masukin lagi
-        //        //balikin lagi ke BE pakai WebSocket
-        //        //BE balikin originalRequestID
-        //        //Save producerId dari res.data.producer.id
-        //        //Panggil callback
-    }
-    
-    func onProduceData(transport: any Transport, sctpParameters: String, label: String, protocol dataProtocol: String, appData: String, callback: @escaping (String?) -> Void) {
-        
-        self.loggerController.sendLog(name: "Device:OnProduceData:\(label)", properties: nil)
-    }
-    
-    func onConnect(transport: any Transport, dtlsParameters: String) {
-        
-        self.loggerController.sendLog(name: "Device:OnConnect:\(dtlsParameters)", properties: nil)
-    }
-    
-    func onConnectionStateChange(transport: any Transport, connectionState: TransportConnectionState) {
-        
-        self.loggerController.sendLog(name: "Device:OnConnectionStateChange:\(connectionState)", properties: nil)
+        self.loggerController.sendLog(name: "Device:error occurred failed", properties: [
+            "error": errorMessage
+        ])
     }
     
 }

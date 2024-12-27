@@ -30,6 +30,7 @@ class ManageRoom {
     private let conversationController: ConversationControllerProtocol
     private var webSocketController: WebSocketControllerProtocol
     private var deviceController: DeviceControllerProtocol
+    private var originalRequestIds = [WebSocketRequestType: String]()
 
     init(env: SqeCcEnvironment,
          wsToken: String,
@@ -131,9 +132,10 @@ class ManageRoom {
         webSocketController.getRTPCapabilities(originalRequestId: originalRequestId, meetingRoomId: meetingRoomId)
     }
     
-    func createWebRTCTransport() {
+    func createWebRTCTransport(requestType: WebSocketRequestType) {
         guard let meetingRoomId else { return }
         let originalRequestId = UUID().uuidString
+        self.originalRequestIds[requestType] = originalRequestId
         
         webSocketController.createWebRTCTransport(originalRequestId: originalRequestId, meetingRoomId: meetingRoomId)
     }
@@ -190,13 +192,30 @@ extension ManageRoom: WebSocketControllerDelegate {
         self.setupDevice(rtpCapabilities: rtpCapabilities)
     }
     
+    func onWebRTCTransportReceived(originalRequestId: String, id: String, iceParameters: String, iceCandidates: String, dtlsParameters: String) {
+        self.loggerController.sendLog(name: "ManageRoom:OnWebRTCTransportReceived", properties: ["id": id])
+        
+        let param = DeviceTransportParam(id: id, iceParameters: iceParameters, iceCandidates: iceCandidates, dtlsParameters: dtlsParameters)
+
+        let key = (self.originalRequestIds.first { $0.value == originalRequestId })?.key
+        
+        switch key {
+        case .webRTCSendTransport:
+            self.deviceController.createSendTransport(param: param)
+        case .webRTCReceiveTransport:
+            self.deviceController.createReceiveTransport(param: param)
+        default:
+            break
+        }
+    }
+    
 }
 
 extension ManageRoom: DeviceControllerDelegate {
     
     func onDeviceLoaded() {
-        self.createWebRTCTransport()
-        self.createWebRTCTransport()
+        self.createWebRTCTransport(requestType: .webRTCSendTransport)
+        self.createWebRTCTransport(requestType: .webRTCReceiveTransport)
     }
     
 }
