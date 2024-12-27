@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ConversationStatus: NSObject {
+struct ConversationStatus {
     
     let meetingRoomId: String
     let callJoinStatus: CallJoinStatus
@@ -22,7 +22,7 @@ final class ConversationStatus: NSObject {
     
 }
 
-final class CallJoinStatus: NSObject {
+struct CallJoinStatus {
     
     let shouldJoinCall: String
     let displayText: String
@@ -44,7 +44,7 @@ extension ConversationStatus: Codable {
         case callJoinStatus
     }
     
-    public convenience init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         let meetingRoomId = try values.decode(String.self, forKey: .meetingRoomId)
@@ -65,7 +65,7 @@ extension CallJoinStatus: Codable {
         case displayText
     }
     
-    public convenience init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         let shouldJoinCall = try values.decode(String.self, forKey: .shouldJoinCall)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Auth: NSObject {
+struct Auth {
     
     let token: String
     
@@ -25,7 +25,7 @@ extension Auth: Codable {
         case token
     }
     
-    public convenience init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         let token = try values.decode(String.self, forKey: .token)

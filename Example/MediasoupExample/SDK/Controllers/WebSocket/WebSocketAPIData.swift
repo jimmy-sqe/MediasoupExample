@@ -8,11 +8,14 @@
 
 enum WebSocketAPIData: NetworkAPIData {
     case connect(String, String)
-    
+    case sendEvent(WebSocketSendEvent, [String: String])
+
     var path: String {
         switch self {
             case .connect:
                 return "web-widget/cable"
+            case .sendEvent:
+                return ""
         }
     }
     
@@ -24,6 +27,13 @@ enum WebSocketAPIData: NetworkAPIData {
                 "cwToken": cwToken
             ]
             return NetworkRequestParams(urlParameters: urlParameters)
+        case .sendEvent(let event, let params):
+            
+            let paramsWithEvent = params.merging([
+                "event": event.rawValue
+            ]) { _, new in new }
+
+            return NetworkRequestParams(bodyParameters: paramsWithEvent)
         }
     }
 }

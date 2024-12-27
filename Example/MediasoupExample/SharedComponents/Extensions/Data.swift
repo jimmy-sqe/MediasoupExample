@@ -23,4 +23,8 @@ public extension Data {
             .base64EncodedString(options: [])
     }
     
+    func toDictionary() -> [String: Any]? {
+        return try? JSONSerialization.jsonObject(with: self, options: []) as? [String: Any]
+    }
+    
 }

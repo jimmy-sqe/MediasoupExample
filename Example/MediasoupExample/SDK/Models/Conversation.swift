@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ConversationData: NSObject {
+struct ConversationData {
     
     let data: [Conversation]
     
@@ -19,7 +19,7 @@ final class ConversationData: NSObject {
     
 }
 
-final class Conversation: NSObject {
+struct Conversation {
     
     let meetingRoomId: String
     
@@ -37,7 +37,7 @@ extension ConversationData: Codable {
         case data
     }
     
-    public convenience init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         let data = try values.decode([Conversation].self, forKey: .data)
@@ -55,7 +55,7 @@ extension Conversation: Codable {
         case meetingRoomId
     }
     
-    public convenience init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         let meetingRoomId = try values.decode(String.self, forKey: .meetingRoomId)

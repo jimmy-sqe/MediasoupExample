@@ -15,7 +15,11 @@ protocol WebSocketClientDelegate: AnyObject {
 }
 
 protocol WebSocketClientProtocol {
+    var delegate: WebSocketClientDelegate? { get set }
+    
     func connect(request: WebSocketAPIData)
+    func disconnect()
+    func send(request: WebSocketAPIData)
 }
 
 class WebSocketClient: WebSocketClientProtocol {
@@ -41,6 +45,16 @@ class WebSocketClient: WebSocketClientProtocol {
         self.webSocket = webSocket
         
         webSocket.connect()
+    }
+    
+    func disconnect() {
+        webSocket?.disconnect()
+    }
+    
+    func send(request: WebSocketAPIData) {
+        guard let message = request.parameters.bodyParameters?.toJSONString() else { return }
+        
+        self.webSocket?.send(string: message)
     }
     
 }
