@@ -40,16 +40,6 @@ final class ViewController: UIViewController {
     
 }
 
-//            let sendTransport = try device.createSendTransport(
-//                id: TestData.SendTransport.transportId,
-//                iceParameters: TestData.SendTransport.iceParameters,
-//                iceCandidates: TestData.SendTransport.iceCandidates,
-//                dtlsParameters: TestData.SendTransport.dtlsParameters,
-//                sctpParameters: nil,
-//                appData: nil)
-//            sendTransport.delegate = self
-//            self.sendTransport = sendTransport
-            
 //			print("transport id: \(sendTransport.id)")
 //			print("transport is closed: \(sendTransport.closed)")
 //

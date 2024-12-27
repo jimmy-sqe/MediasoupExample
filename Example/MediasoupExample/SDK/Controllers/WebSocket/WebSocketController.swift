@@ -141,7 +141,7 @@ extension WebSocketController: WebSocketClientDelegate {
             
             let id = webRTCResponse?["id"] as? String
             let iceParameters = (webRTCResponse?["iceParameters"] as? [String: Any])?.toJSONString()
-            let iceCandidates = (webRTCResponse?["iceCandidates"] as? [String: Any])?.toJSONString()
+            let iceCandidates = (webRTCResponse?["iceCandidates"] as? [[String: Any]])?.toJSONString()
             let dtlsParameters = (webRTCResponse?["dtlsParameters"] as? [String: Any])?.toJSONString()
             delegate?.onWebRTCTransportReceived(
                 originalRequestId: message.originalRequestId ?? "unknown",

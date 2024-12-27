@@ -102,7 +102,12 @@ class DeviceController: DeviceControllerProtocol {
     }
     
     func createSendTransport(param: DeviceTransportParam) {
-        self.loggerController.sendLog(name: "Device:CreateSendTransport", properties: nil)
+        self.loggerController.sendLog(name: "Device:CreateSendTransport", properties: [
+            "id": param.id,
+            "iceParameters": param.iceParameters,
+            "iceCandidates": param.iceCandidates,
+            "dtlsParameters": param.dtlsParameters
+        ])
 
         do {
             let sendTransport = try device.createSendTransport(
@@ -120,8 +125,13 @@ class DeviceController: DeviceControllerProtocol {
     }
     
     func createReceiveTransport(param: DeviceTransportParam) {
-        self.loggerController.sendLog(name: "Device:CreateReceiveTransport", properties: nil)
-
+        self.loggerController.sendLog(name: "Device:CreateReceiveTransport", properties: [
+            "id": param.id,
+            "iceParameters": param.iceParameters,
+            "iceCandidates": param.iceCandidates,
+            "dtlsParameters": param.dtlsParameters
+        ])
+        
         do {
             let receiveTransport = try device.createReceiveTransport(
                 id: param.id,
