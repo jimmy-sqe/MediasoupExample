@@ -48,3 +48,11 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
     }
     
 }
+
+extension DeviceSendTransportHandler: ProducerDelegate {
+    
+    func onTransportClose(in producer: Producer) {
+        self.loggerController.sendLog(name: "DeviceProducer:OnTransportClose:\(producer.id)", properties: nil)
+    }
+    
+}

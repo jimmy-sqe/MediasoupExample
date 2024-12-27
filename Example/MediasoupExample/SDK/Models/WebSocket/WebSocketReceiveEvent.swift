@@ -12,6 +12,7 @@ enum WebSocketReceiveEvent: String, Codable {
     case rtpCapabilities = "RTP_CAPABILITIES"
     case userJoinedMeetingRoom = "USER_JOINED_MEETING_ROOM"
     case webRTCTransport = "WEBRTC_TRANSPORT"
+    case mediaServerProducers = "MEDIA_SERVER_PRODUCERS"
 
     case unknown = "UNKNOWN"
     

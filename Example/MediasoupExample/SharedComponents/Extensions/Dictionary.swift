@@ -17,8 +17,16 @@ extension Dictionary {
         return theJSONData.encodeBase64URLSafe()
     }
     
-    func toJSONString() -> String? {
+    func toData() -> Data? {
         guard let theJSONData = try? JSONSerialization.data(withJSONObject: self) else {
+            return nil
+        }
+        
+        return theJSONData
+    }
+    
+    func toJSONString() -> String? {
+        guard let theJSONData = toData() else {
             return nil
         }
         

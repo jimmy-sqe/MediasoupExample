@@ -186,6 +186,12 @@ extension ManageRoom: WebSocketControllerDelegate {
         self.onRoomStatusUpdated?("User Joined Meeting Room")
     }
     
+    func onMediaServerProducersReceived(mediaServerProducers: [MediaServerProducer]) {
+        self.loggerController.sendLog(name: "ManageRoom:OnMediaServerProducersReceived", properties: [
+            "mediaServerProducers": mediaServerProducers.map(\.kind).joined(separator: ",")
+        ])
+    }
+    
     func onRTPCapabilitiesReceived(rtpCapabilities: String) {
         self.loggerController.sendLog(name: "ManageRoom:OnRTPCapabilitiesReceived", properties: ["rtpCapabilities": rtpCapabilities])
         
@@ -202,6 +208,7 @@ extension ManageRoom: WebSocketControllerDelegate {
         switch key {
         case .webRTCSendTransport:
             self.deviceController.createSendTransport(param: param)
+            self.deviceController.createProducer()
         case .webRTCReceiveTransport:
             self.deviceController.createReceiveTransport(param: param)
         default:

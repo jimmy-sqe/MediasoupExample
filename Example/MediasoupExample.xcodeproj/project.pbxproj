@@ -22,8 +22,8 @@
 		AD66EE942D1EA37C00CED7FD /* DeviceTransportParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE932D1EA37700CED7FD /* DeviceTransportParam.swift */; };
 		AD66EE962D1EAC3200CED7FD /* DeviceSendTransportHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE952D1EAC2400CED7FD /* DeviceSendTransportHandler.swift */; };
 		AD66EE982D1EAC3E00CED7FD /* DeviceReceiveTransportHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE972D1EAC3700CED7FD /* DeviceReceiveTransportHandler.swift */; };
+		AD66EE9B2D1EBFC600CED7FD /* MediaServerProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */; };
 		ADD4270F2D1E4B8800CC610A /* WebSocketSendEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD4270E2D1E4B8100CC610A /* WebSocketSendEvent.swift */; };
-		ADD427112D1E528800CC610A /* WebSocketReceiveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD427102D1E528300CC610A /* WebSocketReceiveData.swift */; };
 		ADD427182D1E5F3F00CC610A /* DynamicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD427172D1E5F3C00CC610A /* DynamicValue.swift */; };
 		ADED4FBC2D1966D200344A65 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FBB2D1966B500344A65 /* AuthController.swift */; };
 		ADED4FBE2D19670400344A65 /* AuthAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FBD2D19670000344A65 /* AuthAPIData.swift */; };
@@ -100,7 +100,6 @@
 		FF3AEE2227F2D797001A81AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF3AEE2027F2D797001A81AB /* Main.storyboard */; };
 		FF3AEE2427F2D798001A81AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF3AEE2327F2D798001A81AB /* Assets.xcassets */; };
 		FF3AEE2727F2D798001A81AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF3AEE2527F2D798001A81AB /* LaunchScreen.storyboard */; };
-		FF7FA6C727FE9370000B6470 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7FA6C627FE9370000B6470 /* TestData.swift */; };
 		FF89EFD827F6CABA00EEF5CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF89EFD727F6CABA00EEF5CD /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -122,8 +121,8 @@
 		AD66EE932D1EA37700CED7FD /* DeviceTransportParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTransportParam.swift; sourceTree = "<group>"; };
 		AD66EE952D1EAC2400CED7FD /* DeviceSendTransportHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSendTransportHandler.swift; sourceTree = "<group>"; };
 		AD66EE972D1EAC3700CED7FD /* DeviceReceiveTransportHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceReceiveTransportHandler.swift; sourceTree = "<group>"; };
+		AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaServerProducer.swift; sourceTree = "<group>"; };
 		ADD4270E2D1E4B8100CC610A /* WebSocketSendEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketSendEvent.swift; sourceTree = "<group>"; };
-		ADD427102D1E528300CC610A /* WebSocketReceiveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketReceiveData.swift; sourceTree = "<group>"; };
 		ADD427172D1E5F3C00CC610A /* DynamicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicValue.swift; sourceTree = "<group>"; };
 		ADED4FBB2D1966B500344A65 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		ADED4FBD2D19670000344A65 /* AuthAPIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIData.swift; sourceTree = "<group>"; };
@@ -202,7 +201,6 @@
 		FF3AEE2327F2D798001A81AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF3AEE2627F2D798001A81AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF3AEE2827F2D798001A81AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FF7FA6C627FE9370000B6470 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		FF89EFD727F6CABA00EEF5CD /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -258,7 +256,6 @@
 				ADD4270E2D1E4B8100CC610A /* WebSocketSendEvent.swift */,
 				AD42176F2D1A9CBD0023520E /* WebSocketReceiveEvent.swift */,
 				AD42176D2D1A9A690023520E /* WebSocketReceiveMessage.swift */,
-				ADD427102D1E528300CC610A /* WebSocketReceiveData.swift */,
 			);
 			path = WebSocket;
 			sourceTree = "<group>";
@@ -281,7 +278,6 @@
 				FF3AEE2027F2D797001A81AB /* Main.storyboard */,
 				FF3AEE2327F2D798001A81AB /* Assets.xcassets */,
 				FF3AEE2527F2D798001A81AB /* LaunchScreen.storyboard */,
-				FF7FA6C627FE9370000B6470 /* TestData.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -629,6 +625,7 @@
 				ADD427162D1E5F2900CC610A /* Helpers */,
 				AD4217712D1A9F1B0023520E /* WebSocket */,
 				ADED505A2D196E6A00344A65 /* Auth.swift */,
+				AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */,
 				AD42177B2D1AA9040023520E /* CommunicationMode.swift */,
 				AD4217792D1AA0CB0023520E /* Conversation.swift */,
 				AD42177E2D1AC02E0023520E /* ConversationStatus.swift */,
@@ -813,6 +810,7 @@
 				ADED50222D196B1600344A65 /* LocalStorage.swift in Sources */,
 				ADED50232D196B1600344A65 /* Analytic.swift in Sources */,
 				ADED50242D196B1600344A65 /* URLResponse.swift in Sources */,
+				AD66EE9B2D1EBFC600CED7FD /* MediaServerProducer.swift in Sources */,
 				ADED50252D196B1600344A65 /* AnalyticService.swift in Sources */,
 				AD4217702D1A9CBE0023520E /* WebSocketReceiveEvent.swift in Sources */,
 				ADED50262D196B1600344A65 /* NetworkProviderUtil.swift in Sources */,
@@ -880,7 +878,6 @@
 				ADED50502D196B1600344A65 /* Time.swift in Sources */,
 				ADED50512D196B1600344A65 /* Bundle.swift in Sources */,
 				ADED50522D196B1600344A65 /* NetworkAPIClientProtocol.swift in Sources */,
-				ADD427112D1E528800CC610A /* WebSocketReceiveData.swift in Sources */,
 				ADED50532D196B1600344A65 /* ServerTimeService.swift in Sources */,
 				ADED50542D196B1600344A65 /* UIApplication.swift in Sources */,
 				ADED50552D196B1600344A65 /* AuthenticationBaseViewModel.swift in Sources */,
@@ -888,7 +885,6 @@
 				ADED4FBE2D19670400344A65 /* AuthAPIData.swift in Sources */,
 				ADED4FC12D196A9500344A65 /* SqeCcEnvironment.swift in Sources */,
 				FF89EFD827F6CABA00EEF5CD /* SceneDelegate.swift in Sources */,
-				FF7FA6C727FE9370000B6470 /* TestData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

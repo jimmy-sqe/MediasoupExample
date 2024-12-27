@@ -24,6 +24,7 @@ protocol DeviceControllerProtocol {
     func loadDevice(rtpCapabilities: String)
     func createSendTransport(param: DeviceTransportParam)
     func createReceiveTransport(param: DeviceTransportParam)
+    func createProducer()
 
 }
 
@@ -34,15 +35,17 @@ class DeviceController: DeviceControllerProtocol {
     private let peerConnectionFactory = RTCPeerConnectionFactory()
     private var mediaStream: RTCMediaStream?
     private var audioTrack: RTCAudioTrack?
-    
+    private var videoTrack: RTCVideoTrack?
+
     private let device = Device()
     
     private var sendTransport: SendTransport?
-    private let deviceSendTransportHandler: DeviceSendTransportHandler
-    private var receiveTransport: ReceiveTransport?
-    private let deviceReceiveTransportHandler: DeviceReceiveTransportHandler
-    
     private var producer: Producer?
+    private let deviceSendTransportHandler: DeviceSendTransportHandler
+    
+    private var receiveTransport: ReceiveTransport?
+    private var consumer: Consumer?
+    private let deviceReceiveTransportHandler: DeviceReceiveTransportHandler
 
     private let loggerController: LoggerControllerProtocol
     
@@ -53,6 +56,11 @@ class DeviceController: DeviceControllerProtocol {
         self.deviceReceiveTransportHandler = DeviceReceiveTransportHandler(loggerController: loggerController)
     }
     
+    deinit {
+        self.sendTransport?.close()
+        self.receiveTransport?.close()
+    }
+    
     func checkAudioPermission() {
         if AVCaptureDevice.authorizationStatus(for: .audio) != .authorized {
             AVCaptureDevice.requestAccess(for: .audio) { _ in }
@@ -61,10 +69,18 @@ class DeviceController: DeviceControllerProtocol {
     }
     
     func setup() {
-        mediaStream = peerConnectionFactory.mediaStream(withStreamId: TestData.MediaStream.mediaStreamId)
-        let audioTrack = peerConnectionFactory.audioTrack(withTrackId: TestData.MediaStream.audioTrackId)
-        mediaStream?.addAudioTrack(audioTrack)
+        mediaStream = peerConnectionFactory.mediaStream(withStreamId: "mediaStream")
+        
+        let audioTrack = peerConnectionFactory.audioTrack(withTrackId: "audio")
         self.audioTrack = audioTrack
+        
+        mediaStream?.addAudioTrack(audioTrack)
+        
+        let videoSource = peerConnectionFactory.videoSource()
+        let videoTrack = peerConnectionFactory.videoTrack(with: videoSource, trackId: "video")
+        self.videoTrack = videoTrack
+        
+        mediaStream?.addVideoTrack(videoTrack)
     }
     
     func loadDevice(rtpCapabilities: String) {
@@ -97,7 +113,7 @@ class DeviceController: DeviceControllerProtocol {
                 self.delegate?.onDeviceLoaded()
             }
         } catch {
-            self.handleError(error: error)
+            self.handleError(subject: "Device:LoadDevice", error: error)
         }
     }
     
@@ -120,7 +136,7 @@ class DeviceController: DeviceControllerProtocol {
             sendTransport.delegate = self.deviceSendTransportHandler
             self.sendTransport = sendTransport
         } catch {
-            self.handleError(error: error)
+            self.handleError(subject: "Device:CreateSendTransport", error: error)
         }
     }
     
@@ -143,11 +159,28 @@ class DeviceController: DeviceControllerProtocol {
             receiveTransport.delegate = self.deviceReceiveTransportHandler
             self.receiveTransport = receiveTransport
         } catch {
-            self.handleError(error: error)
+            self.handleError(subject: "Device:CreateReceiveTransport", error: error)
         }
     }
     
-    private func handleError(error: Error) {
+    func createProducer() {
+        guard let sendTransport, let audioTrack else { return }
+        
+        self.loggerController.sendLog(name: "Device:CreateProducer", properties: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if let producer = try? sendTransport.createProducer(for: audioTrack, encodings: nil, codecOptions: nil, codec: nil, appData: nil) {
+                self.producer = producer
+                producer.delegate = self.deviceSendTransportHandler
+                producer.resume()
+                self.loggerController.sendLog(name: "Device:CreateProducer succeed", properties: nil)
+            } else {
+                self.loggerController.sendLog(name: "Device:CreateProducer failed", properties: nil)
+            }
+        }
+    }
+    
+    private func handleError(subject: String, error: Error) {
         let errorMessage: String
         
         if let error = error as? MediasoupError {
@@ -169,7 +202,7 @@ class DeviceController: DeviceControllerProtocol {
             errorMessage = error.localizedDescription
         }
         
-        self.loggerController.sendLog(name: "Device:error occurred failed", properties: [
+        self.loggerController.sendLog(name: "Device:\(subject) failed", properties: [
             "error": errorMessage
         ])
     }

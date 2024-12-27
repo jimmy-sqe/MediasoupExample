@@ -12,6 +12,7 @@ protocol WebSocketControllerDelegate: AnyObject {
     func onWebSocketConnected()
     func onRequestToJoinApproved()
     func onUserJoinedMeetingRoom()
+    func onMediaServerProducersReceived(mediaServerProducers: [MediaServerProducer])
     func onRTPCapabilitiesReceived(rtpCapabilities: String)
     func onWebRTCTransportReceived(originalRequestId: String, id: String, iceParameters: String, iceCandidates: String, dtlsParameters: String)
 
@@ -109,14 +110,12 @@ extension WebSocketController: WebSocketClientDelegate {
         ])
         
         if let messageData = message.data(using: .utf8) {
-            
             do {
                 let webSocketReceiveMessage = try JSONDecoder().decode(WebSocketReceiveMessage.self, from: messageData)
                 
                 let jsonObject = messageData.toDictionary()
-                let data = jsonObject?["data"] as? [String: Any]
                 
-                self.readMessage(message: webSocketReceiveMessage, data: data)
+                self.readMessage(message: webSocketReceiveMessage, jsonObject: jsonObject)
             } catch(let error) {
                 self.loggerController.sendLog(name: "WebSocket:DidReceiveMessage:DecodeMessageFailed", properties: [
                     "error": error.localizedDescription
@@ -125,7 +124,7 @@ extension WebSocketController: WebSocketClientDelegate {
         }
     }
     
-    private func readMessage(message: WebSocketReceiveMessage, data: [String: Any]?) {
+    private func readMessage(message: WebSocketReceiveMessage, jsonObject: [String: Any]?) {
         switch message.event {
         case .webSocketConnected:
             delegate?.onWebSocketConnected()
@@ -133,10 +132,19 @@ extension WebSocketController: WebSocketClientDelegate {
             delegate?.onRequestToJoinApproved()
         case .userJoinedMeetingRoom:
             delegate?.onUserJoinedMeetingRoom()
+        case .mediaServerProducers:
+            let producers = jsonObject?["producers"] as? [[String: Any]]
+            let meta = producers?.first?["meta"] as? [String: Any]
+            if let metaData = meta?.toData(),
+               let mediaServerProducers = try? JSONDecoder().decode([MediaServerProducer].self, from: metaData) {
+                delegate?.onMediaServerProducersReceived(mediaServerProducers: mediaServerProducers)
+            }
         case .rtpCapabilities:
+            let data = jsonObject?["data"] as? [String: Any]
             let rtpCapabilitiesString = (data?["rtpCapabilities"] as? [String: Any])?.toJSONString()
             delegate?.onRTPCapabilitiesReceived(rtpCapabilities: rtpCapabilitiesString ?? "unknown")
         case .webRTCTransport:
+            let data = jsonObject?["data"] as? [String: Any]
             let webRTCResponse = data?["webrtcResponse"] as? [String: Any]
             
             let id = webRTCResponse?["id"] as? String
