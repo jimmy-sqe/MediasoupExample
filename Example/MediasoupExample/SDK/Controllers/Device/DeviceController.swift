@@ -18,20 +18,27 @@ protocol DeviceControllerDelegate: AnyObject {
 protocol DeviceControllerProtocol {
     
     var delegate: DeviceControllerDelegate? { get set }
+    var meetingRoomId: String? { get set }
     
     func checkAudioPermission()
     func setup()
     func loadDevice(rtpCapabilities: String)
     func createSendTransport(param: DeviceTransportParam)
     func createReceiveTransport(param: DeviceTransportParam)
-    func createProducer(meetingRoomId: String, mediaServerProducers: [MediaServerProducer]?)
+    func createProducer(mediaServerProducers: [MediaServerProducer]?)
 
 }
 
 class DeviceController: DeviceControllerProtocol {
     
     weak var delegate: DeviceControllerDelegate?
-    
+    var meetingRoomId: String? {
+        didSet {
+            self.deviceSendTransportHandler.meetingRoomId = meetingRoomId
+            self.deviceReceiveTransportHandler.meetingRoomId = meetingRoomId
+        }
+    }
+
     private let peerConnectionFactory = RTCPeerConnectionFactory()
     private var mediaStream: RTCMediaStream?
     private var audioTrack: RTCAudioTrack?
@@ -52,13 +59,15 @@ class DeviceController: DeviceControllerProtocol {
     private let deviceReceiveTransportHandler: DeviceReceiveTransportHandler
 
     private let loggerController: LoggerControllerProtocol
+    private let webSocketController: WebSocketControllerProtocol
 
     init(loggerController: LoggerControllerProtocol,
          webSocketController: WebSocketControllerProtocol) {
         self.loggerController = loggerController
+        self.webSocketController = webSocketController
 
         self.deviceSendTransportHandler = DeviceSendTransportHandler(loggerController: loggerController, webSocketController: webSocketController)
-        self.deviceReceiveTransportHandler = DeviceReceiveTransportHandler(loggerController: loggerController)
+        self.deviceReceiveTransportHandler = DeviceReceiveTransportHandler(loggerController: loggerController, webSocketController: webSocketController)
     }
     
     deinit {
@@ -172,7 +181,7 @@ class DeviceController: DeviceControllerProtocol {
         }
     }
     
-    func createProducer(meetingRoomId: String, mediaServerProducers: [MediaServerProducer]?) {
+    func createProducer(mediaServerProducers: [MediaServerProducer]?) {
         guard let sendTransport, let audioTrack else { return }
         
         self.loggerController.sendLog(name: "Device:CreateProducer", properties: nil)
@@ -180,8 +189,6 @@ class DeviceController: DeviceControllerProtocol {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             do {
                 let appData: [String: Any] = [
-                    "meetingRoomId": meetingRoomId,
-                    "producerTransportId": self.producerTransportId ?? "unknown",
                     "consumerTransportId": self.consumerTransportId ?? "unknown",
                     "rtpCapabilities": self.rtpCapabilities ?? "unknown",
                     "mediaType": "audio",
@@ -189,7 +196,9 @@ class DeviceController: DeviceControllerProtocol {
                 ]
                 let producer = try sendTransport.createProducer(for: audioTrack, encodings: nil, codecOptions: nil, codec: nil, appData: appData.toJSONString())
                 self.producer = producer
+                
                 producer.delegate = self.deviceSendTransportHandler
+                
                 producer.resume()
                 self.loggerController.sendLog(name: "Device:CreateProducer succeed", properties: nil)
             } catch {

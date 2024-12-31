@@ -12,5 +12,6 @@ enum WebSocketSendEvent: String, Codable {
     case createWebRTCTransport = "CREATE_WEBRTC_TRANSPORT"
     case createWebRTCTransportProducer = "CREATE_WEBRTC_TRANSPORT_PRODUCER"
     case createWebRTCTransportConsumer = "CREATE_WEBRTC_TRANSPORT_CONSUMER"
+    case connectWebRTCTransport = "CONNECT_WEBRTC_TRANSPORT"
 
 }

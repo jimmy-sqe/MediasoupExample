@@ -10,23 +10,26 @@ import Mediasoup
 
 class DeviceSendTransportHandler {
     
-    private var isAudioConsumerCreated: Bool = false
-    private var isVideoConsumerCreated: Bool = false
+    var meetingRoomId: String?
+    
     private let loggerController: LoggerControllerProtocol
     private let webSocketController: WebSocketControllerProtocol
 
+    private var isAudioConsumerCreated: Bool = false
+    private var isVideoConsumerCreated: Bool = false
+    
     init(loggerController: LoggerControllerProtocol,
          webSocketController: WebSocketControllerProtocol) {
         self.loggerController = loggerController
         self.webSocketController = webSocketController
     }
     
-    private func createWebRTCTransportConsumer(meetingRoomId: String, consumerTransportId: String, rtpCapabilities: String, mediaServerProducer: MediaServerProducer) {
+    private func createWebRTCTransportConsumer(consumerTransportId: String, rtpCapabilities: String, mediaServerProducer: MediaServerProducer) {
         let originalRequestId = UUID().uuidString
 
         self.webSocketController.createWebRTCTransportConsumer(
             originalRequestId: originalRequestId,
-            meetingRoomId: meetingRoomId,
+            meetingRoomId: meetingRoomId ?? "unknown",
             consumerTransportId: consumerTransportId,
             producerId: mediaServerProducer.id,
             rtpCapabilities: rtpCapabilities,
@@ -37,6 +40,18 @@ class DeviceSendTransportHandler {
 }
 
 extension DeviceSendTransportHandler: SendTransportDelegate {
+    
+    func onConnect(transport: any Transport, dtlsParameters: String) {
+        self.loggerController.sendLog(name: "DeviceSendTransport:OnConnect:\(dtlsParameters)", properties: nil)
+        
+        let originalRequestId = UUID().uuidString
+        self.webSocketController.connectWebRTCTransport(
+            originalRequestId: originalRequestId,
+            meetingRoomId: meetingRoomId ?? "unknown",
+            transportId: transport.id,
+            dtlsParameters: dtlsParameters
+        )
+    }
     
     func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {
         self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce:\(rtpParameters)", properties: nil)
@@ -74,18 +89,21 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
         
         let appData = appData.toDictionary()
         let originalRequestId = UUID().uuidString
-        let meetingRoomId = (appData?["meetingRoomId"] as? String) ?? "unknown"
-        let producerTransportId = (appData?["producerTransportId"] as? String) ?? "unknown"
         let mediaType = (appData?["mediaType"] as? String) ?? "unknown"
         self.webSocketController.createWebRTCTransportProducer(
             originalRequestId: originalRequestId,
-            meetingRoomId: meetingRoomId,
-            producerTransportId: producerTransportId,
+            meetingRoomId: meetingRoomId ?? "unknown",
+            producerTransportId: transport.id,
             kind: mediaType,
             rtpParameters: newRtpParameters,
             mediaType: mediaType
         )
         
+        //TODO: Store originalRequestId from result of createWebRTCTransportProducer for callback value
+//        let originalRequestId =
+
+        //TODO: Store producer id from result of createWebRTCTransportProducer for resuming and closing producer
+//        {\"event\":\"WEBRTC_TRANSPORT_PRODUCER_CREATED\",\"meetingRoomId\":\"0ee8aa1b-22bd-4bf3-8786-17bb311bab7a\",\"conversationId\":\"ea6cfb83-a84d-4d0c-a046-cf905745471a\",\"data\":{\"me\":{\"name\":\"Jimmy - 31/11:11\U202fAM\",\"id\":\"ec706c56-984a-41d4-8782-b456b86d6cdd\"},\"producer\":{\"id\":\"f9645b1f-7f20-4db2-b370-b4f1da97c5dc\",\"kind\":\"audio\",\"mediaType\":\"audio\"}}}";
 //        const producerId = res.data.producer.id;
 //        if (appData.mediaType === 'screen') setProducerIdScreen(producerId);
 //        if (appData.mediaType === 'video') setProducerIdVideo(producerId);
@@ -108,40 +126,25 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
             if !isAudioConsumerCreated && kind == .audio && mediaServerProducer.kind == "audio" {
                 isAudioConsumerCreated = true
                 
-                self.createWebRTCTransportConsumer(meetingRoomId: meetingRoomId, consumerTransportId: consumerTransportId, rtpCapabilities: rtpCapabilities, mediaServerProducer: mediaServerProducer)
+                self.createWebRTCTransportConsumer(consumerTransportId: consumerTransportId, rtpCapabilities: rtpCapabilities, mediaServerProducer: mediaServerProducer)
             }
             
             if !isVideoConsumerCreated && kind == .video && mediaServerProducer.kind == "video" {
                 isVideoConsumerCreated = true
                 
                 
-                self.createWebRTCTransportConsumer(meetingRoomId: meetingRoomId, consumerTransportId: consumerTransportId, rtpCapabilities: rtpCapabilities, mediaServerProducer: mediaServerProducer)
+                self.createWebRTCTransportConsumer(consumerTransportId: consumerTransportId, rtpCapabilities: rtpCapabilities, mediaServerProducer: mediaServerProducer)
             }
         }
 
         callback(originalRequestId)
-        
-//        DEBUG:WebSocket:DidReceiveMessage with properties: {
-//            message = "{\"event\":\"WEBRTC_TRANSPORT_PRODUCER_CREATED\",\"meetingRoomId\":\"0ee8aa1b-22bd-4bf3-8786-17bb311bab7a\",\"conversationId\":\"ea6cfb83-a84d-4d0c-a046-cf905745471a\",\"data\":{\"me\":{\"name\":\"Jimmy - 31/11:11\U202fAM\",\"id\":\"ec706c56-984a-41d4-8782-b456b86d6cdd\"},\"producer\":{\"id\":\"f9645b1f-7f20-4db2-b370-b4f1da97c5dc\",\"kind\":\"audio\",\"mediaType\":\"audio\"}}}";
-//        }
-        
-        //        //BE balikin originalRequestID
-        //        //Save producerId dari res.data.producer.id
-        //        //Panggil callback(id)
     }
     
     func onProduceData(transport: any Transport, sctpParameters: String, label: String, protocol dataProtocol: String, appData: String, callback: @escaping (String?) -> Void) {
-        
         self.loggerController.sendLog(name: "DeviceSendTransport:OnProduceData:\(label)", properties: nil)
     }
     
-    func onConnect(transport: any Transport, dtlsParameters: String) {
-        
-        self.loggerController.sendLog(name: "DeviceSendTransport:OnConnect:\(dtlsParameters)", properties: nil)
-    }
-    
     func onConnectionStateChange(transport: any Transport, connectionState: TransportConnectionState) {
-        
         self.loggerController.sendLog(name: "DeviceSendTransport:OnConnectionStateChange:\(connectionState)", properties: nil)
     }
     

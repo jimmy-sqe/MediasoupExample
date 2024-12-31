@@ -27,6 +27,7 @@ protocol WebSocketControllerProtocol {
     func joinMeetingRoom(originalRequestId: String, meetingRoomId: String)
     func getRTPCapabilities(originalRequestId: String, meetingRoomId: String)
     func createWebRTCTransport(originalRequestId: String, meetingRoomId: String)
+    func connectWebRTCTransport(originalRequestId: String, meetingRoomId: String, transportId: String, dtlsParameters: String)
     func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String)
     func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: String, mediaType: String)
 
@@ -38,7 +39,6 @@ enum WebSocketRequestType {
 }
 
 class WebSocketController: WebSocketControllerProtocol {
-    
     weak var delegate: WebSocketControllerDelegate?
     
     private let loggerController: LoggerControllerProtocol
@@ -126,6 +126,19 @@ class WebSocketController: WebSocketControllerProtocol {
         self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
         self.webSocketClient.send(request: request)
     }
+    
+    func connectWebRTCTransport(originalRequestId: String, meetingRoomId: String, transportId: String, dtlsParameters: String) {
+        let request: WebSocketAPIData = .sendEvent(.connectWebRTCTransport, [
+            "originalRequestId": originalRequestId,
+            "meetingRoomId": meetingRoomId,
+            "transportId": transportId,
+            "dtlsParameters": dtlsParameters
+        ])
+        
+        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
+        self.webSocketClient.send(request: request)
+    }
+    
 }
 
 extension WebSocketController: WebSocketClientDelegate {

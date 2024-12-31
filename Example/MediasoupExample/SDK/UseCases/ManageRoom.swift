@@ -21,7 +21,12 @@ class ManageRoom {
         }
     }
     
-    private var meetingRoomId: String?
+    private var meetingRoomId: String? {
+        didSet {
+            self.deviceController.meetingRoomId = meetingRoomId
+        }
+    }
+    
     private var mediaServerProducers: [MediaServerProducer]?
     private let wsToken: String
     private let env: SqeCcEnvironment
@@ -213,7 +218,7 @@ extension ManageRoom: WebSocketControllerDelegate {
         switch key {
         case .webRTCSendTransport:
             self.deviceController.createSendTransport(param: param)
-            self.deviceController.createProducer(meetingRoomId: meetingRoomId, mediaServerProducers: self.mediaServerProducers)
+            self.deviceController.createProducer(mediaServerProducers: self.mediaServerProducers)
         case .webRTCReceiveTransport:
             self.deviceController.createReceiveTransport(param: param)
         default:
