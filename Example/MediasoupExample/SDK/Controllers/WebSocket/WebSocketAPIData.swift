@@ -8,7 +8,7 @@
 
 enum WebSocketAPIData: NetworkAPIData {
     case connect(String, String)
-    case sendEvent(WebSocketSendEvent, [String: String])
+    case sendEvent(WebSocketSendEvent, [String: Any])
 
     var path: String {
         switch self {

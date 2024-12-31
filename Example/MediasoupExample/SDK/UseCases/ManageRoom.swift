@@ -22,6 +22,7 @@ class ManageRoom {
     }
     
     private var meetingRoomId: String?
+    private var mediaServerProducers: [MediaServerProducer]?
     private let wsToken: String
     private let env: SqeCcEnvironment
     private let loggerController: LoggerControllerProtocol
@@ -49,7 +50,7 @@ class ManageRoom {
         self.authController = authController ?? AuthController(baseUrl: env.apiBaseUrl.absoluteString, wsToken: wsToken, loggerController: loggerController)
         self.conversationController = conversationController ?? ConversationController(baseUrl: env.apiBaseUrl.absoluteString, wsToken: wsToken, loggerController: loggerController)
         self.webSocketController = webSocketController ?? WebSocketController(baseUrl: env.wsBaseUrl.absoluteString, loggerController: loggerController)
-        self.deviceController = deviceController ?? DeviceController(loggerController: loggerController)
+        self.deviceController = deviceController ?? DeviceController(loggerController: loggerController, webSocketController: self.webSocketController)
     }
     
     deinit {
@@ -190,6 +191,8 @@ extension ManageRoom: WebSocketControllerDelegate {
         self.loggerController.sendLog(name: "ManageRoom:OnMediaServerProducersReceived", properties: [
             "mediaServerProducers": mediaServerProducers.map(\.kind).joined(separator: ",")
         ])
+        
+        self.mediaServerProducers = mediaServerProducers
     }
     
     func onRTPCapabilitiesReceived(rtpCapabilities: String) {
@@ -199,6 +202,8 @@ extension ManageRoom: WebSocketControllerDelegate {
     }
     
     func onWebRTCTransportReceived(originalRequestId: String, id: String, iceParameters: String, iceCandidates: String, dtlsParameters: String) {
+        guard let meetingRoomId = self.meetingRoomId else { return }
+        
         self.loggerController.sendLog(name: "ManageRoom:OnWebRTCTransportReceived", properties: ["id": id])
         
         let param = DeviceTransportParam(id: id, iceParameters: iceParameters, iceCandidates: iceCandidates, dtlsParameters: dtlsParameters)
@@ -208,7 +213,7 @@ extension ManageRoom: WebSocketControllerDelegate {
         switch key {
         case .webRTCSendTransport:
             self.deviceController.createSendTransport(param: param)
-            self.deviceController.createProducer()
+            self.deviceController.createProducer(meetingRoomId: meetingRoomId, mediaServerProducers: self.mediaServerProducers)
         case .webRTCReceiveTransport:
             self.deviceController.createReceiveTransport(param: param)
         default:

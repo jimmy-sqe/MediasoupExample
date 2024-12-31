@@ -24,7 +24,6 @@
 		AD66EE982D1EAC3E00CED7FD /* DeviceReceiveTransportHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE972D1EAC3700CED7FD /* DeviceReceiveTransportHandler.swift */; };
 		AD66EE9B2D1EBFC600CED7FD /* MediaServerProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */; };
 		ADD4270F2D1E4B8800CC610A /* WebSocketSendEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD4270E2D1E4B8100CC610A /* WebSocketSendEvent.swift */; };
-		ADD427182D1E5F3F00CC610A /* DynamicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD427172D1E5F3C00CC610A /* DynamicValue.swift */; };
 		ADED4FBC2D1966D200344A65 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FBB2D1966B500344A65 /* AuthController.swift */; };
 		ADED4FBE2D19670400344A65 /* AuthAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FBD2D19670000344A65 /* AuthAPIData.swift */; };
 		ADED4FC12D196A9500344A65 /* SqeCcEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FC02D196A8000344A65 /* SqeCcEnvironment.swift */; };
@@ -123,7 +122,6 @@
 		AD66EE972D1EAC3700CED7FD /* DeviceReceiveTransportHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceReceiveTransportHandler.swift; sourceTree = "<group>"; };
 		AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaServerProducer.swift; sourceTree = "<group>"; };
 		ADD4270E2D1E4B8100CC610A /* WebSocketSendEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketSendEvent.swift; sourceTree = "<group>"; };
-		ADD427172D1E5F3C00CC610A /* DynamicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicValue.swift; sourceTree = "<group>"; };
 		ADED4FBB2D1966B500344A65 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		ADED4FBD2D19670000344A65 /* AuthAPIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIData.swift; sourceTree = "<group>"; };
 		ADED4FC02D196A8000344A65 /* SqeCcEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqeCcEnvironment.swift; sourceTree = "<group>"; };
@@ -299,14 +297,6 @@
 				AD66EE972D1EAC3700CED7FD /* DeviceReceiveTransportHandler.swift */,
 			);
 			path = Handler;
-			sourceTree = "<group>";
-		};
-		ADD427162D1E5F2900CC610A /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				ADD427172D1E5F3C00CC610A /* DynamicValue.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		ADED4FA62D1964A000344A65 /* UseCases */ = {
@@ -622,7 +612,6 @@
 		ADED50592D196E5F00344A65 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				ADD427162D1E5F2900CC610A /* Helpers */,
 				AD4217712D1A9F1B0023520E /* WebSocket */,
 				ADED505A2D196E6A00344A65 /* Auth.swift */,
 				AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */,
@@ -819,7 +808,6 @@
 				ADED50292D196B1600344A65 /* NetworkAPIData.swift in Sources */,
 				ADED502A2D196B1600344A65 /* URL.swift in Sources */,
 				ADED502B2D196B1600344A65 /* Date.swift in Sources */,
-				ADD427182D1E5F3F00CC610A /* DynamicValue.swift in Sources */,
 				AD42177F2D1AC0300023520E /* ConversationStatus.swift in Sources */,
 				ADED502C2D196B1600344A65 /* Data.swift in Sources */,
 				ADED502D2D196B1600344A65 /* DeviceInfoGenerator.swift in Sources */,

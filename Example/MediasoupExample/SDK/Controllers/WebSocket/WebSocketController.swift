@@ -27,6 +27,8 @@ protocol WebSocketControllerProtocol {
     func joinMeetingRoom(originalRequestId: String, meetingRoomId: String)
     func getRTPCapabilities(originalRequestId: String, meetingRoomId: String)
     func createWebRTCTransport(originalRequestId: String, meetingRoomId: String)
+    func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String)
+    func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: String, mediaType: String)
 
 }
 
@@ -91,6 +93,39 @@ class WebSocketController: WebSocketControllerProtocol {
         self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
         self.webSocketClient.send(request: request)
     }
+    
+    func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String) {
+        let request: WebSocketAPIData = .sendEvent(.createWebRTCTransportProducer, [
+            "originalRequestId": originalRequestId,
+            "meetingRoomId": meetingRoomId,
+            "producerTransportId": producerTransportId,
+            "data": [
+                "kind": kind,
+                "rtpParameters": rtpParameters,
+                "mediaType": mediaType
+            ]
+        ])
+        
+        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
+        self.webSocketClient.send(request: request)
+    }
+    
+    func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: String, mediaType: String) {
+        let request: WebSocketAPIData = .sendEvent(.createWebRTCTransportConsumer, [
+            "originalRequestId": originalRequestId,
+            "meetingRoomId": meetingRoomId,
+            "consumerTransportId": consumerTransportId,
+            "producerId": producerId,
+            "data": [
+                "producerId": producerId,
+                "rtpCapabilities": rtpCapabilities,
+                "mediaType": mediaType
+            ]
+        ])
+        
+        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
+        self.webSocketClient.send(request: request)
+    }
 }
 
 extension WebSocketController: WebSocketClientDelegate {
@@ -134,8 +169,8 @@ extension WebSocketController: WebSocketClientDelegate {
             delegate?.onUserJoinedMeetingRoom()
         case .mediaServerProducers:
             let producers = jsonObject?["producers"] as? [[String: Any]]
-            let meta = producers?.first?["meta"] as? [String: Any]
-            if let metaData = meta?.toData(),
+            let metaData = producers?.first?["meta"] as? [[String: Any]]
+            if let metaData = metaData?.toData(),
                let mediaServerProducers = try? JSONDecoder().decode([MediaServerProducer].self, from: metaData) {
                 delegate?.onMediaServerProducersReceived(mediaServerProducers: mediaServerProducers)
             }

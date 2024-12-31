@@ -16,6 +16,11 @@ public extension String {
         self.init(data: data, encoding: .utf8)
     }
     
+    func toDictionary() -> [String: Any]? {
+        guard let data = self.data(using: .utf8) else { return nil }
+        return data.toDictionary()
+    }
+    
     func encodeBase64URLSafe() -> String {
         let data = Data(self.utf8)
         return data.encodeBase64URLSafe()

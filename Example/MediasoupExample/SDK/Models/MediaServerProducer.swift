@@ -5,7 +5,7 @@
 //  Created by Jimmy Suhartono on 27/12/24.
 //
 
-struct MediaServerProducer {
+final class MediaServerProducer {
     
     let id: String
     let kind: String
@@ -31,7 +31,7 @@ extension MediaServerProducer: Codable {
         case mediaType
     }
     
-    init(from decoder: Decoder) throws {
+    convenience init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         let id = try values.decode(String.self, forKey: .id)

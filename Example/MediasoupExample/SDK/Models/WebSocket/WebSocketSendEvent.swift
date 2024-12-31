@@ -10,5 +10,7 @@ enum WebSocketSendEvent: String, Codable {
     case joinMeetingRoom = "JOIN_MEETING_ROOM"
     case getRTPCabilities = "GET_RTP_CAPABILITIES"
     case createWebRTCTransport = "CREATE_WEBRTC_TRANSPORT"
+    case createWebRTCTransportProducer = "CREATE_WEBRTC_TRANSPORT_PRODUCER"
+    case createWebRTCTransportConsumer = "CREATE_WEBRTC_TRANSPORT_CONSUMER"
 
 }

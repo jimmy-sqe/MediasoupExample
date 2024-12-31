@@ -1,251 +1,9 @@
 {
   "ABIRoot": {
     "kind": "Root",
-    "name": "Mediasoup",
-    "printedName": "Mediasoup",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
     "children": [
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "Mediasoup"
-      },
-      {
-        "kind": "Import",
-        "name": "Mediasoup_Private",
-        "printedName": "Mediasoup_Private",
-        "declKind": "Import",
-        "moduleName": "Mediasoup"
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "ScalabilityMode",
-        "printedName": "ScalabilityMode",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "spatialLayers",
-            "printedName": "spatialLayers",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Int",
-                "printedName": "Swift.Int",
-                "usr": "s:Si"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:9Mediasoup15ScalabilityModeV13spatialLayersSivp",
-            "mangledName": "$s9Mediasoup15ScalabilityModeV13spatialLayersSivp",
-            "moduleName": "Mediasoup",
-            "declAttributes": [
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup15ScalabilityModeV13spatialLayersSivg",
-                "mangledName": "$s9Mediasoup15ScalabilityModeV13spatialLayersSivg",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup15ScalabilityModeV13spatialLayersSivs",
-                "mangledName": "$s9Mediasoup15ScalabilityModeV13spatialLayersSivs",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup15ScalabilityModeV13spatialLayersSivM",
-                "mangledName": "$s9Mediasoup15ScalabilityModeV13spatialLayersSivM",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "temporalLayers",
-            "printedName": "temporalLayers",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Int",
-                "printedName": "Swift.Int",
-                "usr": "s:Si"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:9Mediasoup15ScalabilityModeV14temporalLayersSivp",
-            "mangledName": "$s9Mediasoup15ScalabilityModeV14temporalLayersSivp",
-            "moduleName": "Mediasoup",
-            "declAttributes": [
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup15ScalabilityModeV14temporalLayersSivg",
-                "mangledName": "$s9Mediasoup15ScalabilityModeV14temporalLayersSivg",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup15ScalabilityModeV14temporalLayersSivs",
-                "mangledName": "$s9Mediasoup15ScalabilityModeV14temporalLayersSivs",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup15ScalabilityModeV14temporalLayersSivM",
-                "mangledName": "$s9Mediasoup15ScalabilityModeV14temporalLayersSivM",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Function",
-            "name": "parse",
-            "printedName": "parse(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "ScalabilityMode",
-                "printedName": "Mediasoup.ScalabilityMode",
-                "usr": "s:9Mediasoup15ScalabilityModeV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:9Mediasoup15ScalabilityModeV5parseyACSSFZ",
-            "mangledName": "$s9Mediasoup15ScalabilityModeV5parseyACSSFZ",
-            "moduleName": "Mediasoup",
-            "static": true,
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          }
-        ],
-        "declKind": "Struct",
-        "usr": "s:9Mediasoup15ScalabilityModeV",
-        "mangledName": "$s9Mediasoup15ScalabilityModeV",
-        "moduleName": "Mediasoup",
-        "declAttributes": [
-          "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          }
-        ]
-      },
       {
         "kind": "Import",
         "name": "Foundation",
@@ -267,20 +25,6 @@
           "AccessControl"
         ],
         "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
           {
             "kind": "Conformance",
             "name": "TransportDelegate",
@@ -324,7 +68,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "WeakStorage",
-                "printedName": "(any Mediasoup.ReceiveTransportDelegate)?"
+                "printedName": "Mediasoup.ReceiveTransportDelegate?"
               }
             ],
             "declKind": "Var",
@@ -348,12 +92,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "(any Mediasoup.ReceiveTransportDelegate)?",
+                    "printedName": "Mediasoup.ReceiveTransportDelegate?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ReceiveTransportDelegate",
-                        "printedName": "any Mediasoup.ReceiveTransportDelegate",
+                        "printedName": "Mediasoup.ReceiveTransportDelegate",
                         "usr": "s:9Mediasoup24ReceiveTransportDelegateP"
                       }
                     ],
@@ -380,12 +124,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "(any Mediasoup.ReceiveTransportDelegate)?",
+                    "printedName": "Mediasoup.ReceiveTransportDelegate?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ReceiveTransportDelegate",
-                        "printedName": "any Mediasoup.ReceiveTransportDelegate",
+                        "printedName": "Mediasoup.ReceiveTransportDelegate",
                         "usr": "s:9Mediasoup24ReceiveTransportDelegateP"
                       }
                     ],
@@ -924,20 +668,6 @@
         "conformances": [
           {
             "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
             "name": "Transport",
             "printedName": "Transport",
             "usr": "s:9Mediasoup9TransportP",
@@ -1143,20 +873,6 @@
           "AccessControl"
         ],
         "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -1481,22 +1197,6 @@
         "sugared_genericSig": "<Self : AnyObject>",
         "declAttributes": [
           "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          }
         ]
       },
       {
@@ -1524,7 +1224,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Transport",
-                "printedName": "any Mediasoup.Transport",
+                "printedName": "Mediasoup.Transport",
                 "usr": "s:9Mediasoup9TransportP"
               },
               {
@@ -1557,7 +1257,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Transport",
-                "printedName": "any Mediasoup.Transport",
+                "printedName": "Mediasoup.Transport",
                 "usr": "s:9Mediasoup9TransportP"
               },
               {
@@ -1586,1974 +1286,6 @@
         "sugared_genericSig": "<Self : AnyObject>",
         "declAttributes": [
           "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          }
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "Mediasoup"
-      },
-      {
-        "kind": "Import",
-        "name": "Mediasoup_Private",
-        "printedName": "Mediasoup_Private",
-        "declKind": "Import",
-        "moduleName": "Mediasoup"
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "RTPParameters",
-        "printedName": "RTPParameters",
-        "children": [
-          {
-            "kind": "TypeDecl",
-            "name": "DegradationPreference",
-            "printedName": "DegradationPreference",
-            "children": [
-              {
-                "kind": "Var",
-                "name": "disabled",
-                "printedName": "disabled",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Mediasoup.RTPParameters.DegradationPreference.Type) -> Mediasoup.RTPParameters.DegradationPreference",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "DegradationPreference",
-                        "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                        "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "Mediasoup.RTPParameters.DegradationPreference.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "DegradationPreference",
-                            "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                            "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO8disabledyA2EmF",
-                "mangledName": "$s9Mediasoup13RTPParametersV21DegradationPreferenceO8disabledyA2EmF",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "RawDocComment"
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "maintainFramerate",
-                "printedName": "maintainFramerate",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Mediasoup.RTPParameters.DegradationPreference.Type) -> Mediasoup.RTPParameters.DegradationPreference",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "DegradationPreference",
-                        "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                        "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "Mediasoup.RTPParameters.DegradationPreference.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "DegradationPreference",
-                            "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                            "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO17maintainFramerateyA2EmF",
-                "mangledName": "$s9Mediasoup13RTPParametersV21DegradationPreferenceO17maintainFramerateyA2EmF",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "RawDocComment"
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "maintainResolution",
-                "printedName": "maintainResolution",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Mediasoup.RTPParameters.DegradationPreference.Type) -> Mediasoup.RTPParameters.DegradationPreference",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "DegradationPreference",
-                        "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                        "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "Mediasoup.RTPParameters.DegradationPreference.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "DegradationPreference",
-                            "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                            "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO18maintainResolutionyA2EmF",
-                "mangledName": "$s9Mediasoup13RTPParametersV21DegradationPreferenceO18maintainResolutionyA2EmF",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "RawDocComment"
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "balanced",
-                "printedName": "balanced",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(Mediasoup.RTPParameters.DegradationPreference.Type) -> Mediasoup.RTPParameters.DegradationPreference",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "DegradationPreference",
-                        "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                        "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "Mediasoup.RTPParameters.DegradationPreference.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "DegradationPreference",
-                            "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                            "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO8balancedyA2EmF",
-                "mangledName": "$s9Mediasoup13RTPParametersV21DegradationPreferenceO8balancedyA2EmF",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "RawDocComment"
-                ]
-              },
-              {
-                "kind": "Function",
-                "name": "==",
-                "printedName": "==(_:_:)",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "DegradationPreference",
-                    "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                    "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "DegradationPreference",
-                    "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                    "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                  }
-                ],
-                "declKind": "Func",
-                "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO2eeoiySbAE_AEtFZ",
-                "mangledName": "$s9Mediasoup13RTPParametersV21DegradationPreferenceO2eeoiySbAE_AEtFZ",
-                "moduleName": "Mediasoup",
-                "static": true,
-                "implicit": true,
-                "funcSelfKind": "NonMutating"
-              },
-              {
-                "kind": "Var",
-                "name": "hashValue",
-                "printedName": "hashValue",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO9hashValueSivp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21DegradationPreferenceO9hashValueSivp",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO9hashValueSivg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21DegradationPreferenceO9hashValueSivg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  }
-                ]
-              },
-              {
-                "kind": "Function",
-                "name": "hash",
-                "printedName": "hash(into:)",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Hasher",
-                    "printedName": "Swift.Hasher",
-                    "paramValueOwnership": "InOut",
-                    "usr": "s:s6HasherV"
-                  }
-                ],
-                "declKind": "Func",
-                "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO4hash4intoys6HasherVz_tF",
-                "mangledName": "$s9Mediasoup13RTPParametersV21DegradationPreferenceO4hash4intoys6HasherVz_tF",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "funcSelfKind": "NonMutating"
-              }
-            ],
-            "declKind": "Enum",
-            "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO",
-            "mangledName": "$s9Mediasoup13RTPParametersV21DegradationPreferenceO",
-            "moduleName": "Mediasoup",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "conformances": [
-              {
-                "kind": "Conformance",
-                "name": "Copyable",
-                "printedName": "Copyable",
-                "usr": "s:s8CopyableP",
-                "mangledName": "$ss8CopyableP"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Escapable",
-                "printedName": "Escapable",
-                "usr": "s:s9EscapableP",
-                "mangledName": "$ss9EscapableP"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Equatable",
-                "printedName": "Equatable",
-                "usr": "s:SQ",
-                "mangledName": "$sSQ"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Hashable",
-                "printedName": "Hashable",
-                "usr": "s:SH",
-                "mangledName": "$sSH"
-              }
-            ]
-          },
-          {
-            "kind": "TypeDecl",
-            "name": "RTPEncodingParameters",
-            "printedName": "RTPEncodingParameters",
-            "children": [
-              {
-                "kind": "TypeDecl",
-                "name": "Resolution",
-                "printedName": "Resolution",
-                "children": [
-                  {
-                    "kind": "Var",
-                    "name": "width",
-                    "printedName": "width",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      }
-                    ],
-                    "declKind": "Var",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV5widthSivp",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV5widthSivp",
-                    "moduleName": "Mediasoup",
-                    "declAttributes": [
-                      "HasStorage",
-                      "AccessControl"
-                    ],
-                    "hasStorage": true,
-                    "accessors": [
-                      {
-                        "kind": "Accessor",
-                        "name": "Get",
-                        "printedName": "Get()",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int",
-                            "printedName": "Swift.Int",
-                            "usr": "s:Si"
-                          }
-                        ],
-                        "declKind": "Accessor",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV5widthSivg",
-                        "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV5widthSivg",
-                        "moduleName": "Mediasoup",
-                        "implicit": true,
-                        "accessorKind": "get"
-                      },
-                      {
-                        "kind": "Accessor",
-                        "name": "Set",
-                        "printedName": "Set()",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Void",
-                            "printedName": "()"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int",
-                            "printedName": "Swift.Int",
-                            "usr": "s:Si"
-                          }
-                        ],
-                        "declKind": "Accessor",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV5widthSivs",
-                        "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV5widthSivs",
-                        "moduleName": "Mediasoup",
-                        "implicit": true,
-                        "accessorKind": "set"
-                      },
-                      {
-                        "kind": "Accessor",
-                        "name": "Modify",
-                        "printedName": "Modify()",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Void",
-                            "printedName": "()"
-                          }
-                        ],
-                        "declKind": "Accessor",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV5widthSivM",
-                        "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV5widthSivM",
-                        "moduleName": "Mediasoup",
-                        "implicit": true,
-                        "accessorKind": "_modify"
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "Var",
-                    "name": "height",
-                    "printedName": "height",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      }
-                    ],
-                    "declKind": "Var",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV6heightSivp",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV6heightSivp",
-                    "moduleName": "Mediasoup",
-                    "declAttributes": [
-                      "HasStorage",
-                      "AccessControl"
-                    ],
-                    "hasStorage": true,
-                    "accessors": [
-                      {
-                        "kind": "Accessor",
-                        "name": "Get",
-                        "printedName": "Get()",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int",
-                            "printedName": "Swift.Int",
-                            "usr": "s:Si"
-                          }
-                        ],
-                        "declKind": "Accessor",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV6heightSivg",
-                        "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV6heightSivg",
-                        "moduleName": "Mediasoup",
-                        "implicit": true,
-                        "accessorKind": "get"
-                      },
-                      {
-                        "kind": "Accessor",
-                        "name": "Set",
-                        "printedName": "Set()",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Void",
-                            "printedName": "()"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int",
-                            "printedName": "Swift.Int",
-                            "usr": "s:Si"
-                          }
-                        ],
-                        "declKind": "Accessor",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV6heightSivs",
-                        "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV6heightSivs",
-                        "moduleName": "Mediasoup",
-                        "implicit": true,
-                        "accessorKind": "set"
-                      },
-                      {
-                        "kind": "Accessor",
-                        "name": "Modify",
-                        "printedName": "Modify()",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Void",
-                            "printedName": "()"
-                          }
-                        ],
-                        "declKind": "Accessor",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV6heightSivM",
-                        "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV6heightSivM",
-                        "moduleName": "Mediasoup",
-                        "implicit": true,
-                        "accessorKind": "_modify"
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "Var",
-                    "name": "cgSizeValue",
-                    "printedName": "cgSizeValue",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CGSize",
-                        "printedName": "CoreFoundation.CGSize",
-                        "usr": "c:@S@CGSize"
-                      }
-                    ],
-                    "declKind": "Var",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV11cgSizeValueSo6CGSizeVvp",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV11cgSizeValueSo6CGSizeVvp",
-                    "moduleName": "Mediasoup",
-                    "declAttributes": [
-                      "AccessControl"
-                    ],
-                    "accessors": [
-                      {
-                        "kind": "Accessor",
-                        "name": "Get",
-                        "printedName": "Get()",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "CGSize",
-                            "printedName": "CoreFoundation.CGSize",
-                            "usr": "c:@S@CGSize"
-                          }
-                        ],
-                        "declKind": "Accessor",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV11cgSizeValueSo6CGSizeVvg",
-                        "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV11cgSizeValueSo6CGSizeVvg",
-                        "moduleName": "Mediasoup",
-                        "accessorKind": "get"
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "Constructor",
-                    "name": "init",
-                    "printedName": "init(width:height:)",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Resolution",
-                        "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters.Resolution",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      }
-                    ],
-                    "declKind": "Constructor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV5width6heightAGSi_Sitcfc",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV5width6heightAGSi_Sitcfc",
-                    "moduleName": "Mediasoup",
-                    "declAttributes": [
-                      "AccessControl"
-                    ],
-                    "init_kind": "Designated"
-                  },
-                  {
-                    "kind": "Constructor",
-                    "name": "init",
-                    "printedName": "init(from:)",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Resolution",
-                        "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters.Resolution",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CGSize",
-                        "printedName": "CoreFoundation.CGSize",
-                        "usr": "c:@S@CGSize"
-                      }
-                    ],
-                    "declKind": "Constructor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV4fromAGSo6CGSizeV_tcfc",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV4fromAGSo6CGSizeV_tcfc",
-                    "moduleName": "Mediasoup",
-                    "declAttributes": [
-                      "AccessControl"
-                    ],
-                    "init_kind": "Designated"
-                  }
-                ],
-                "declKind": "Struct",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "AccessControl"
-                ],
-                "conformances": [
-                  {
-                    "kind": "Conformance",
-                    "name": "Copyable",
-                    "printedName": "Copyable",
-                    "usr": "s:s8CopyableP",
-                    "mangledName": "$ss8CopyableP"
-                  },
-                  {
-                    "kind": "Conformance",
-                    "name": "Escapable",
-                    "printedName": "Escapable",
-                    "usr": "s:s9EscapableP",
-                    "mangledName": "$ss9EscapableP"
-                  }
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "scalabilityMode",
-                "printedName": "scalabilityMode",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV15scalabilityModeSSSgvp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV15scalabilityModeSSSgvp",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "HasInitialValue",
-                  "HasStorage",
-                  "AccessControl"
-                ],
-                "hasStorage": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.String?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "String",
-                            "printedName": "Swift.String",
-                            "usr": "s:SS"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV15scalabilityModeSSSgvg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV15scalabilityModeSSSgvg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Set",
-                    "printedName": "Set()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.String?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "String",
-                            "printedName": "Swift.String",
-                            "usr": "s:SS"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV15scalabilityModeSSSgvs",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV15scalabilityModeSSSgvs",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "set"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Modify",
-                    "printedName": "Modify()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV15scalabilityModeSSSgvM",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV15scalabilityModeSSSgvM",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "_modify"
-                  }
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "requestedResolution",
-                "printedName": "requestedResolution",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters.Resolution?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Resolution",
-                        "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters.Resolution",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV19requestedResolutionAE0F0VSgvp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV19requestedResolutionAE0F0VSgvp",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "HasInitialValue",
-                  "HasStorage",
-                  "AccessControl",
-                  "RawDocComment"
-                ],
-                "hasStorage": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters.Resolution?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Resolution",
-                            "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters.Resolution",
-                            "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV19requestedResolutionAE0F0VSgvg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV19requestedResolutionAE0F0VSgvg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Set",
-                    "printedName": "Set()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters.Resolution?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Resolution",
-                            "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters.Resolution",
-                            "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV10ResolutionV"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV19requestedResolutionAE0F0VSgvs",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV19requestedResolutionAE0F0VSgvs",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "set"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Modify",
-                    "printedName": "Modify()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV19requestedResolutionAE0F0VSgvM",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV19requestedResolutionAE0F0VSgvM",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "_modify"
-                  }
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "isActive",
-                "printedName": "isActive",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV8isActiveSbvp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV8isActiveSbvp",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "HasStorage",
-                  "AccessControl",
-                  "RawDocComment"
-                ],
-                "hasStorage": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Bool",
-                        "printedName": "Swift.Bool",
-                        "usr": "s:Sb"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV8isActiveSbvg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV8isActiveSbvg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Set",
-                    "printedName": "Set()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Bool",
-                        "printedName": "Swift.Bool",
-                        "usr": "s:Sb"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV8isActiveSbvs",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV8isActiveSbvs",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "set"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Modify",
-                    "printedName": "Modify()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV8isActiveSbvM",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV8isActiveSbvM",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "_modify"
-                  }
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "maxBitrateBps",
-                "printedName": "maxBitrateBps",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.Int?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV13maxBitrateBpsSiSgvp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV13maxBitrateBpsSiSgvp",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "HasInitialValue",
-                  "HasStorage",
-                  "AccessControl",
-                  "RawDocComment"
-                ],
-                "hasStorage": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.Int?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int",
-                            "printedName": "Swift.Int",
-                            "usr": "s:Si"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV13maxBitrateBpsSiSgvg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV13maxBitrateBpsSiSgvg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Set",
-                    "printedName": "Set()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.Int?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int",
-                            "printedName": "Swift.Int",
-                            "usr": "s:Si"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV13maxBitrateBpsSiSgvs",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV13maxBitrateBpsSiSgvs",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "set"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Modify",
-                    "printedName": "Modify()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV13maxBitrateBpsSiSgvM",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV13maxBitrateBpsSiSgvM",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "_modify"
-                  }
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "minBitrateBps",
-                "printedName": "minBitrateBps",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.Int?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV13minBitrateBpsSiSgvp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV13minBitrateBpsSiSgvp",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "HasInitialValue",
-                  "HasStorage",
-                  "AccessControl",
-                  "RawDocComment"
-                ],
-                "hasStorage": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.Int?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int",
-                            "printedName": "Swift.Int",
-                            "usr": "s:Si"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV13minBitrateBpsSiSgvg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV13minBitrateBpsSiSgvg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Set",
-                    "printedName": "Set()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.Int?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int",
-                            "printedName": "Swift.Int",
-                            "usr": "s:Si"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV13minBitrateBpsSiSgvs",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV13minBitrateBpsSiSgvs",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "set"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Modify",
-                    "printedName": "Modify()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV13minBitrateBpsSiSgvM",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV13minBitrateBpsSiSgvM",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "_modify"
-                  }
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "maxFramerate",
-                "printedName": "maxFramerate",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.Double?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Double",
-                        "printedName": "Swift.Double",
-                        "usr": "s:Sd"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV12maxFramerateSdSgvp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV12maxFramerateSdSgvp",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "HasInitialValue",
-                  "HasStorage",
-                  "AccessControl",
-                  "RawDocComment"
-                ],
-                "hasStorage": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.Double?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Double",
-                            "printedName": "Swift.Double",
-                            "usr": "s:Sd"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV12maxFramerateSdSgvg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV12maxFramerateSdSgvg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Set",
-                    "printedName": "Set()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.Double?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Double",
-                            "printedName": "Swift.Double",
-                            "usr": "s:Sd"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV12maxFramerateSdSgvs",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV12maxFramerateSdSgvs",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "set"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Modify",
-                    "printedName": "Modify()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV12maxFramerateSdSgvM",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV12maxFramerateSdSgvM",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "_modify"
-                  }
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "numTemporalLayers",
-                "printedName": "numTemporalLayers",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.Int?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV17numTemporalLayersSiSgvp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV17numTemporalLayersSiSgvp",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "HasInitialValue",
-                  "HasStorage",
-                  "AccessControl",
-                  "RawDocComment"
-                ],
-                "hasStorage": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.Int?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int",
-                            "printedName": "Swift.Int",
-                            "usr": "s:Si"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV17numTemporalLayersSiSgvg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV17numTemporalLayersSiSgvg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Set",
-                    "printedName": "Set()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.Int?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Int",
-                            "printedName": "Swift.Int",
-                            "usr": "s:Si"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV17numTemporalLayersSiSgvs",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV17numTemporalLayersSiSgvs",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "set"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Modify",
-                    "printedName": "Modify()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV17numTemporalLayersSiSgvM",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV17numTemporalLayersSiSgvM",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "_modify"
-                  }
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "scaleResolutionDownBy",
-                "printedName": "scaleResolutionDownBy",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.Double?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Double",
-                        "printedName": "Swift.Double",
-                        "usr": "s:Sd"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV21scaleResolutionDownBySdSgvp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV21scaleResolutionDownBySdSgvp",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "HasInitialValue",
-                  "HasStorage",
-                  "AccessControl",
-                  "RawDocComment"
-                ],
-                "hasStorage": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.Double?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Double",
-                            "printedName": "Swift.Double",
-                            "usr": "s:Sd"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV21scaleResolutionDownBySdSgvg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV21scaleResolutionDownBySdSgvg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Set",
-                    "printedName": "Set()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Swift.Double?",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Double",
-                            "printedName": "Swift.Double",
-                            "usr": "s:Sd"
-                          }
-                        ],
-                        "usr": "s:Sq"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV21scaleResolutionDownBySdSgvs",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV21scaleResolutionDownBySdSgvs",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "set"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Modify",
-                    "printedName": "Modify()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV21scaleResolutionDownBySdSgvM",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV21scaleResolutionDownBySdSgvM",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "_modify"
-                  }
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "bitratePriority",
-                "printedName": "bitratePriority",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Double",
-                    "printedName": "Swift.Double",
-                    "usr": "s:Sd"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV15bitratePrioritySdvp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV15bitratePrioritySdvp",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "HasStorage",
-                  "AccessControl",
-                  "RawDocComment"
-                ],
-                "hasStorage": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Double",
-                        "printedName": "Swift.Double",
-                        "usr": "s:Sd"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV15bitratePrioritySdvg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV15bitratePrioritySdvg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Set",
-                    "printedName": "Set()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Double",
-                        "printedName": "Swift.Double",
-                        "usr": "s:Sd"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV15bitratePrioritySdvs",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV15bitratePrioritySdvs",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "set"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Modify",
-                    "printedName": "Modify()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV15bitratePrioritySdvM",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV15bitratePrioritySdvM",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "_modify"
-                  }
-                ]
-              },
-              {
-                "kind": "Var",
-                "name": "adaptiveAudioPacketTime",
-                "printedName": "adaptiveAudioPacketTime",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV23adaptiveAudioPacketTimeSbvp",
-                "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV23adaptiveAudioPacketTimeSbvp",
-                "moduleName": "Mediasoup",
-                "declAttributes": [
-                  "HasStorage",
-                  "AccessControl",
-                  "RawDocComment"
-                ],
-                "hasStorage": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Bool",
-                        "printedName": "Swift.Bool",
-                        "usr": "s:Sb"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV23adaptiveAudioPacketTimeSbvg",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV23adaptiveAudioPacketTimeSbvg",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Set",
-                    "printedName": "Set()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Bool",
-                        "printedName": "Swift.Bool",
-                        "usr": "s:Sb"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV23adaptiveAudioPacketTimeSbvs",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV23adaptiveAudioPacketTimeSbvs",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "set"
-                  },
-                  {
-                    "kind": "Accessor",
-                    "name": "Modify",
-                    "printedName": "Modify()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Void",
-                        "printedName": "()"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV23adaptiveAudioPacketTimeSbvM",
-                    "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV23adaptiveAudioPacketTimeSbvM",
-                    "moduleName": "Mediasoup",
-                    "implicit": true,
-                    "accessorKind": "_modify"
-                  }
-                ]
-              }
-            ],
-            "declKind": "Struct",
-            "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV",
-            "mangledName": "$s9Mediasoup13RTPParametersV21RTPEncodingParametersV",
-            "moduleName": "Mediasoup",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "conformances": [
-              {
-                "kind": "Conformance",
-                "name": "Copyable",
-                "printedName": "Copyable",
-                "usr": "s:s8CopyableP",
-                "mangledName": "$ss8CopyableP"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Escapable",
-                "printedName": "Escapable",
-                "usr": "s:s9EscapableP",
-                "mangledName": "$ss9EscapableP"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "degradationPreference",
-            "printedName": "degradationPreference",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Mediasoup.RTPParameters.DegradationPreference?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "DegradationPreference",
-                    "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                    "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:9Mediasoup13RTPParametersV21degradationPreferenceAC011DegradationD0OSgvp",
-            "mangledName": "$s9Mediasoup13RTPParametersV21degradationPreferenceAC011DegradationD0OSgvp",
-            "moduleName": "Mediasoup",
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Mediasoup.RTPParameters.DegradationPreference?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "DegradationPreference",
-                        "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                        "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup13RTPParametersV21degradationPreferenceAC011DegradationD0OSgvg",
-                "mangledName": "$s9Mediasoup13RTPParametersV21degradationPreferenceAC011DegradationD0OSgvg",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Mediasoup.RTPParameters.DegradationPreference?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "DegradationPreference",
-                        "printedName": "Mediasoup.RTPParameters.DegradationPreference",
-                        "usr": "s:9Mediasoup13RTPParametersV21DegradationPreferenceO"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup13RTPParametersV21degradationPreferenceAC011DegradationD0OSgvs",
-                "mangledName": "$s9Mediasoup13RTPParametersV21degradationPreferenceAC011DegradationD0OSgvs",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup13RTPParametersV21degradationPreferenceAC011DegradationD0OSgvM",
-                "mangledName": "$s9Mediasoup13RTPParametersV21degradationPreferenceAC011DegradationD0OSgvM",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "encodings",
-            "printedName": "encodings",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "[Mediasoup.RTPParameters.RTPEncodingParameters]?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[Mediasoup.RTPParameters.RTPEncodingParameters]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "RTPEncodingParameters",
-                        "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters",
-                        "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:9Mediasoup13RTPParametersV9encodingsSayAC21RTPEncodingParametersVGSgvp",
-            "mangledName": "$s9Mediasoup13RTPParametersV9encodingsSayAC21RTPEncodingParametersVGSgvp",
-            "moduleName": "Mediasoup",
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "[Mediasoup.RTPParameters.RTPEncodingParameters]?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Array",
-                        "printedName": "[Mediasoup.RTPParameters.RTPEncodingParameters]",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "RTPEncodingParameters",
-                            "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters",
-                            "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV"
-                          }
-                        ],
-                        "usr": "s:Sa"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup13RTPParametersV9encodingsSayAC21RTPEncodingParametersVGSgvg",
-                "mangledName": "$s9Mediasoup13RTPParametersV9encodingsSayAC21RTPEncodingParametersVGSgvg",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "[Mediasoup.RTPParameters.RTPEncodingParameters]?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Array",
-                        "printedName": "[Mediasoup.RTPParameters.RTPEncodingParameters]",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "RTPEncodingParameters",
-                            "printedName": "Mediasoup.RTPParameters.RTPEncodingParameters",
-                            "usr": "s:9Mediasoup13RTPParametersV21RTPEncodingParametersV"
-                          }
-                        ],
-                        "usr": "s:Sa"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup13RTPParametersV9encodingsSayAC21RTPEncodingParametersVGSgvs",
-                "mangledName": "$s9Mediasoup13RTPParametersV9encodingsSayAC21RTPEncodingParametersVGSgvs",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:9Mediasoup13RTPParametersV9encodingsSayAC21RTPEncodingParametersVGSgvM",
-                "mangledName": "$s9Mediasoup13RTPParametersV9encodingsSayAC21RTPEncodingParametersVGSgvM",
-                "moduleName": "Mediasoup",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          }
-        ],
-        "declKind": "Struct",
-        "usr": "s:9Mediasoup13RTPParametersV",
-        "mangledName": "$s9Mediasoup13RTPParametersV",
-        "moduleName": "Mediasoup",
-        "declAttributes": [
-          "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          }
         ]
       },
       {
@@ -3941,20 +1673,6 @@
         "conformances": [
           {
             "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -4003,7 +1721,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "WeakStorage",
-                "printedName": "(any Mediasoup.SendTransportDelegate)?"
+                "printedName": "Mediasoup.SendTransportDelegate?"
               }
             ],
             "declKind": "Var",
@@ -4027,12 +1745,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "(any Mediasoup.SendTransportDelegate)?",
+                    "printedName": "Mediasoup.SendTransportDelegate?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "SendTransportDelegate",
-                        "printedName": "any Mediasoup.SendTransportDelegate",
+                        "printedName": "Mediasoup.SendTransportDelegate",
                         "usr": "s:9Mediasoup21SendTransportDelegateP"
                       }
                     ],
@@ -4059,12 +1777,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "(any Mediasoup.SendTransportDelegate)?",
+                    "printedName": "Mediasoup.SendTransportDelegate?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "SendTransportDelegate",
-                        "printedName": "any Mediasoup.SendTransportDelegate",
+                        "printedName": "Mediasoup.SendTransportDelegate",
                         "usr": "s:9Mediasoup21SendTransportDelegateP"
                       }
                     ],
@@ -4183,88 +1901,6 @@
             "declKind": "Func",
             "usr": "s:9Mediasoup13SendTransportC14createProducer3for9encodings12codecOptions0H07appDataAA0E0CSo19RTCMediaStreamTrackC_SaySo24RTCRtpEncodingParametersCGSgSSSgA2RtKF",
             "mangledName": "$s9Mediasoup13SendTransportC14createProducer3for9encodings12codecOptions0H07appDataAA0E0CSo19RTCMediaStreamTrackC_SaySo24RTCRtpEncodingParametersCGSgSSSgA2RtKF",
-            "moduleName": "Mediasoup",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "throwing": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "createProducer",
-            "printedName": "createProducer(for:encoding:scalabilityMode:codecOptions:codec:appData:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Producer",
-                "printedName": "Mediasoup.Producer",
-                "usr": "s:9Mediasoup8ProducerC"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "RTCMediaStreamTrack",
-                "printedName": "WebRTC.RTCMediaStreamTrack",
-                "usr": "c:objc(cs)RTCMediaStreamTrack"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "RTCRtpEncodingParameters",
-                "printedName": "WebRTC.RTCRtpEncodingParameters",
-                "usr": "c:objc(cs)RTCRtpEncodingParameters"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:9Mediasoup13SendTransportC14createProducer3for8encoding15scalabilityMode12codecOptions0J07appDataAA0E0CSo19RTCMediaStreamTrackC_So24RTCRtpEncodingParametersCS2SSgA2QtKF",
-            "mangledName": "$s9Mediasoup13SendTransportC14createProducer3for8encoding15scalabilityMode12codecOptions0J07appDataAA0E0CSo19RTCMediaStreamTrackC_So24RTCRtpEncodingParametersCS2SSgA2QtKF",
             "moduleName": "Mediasoup",
             "declAttributes": [
               "AccessControl"
@@ -4797,20 +2433,6 @@
         "conformances": [
           {
             "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
             "name": "Transport",
             "printedName": "Transport",
             "usr": "s:9Mediasoup9TransportP",
@@ -4866,22 +2488,6 @@
         "sugared_genericSig": "<Self : AnyObject>",
         "declAttributes": [
           "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          }
         ]
       },
       {
@@ -4909,7 +2515,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Transport",
-                "printedName": "any Mediasoup.Transport",
+                "printedName": "Mediasoup.Transport",
                 "usr": "s:9Mediasoup9TransportP"
               },
               {
@@ -4980,7 +2586,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Transport",
-                "printedName": "any Mediasoup.Transport",
+                "printedName": "Mediasoup.Transport",
                 "usr": "s:9Mediasoup9TransportP"
               },
               {
@@ -5055,20 +2661,6 @@
           "AccessControl"
         ],
         "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
           {
             "kind": "Conformance",
             "name": "TransportDelegate",
@@ -5298,12 +2890,12 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(Mediasoup.MediasoupError.Type) -> (any Swift.Error) -> Mediasoup.MediasoupError",
+                "printedName": "(Mediasoup.MediasoupError.Type) -> (Swift.Error) -> Mediasoup.MediasoupError",
                 "children": [
                   {
                     "kind": "TypeFunc",
                     "name": "Function",
-                    "printedName": "(any Swift.Error) -> Mediasoup.MediasoupError",
+                    "printedName": "(Swift.Error) -> Mediasoup.MediasoupError",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -5314,7 +2906,7 @@
                       {
                         "kind": "TypeNominal",
                         "name": "Error",
-                        "printedName": "any Swift.Error",
+                        "printedName": "Swift.Error",
                         "usr": "s:s5ErrorP"
                       }
                     ]
@@ -5349,20 +2941,6 @@
           "AccessControl"
         ],
         "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
           {
             "kind": "Conformance",
             "name": "Error",
@@ -5427,22 +3005,6 @@
         "sugared_genericSig": "<Self : AnyObject>",
         "declAttributes": [
           "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          }
         ]
       },
       {
@@ -5479,7 +3041,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "WeakStorage",
-                "printedName": "(any Mediasoup.DataConsumerDelegate)?"
+                "printedName": "Mediasoup.DataConsumerDelegate?"
               }
             ],
             "declKind": "Var",
@@ -5503,12 +3065,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "(any Mediasoup.DataConsumerDelegate)?",
+                    "printedName": "Mediasoup.DataConsumerDelegate?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "DataConsumerDelegate",
-                        "printedName": "any Mediasoup.DataConsumerDelegate",
+                        "printedName": "Mediasoup.DataConsumerDelegate",
                         "usr": "s:9Mediasoup20DataConsumerDelegateP"
                       }
                     ],
@@ -5535,12 +3097,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "(any Mediasoup.DataConsumerDelegate)?",
+                    "printedName": "Mediasoup.DataConsumerDelegate?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "DataConsumerDelegate",
-                        "printedName": "any Mediasoup.DataConsumerDelegate",
+                        "printedName": "Mediasoup.DataConsumerDelegate",
                         "usr": "s:9Mediasoup20DataConsumerDelegateP"
                       }
                     ],
@@ -6108,23 +3670,7 @@
         "declAttributes": [
           "AccessControl"
         ],
-        "hasMissingDesignatedInitializers": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          }
-        ]
+        "hasMissingDesignatedInitializers": true
       },
       {
         "kind": "Import",
@@ -6315,22 +3861,6 @@
         "sugared_genericSig": "<Self : AnyObject>",
         "declAttributes": [
           "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          }
         ]
       },
       {
@@ -6621,20 +4151,6 @@
         "conformances": [
           {
             "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -6683,7 +4199,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "WeakStorage",
-                "printedName": "(any Mediasoup.ProducerDelegate)?"
+                "printedName": "Mediasoup.ProducerDelegate?"
               }
             ],
             "declKind": "Var",
@@ -6707,12 +4223,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "(any Mediasoup.ProducerDelegate)?",
+                    "printedName": "Mediasoup.ProducerDelegate?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ProducerDelegate",
-                        "printedName": "any Mediasoup.ProducerDelegate",
+                        "printedName": "Mediasoup.ProducerDelegate",
                         "usr": "s:9Mediasoup16ProducerDelegateP"
                       }
                     ],
@@ -6739,12 +4255,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "(any Mediasoup.ProducerDelegate)?",
+                    "printedName": "Mediasoup.ProducerDelegate?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ProducerDelegate",
-                        "printedName": "any Mediasoup.ProducerDelegate",
+                        "printedName": "Mediasoup.ProducerDelegate",
                         "usr": "s:9Mediasoup16ProducerDelegateP"
                       }
                     ],
@@ -6795,8 +4311,7 @@
             "mangledName": "$s9Mediasoup8ProducerC5trackSo19RTCMediaStreamTrackCvp",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "accessors": [
               {
@@ -6836,8 +4351,7 @@
             "mangledName": "$s9Mediasoup8ProducerC2idSSvp",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "accessors": [
               {
@@ -6877,8 +4391,7 @@
             "mangledName": "$s9Mediasoup8ProducerC7localIdSSvp",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "accessors": [
               {
@@ -6918,8 +4431,7 @@
             "mangledName": "$s9Mediasoup8ProducerC6closedSbvp",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "accessors": [
               {
@@ -6959,8 +4471,7 @@
             "mangledName": "$s9Mediasoup8ProducerC6pausedSbvp",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "accessors": [
               {
@@ -7002,8 +4513,7 @@
             "declAttributes": [
               "Final",
               "HasStorage",
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -7049,8 +4559,7 @@
             "mangledName": "$s9Mediasoup8ProducerC15maxSpatialLayers5UInt8Vvp",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "accessors": [
               {
@@ -7090,8 +4599,7 @@
             "mangledName": "$s9Mediasoup8ProducerC7appDataSSvp",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "accessors": [
               {
@@ -7131,8 +4639,7 @@
             "mangledName": "$s9Mediasoup8ProducerC13rtpParametersSSvp",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "accessors": [
               {
@@ -7172,8 +4679,7 @@
             "mangledName": "$s9Mediasoup8ProducerC5statsSSvp",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "accessors": [
               {
@@ -7212,8 +4718,7 @@
             "mangledName": "$s9Mediasoup8ProducerC5pauseyyF",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -7233,8 +4738,7 @@
             "mangledName": "$s9Mediasoup8ProducerC6resumeyyF",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -7254,8 +4758,7 @@
             "mangledName": "$s9Mediasoup8ProducerC5closeyyF",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -7281,49 +4784,9 @@
             "mangledName": "$s9Mediasoup8ProducerC18setMaxSpatialLayeryySiKF",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "throwing": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "updateSenderParameters",
-            "printedName": "updateSenderParameters(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(Mediasoup.RTPParameters) -> Mediasoup.RTPParameters",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "RTPParameters",
-                    "printedName": "Mediasoup.RTPParameters",
-                    "usr": "s:9Mediasoup13RTPParametersV"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "RTPParameters",
-                    "printedName": "Mediasoup.RTPParameters",
-                    "usr": "s:9Mediasoup13RTPParametersV"
-                  }
-                ]
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:9Mediasoup8ProducerC22updateSenderParametersyyAA13RTPParametersVAFcF",
-            "mangledName": "$s9Mediasoup8ProducerC22updateSenderParametersyyAA13RTPParametersVAFcF",
-            "moduleName": "Mediasoup",
-            "declAttributes": [
               "AccessControl"
             ],
+            "throwing": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -7348,8 +4811,7 @@
             "mangledName": "$s9Mediasoup8ProducerC12replaceTrackyySo014RTCMediaStreamD0CKF",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "throwing": true,
             "funcSelfKind": "NonMutating"
@@ -7371,8 +4833,7 @@
             "mangledName": "$s9Mediasoup8ProducerC8getStatsSSyKF",
             "moduleName": "Mediasoup",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "throwing": true,
             "funcSelfKind": "NonMutating"
@@ -7415,23 +4876,7 @@
         "declAttributes": [
           "AccessControl"
         ],
-        "hasMissingDesignatedInitializers": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          }
-        ]
+        "hasMissingDesignatedInitializers": true
       },
       {
         "kind": "Import",
@@ -7828,22 +5273,6 @@
         "moduleName": "Mediasoup",
         "declAttributes": [
           "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          }
         ]
       },
       {
@@ -7880,7 +5309,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "WeakStorage",
-                "printedName": "(any Mediasoup.ConsumerDelegate)?"
+                "printedName": "Mediasoup.ConsumerDelegate?"
               }
             ],
             "declKind": "Var",
@@ -7904,12 +5333,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "(any Mediasoup.ConsumerDelegate)?",
+                    "printedName": "Mediasoup.ConsumerDelegate?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ConsumerDelegate",
-                        "printedName": "any Mediasoup.ConsumerDelegate",
+                        "printedName": "Mediasoup.ConsumerDelegate",
                         "usr": "s:9Mediasoup16ConsumerDelegateP"
                       }
                     ],
@@ -7936,12 +5365,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "(any Mediasoup.ConsumerDelegate)?",
+                    "printedName": "Mediasoup.ConsumerDelegate?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "ConsumerDelegate",
-                        "printedName": "any Mediasoup.ConsumerDelegate",
+                        "printedName": "Mediasoup.ConsumerDelegate",
                         "usr": "s:9Mediasoup16ConsumerDelegateP"
                       }
                     ],
@@ -8481,23 +5910,7 @@
         "declAttributes": [
           "AccessControl"
         ],
-        "hasMissingDesignatedInitializers": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          }
-        ]
+        "hasMissingDesignatedInitializers": true
       }
     ],
     "json_format_version": 8

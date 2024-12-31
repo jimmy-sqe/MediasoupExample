@@ -24,7 +24,7 @@ protocol DeviceControllerProtocol {
     func loadDevice(rtpCapabilities: String)
     func createSendTransport(param: DeviceTransportParam)
     func createReceiveTransport(param: DeviceTransportParam)
-    func createProducer()
+    func createProducer(meetingRoomId: String, mediaServerProducers: [MediaServerProducer]?)
 
 }
 
@@ -37,22 +37,27 @@ class DeviceController: DeviceControllerProtocol {
     private var audioTrack: RTCAudioTrack?
     private var videoTrack: RTCVideoTrack?
 
-    private let device = Device()
+    private var device: Device?
+    
+    private var rtpCapabilities: String?
     
     private var sendTransport: SendTransport?
+    private var producerTransportId: String?
     private var producer: Producer?
     private let deviceSendTransportHandler: DeviceSendTransportHandler
     
     private var receiveTransport: ReceiveTransport?
+    private var consumerTransportId: String?
     private var consumer: Consumer?
     private let deviceReceiveTransportHandler: DeviceReceiveTransportHandler
 
     private let loggerController: LoggerControllerProtocol
-    
-    init(loggerController: LoggerControllerProtocol) {
+
+    init(loggerController: LoggerControllerProtocol,
+         webSocketController: WebSocketControllerProtocol) {
         self.loggerController = loggerController
-        
-        self.deviceSendTransportHandler = DeviceSendTransportHandler(loggerController: loggerController)
+
+        self.deviceSendTransportHandler = DeviceSendTransportHandler(loggerController: loggerController, webSocketController: webSocketController)
         self.deviceReceiveTransportHandler = DeviceReceiveTransportHandler(loggerController: loggerController)
     }
     
@@ -64,23 +69,16 @@ class DeviceController: DeviceControllerProtocol {
     func checkAudioPermission() {
         if AVCaptureDevice.authorizationStatus(for: .audio) != .authorized {
             AVCaptureDevice.requestAccess(for: .audio) { _ in }
-            //TODO: Should restart app
         }
     }
     
     func setup() {
-        mediaStream = peerConnectionFactory.mediaStream(withStreamId: "mediaStream")
-        
-        let audioTrack = peerConnectionFactory.audioTrack(withTrackId: "audio")
+        let audioTrack = peerConnectionFactory.audioTrack(withTrackId: "sqe_audio")
         self.audioTrack = audioTrack
         
-        mediaStream?.addAudioTrack(audioTrack)
-        
-        let videoSource = peerConnectionFactory.videoSource()
-        let videoTrack = peerConnectionFactory.videoTrack(with: videoSource, trackId: "video")
-        self.videoTrack = videoTrack
-        
-        mediaStream?.addVideoTrack(videoTrack)
+        let mediaStream = peerConnectionFactory.mediaStream(withStreamId: "sqe_stream")
+        self.mediaStream = mediaStream
+        mediaStream.addAudioTrack(audioTrack)
     }
     
     func loadDevice(rtpCapabilities: String) {
@@ -94,6 +92,9 @@ class DeviceController: DeviceControllerProtocol {
         }
         
         do {
+            let device = Device()
+            self.device = device
+            self.rtpCapabilities = rtpCapabilities
             try device.load(with: rtpCapabilities)
             
             let isDeviceLoaded = device.isLoaded()
@@ -118,12 +119,16 @@ class DeviceController: DeviceControllerProtocol {
     }
     
     func createSendTransport(param: DeviceTransportParam) {
+        guard let device else { return }
+        
         self.loggerController.sendLog(name: "Device:CreateSendTransport", properties: [
             "id": param.id,
             "iceParameters": param.iceParameters,
             "iceCandidates": param.iceCandidates,
             "dtlsParameters": param.dtlsParameters
         ])
+        
+        self.producerTransportId = param.id
 
         do {
             let sendTransport = try device.createSendTransport(
@@ -141,6 +146,8 @@ class DeviceController: DeviceControllerProtocol {
     }
     
     func createReceiveTransport(param: DeviceTransportParam) {
+        guard let device else { return }
+        
         self.loggerController.sendLog(name: "Device:CreateReceiveTransport", properties: [
             "id": param.id,
             "iceParameters": param.iceParameters,
@@ -148,6 +155,8 @@ class DeviceController: DeviceControllerProtocol {
             "dtlsParameters": param.dtlsParameters
         ])
         
+        self.consumerTransportId = param.id
+
         do {
             let receiveTransport = try device.createReceiveTransport(
                 id: param.id,
@@ -163,19 +172,28 @@ class DeviceController: DeviceControllerProtocol {
         }
     }
     
-    func createProducer() {
+    func createProducer(meetingRoomId: String, mediaServerProducers: [MediaServerProducer]?) {
         guard let sendTransport, let audioTrack else { return }
         
         self.loggerController.sendLog(name: "Device:CreateProducer", properties: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if let producer = try? sendTransport.createProducer(for: audioTrack, encodings: nil, codecOptions: nil, codec: nil, appData: nil) {
+            do {
+                let appData: [String: Any] = [
+                    "meetingRoomId": meetingRoomId,
+                    "producerTransportId": self.producerTransportId ?? "unknown",
+                    "consumerTransportId": self.consumerTransportId ?? "unknown",
+                    "rtpCapabilities": self.rtpCapabilities ?? "unknown",
+                    "mediaType": "audio",
+                    "mediaServerProducers": mediaServerProducers ?? "unknown"
+                ]
+                let producer = try sendTransport.createProducer(for: audioTrack, encodings: nil, codecOptions: nil, codec: nil, appData: appData.toJSONString())
                 self.producer = producer
                 producer.delegate = self.deviceSendTransportHandler
                 producer.resume()
                 self.loggerController.sendLog(name: "Device:CreateProducer succeed", properties: nil)
-            } else {
-                self.loggerController.sendLog(name: "Device:CreateProducer failed", properties: nil)
+            } catch {
+                self.handleError(subject: "Device:CreateProducer", error: error)
             }
         }
     }
@@ -202,7 +220,7 @@ class DeviceController: DeviceControllerProtocol {
             errorMessage = error.localizedDescription
         }
         
-        self.loggerController.sendLog(name: "Device:\(subject) failed", properties: [
+        self.loggerController.sendLog(name: "\(subject) failed", properties: [
             "error": errorMessage
         ])
     }
