@@ -72,7 +72,10 @@ class ManageRoom {
             //TODO: Check whether token is still valid or not
             
             self.authToken = token
+            print("TOKEN: \(token)")
+            self.loggerController.sendLog(name: "ManageRoom:ConnectWebSocket", properties: nil)
             self.webSocketController.connect(wsToken: self.wsToken, cwToken: token)
+            self.loggerController.sendLog(name: "ManageRoom:AfterConnectWebSocket", properties: nil)
             self.checkStatus()
         }
     }
@@ -85,7 +88,9 @@ class ManageRoom {
             switch result {
             case .success(let auth):
                 self.authToken = auth.token
+                self.loggerController.sendLog(name: "ManageRoom:ConnectWebSocket", properties: nil)
                 self.webSocketController.connect(wsToken: self.wsToken, cwToken: auth.token)
+                self.loggerController.sendLog(name: "ManageRoom:AfterConnectWebSocket", properties: nil)
                 self.checkStatus()
             case .failure:
                 break

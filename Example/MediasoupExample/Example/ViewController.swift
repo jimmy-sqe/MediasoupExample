@@ -20,8 +20,8 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func joinRoomButtonTapped(_ sender: Any) {
-        manageRoom.joinMeetingRoom()
-        manageRoom.getRTPCapabilities()
+//        manageRoom.joinMeetingRoom()
+//        manageRoom.getRTPCapabilities()
     }
     
     override func viewDidLoad() {
