@@ -57,6 +57,7 @@ class DeviceController: DeviceControllerProtocol {
     private var receiveTransport: ReceiveTransport?
     private var consumerTransportId: String?
     private var consumer: Consumer?
+    // Create separate handler for receive transport because it has same method names with SendTransportDelegate
     private let deviceReceiveTransportHandler: DeviceReceiveTransportHandler
 
     private let loggerController: LoggerControllerProtocol
