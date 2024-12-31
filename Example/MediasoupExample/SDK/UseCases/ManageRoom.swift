@@ -207,8 +207,6 @@ extension ManageRoom: WebSocketControllerDelegate {
     }
     
     func onWebRTCTransportReceived(originalRequestId: String, id: String, iceParameters: String, iceCandidates: String, dtlsParameters: String) {
-        guard let meetingRoomId = self.meetingRoomId else { return }
-        
         self.loggerController.sendLog(name: "ManageRoom:OnWebRTCTransportReceived", properties: ["id": id])
         
         let param = DeviceTransportParam(id: id, iceParameters: iceParameters, iceCandidates: iceCandidates, dtlsParameters: dtlsParameters)
