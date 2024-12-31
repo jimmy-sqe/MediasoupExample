@@ -20,7 +20,6 @@
 		AD42177F2D1AC0300023520E /* ConversationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42177E2D1AC02E0023520E /* ConversationStatus.swift */; };
 		AD66EE922D1E8C6500CED7FD /* DeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE912D1E8C6200CED7FD /* DeviceController.swift */; };
 		AD66EE942D1EA37C00CED7FD /* DeviceTransportParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE932D1EA37700CED7FD /* DeviceTransportParam.swift */; };
-		AD66EE962D1EAC3200CED7FD /* DeviceSendTransportHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE952D1EAC2400CED7FD /* DeviceSendTransportHandler.swift */; };
 		AD66EE982D1EAC3E00CED7FD /* DeviceReceiveTransportHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE972D1EAC3700CED7FD /* DeviceReceiveTransportHandler.swift */; };
 		AD66EE9B2D1EBFC600CED7FD /* MediaServerProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */; };
 		ADD4270F2D1E4B8800CC610A /* WebSocketSendEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD4270E2D1E4B8100CC610A /* WebSocketSendEvent.swift */; };
@@ -118,7 +117,6 @@
 		AD42177E2D1AC02E0023520E /* ConversationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatus.swift; sourceTree = "<group>"; };
 		AD66EE912D1E8C6200CED7FD /* DeviceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceController.swift; sourceTree = "<group>"; };
 		AD66EE932D1EA37700CED7FD /* DeviceTransportParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTransportParam.swift; sourceTree = "<group>"; };
-		AD66EE952D1EAC2400CED7FD /* DeviceSendTransportHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSendTransportHandler.swift; sourceTree = "<group>"; };
 		AD66EE972D1EAC3700CED7FD /* DeviceReceiveTransportHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceReceiveTransportHandler.swift; sourceTree = "<group>"; };
 		AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaServerProducer.swift; sourceTree = "<group>"; };
 		ADD4270E2D1E4B8100CC610A /* WebSocketSendEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketSendEvent.swift; sourceTree = "<group>"; };
@@ -293,7 +291,6 @@
 		AD66EE992D1EADC500CED7FD /* Handler */ = {
 			isa = PBXGroup;
 			children = (
-				AD66EE952D1EAC2400CED7FD /* DeviceSendTransportHandler.swift */,
 				AD66EE972D1EAC3700CED7FD /* DeviceReceiveTransportHandler.swift */,
 			);
 			path = Handler;
@@ -841,7 +838,6 @@
 				AD66EE922D1E8C6500CED7FD /* DeviceController.swift in Sources */,
 				ADED505D2D1970FF00344A65 /* ManageRoom.swift in Sources */,
 				ADED503F2D196B1600344A65 /* SDKError.swift in Sources */,
-				AD66EE962D1EAC3200CED7FD /* DeviceSendTransportHandler.swift in Sources */,
 				AD42177A2D1AA0CE0023520E /* Conversation.swift in Sources */,
 				ADED50402D196B1600344A65 /* SqeCommonEnvironment.swift in Sources */,
 				ADED50412D196B1600344A65 /* Constants.swift in Sources */,

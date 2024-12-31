@@ -30,6 +30,7 @@ protocol WebSocketControllerProtocol {
     func connectWebRTCTransport(originalRequestId: String, meetingRoomId: String, transportId: String, dtlsParameters: String)
     func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String)
     func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: String, mediaType: String)
+    func resumeConsumer(originalRequestId: String, meetingRoomId: String, consumerId: String)
 
 }
 
@@ -133,6 +134,17 @@ class WebSocketController: WebSocketControllerProtocol {
             "meetingRoomId": meetingRoomId,
             "transportId": transportId,
             "dtlsParameters": dtlsParameters
+        ])
+        
+        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
+        self.webSocketClient.send(request: request)
+    }
+    
+    func resumeConsumer(originalRequestId: String, meetingRoomId: String, consumerId: String) {
+        let request: WebSocketAPIData = .sendEvent(.resumeConsumerStreamRequest, [
+            "originalRequestId": originalRequestId,
+            "meetingRoomId": meetingRoomId,
+            "consumerId": consumerId
         ])
         
         self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
