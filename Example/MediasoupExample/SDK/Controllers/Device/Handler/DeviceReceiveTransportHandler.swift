@@ -26,15 +26,21 @@ class DeviceReceiveTransportHandler {
 extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
     
     func onConnect(transport: any Transport, dtlsParameters: String) {
-        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnConnect:\(dtlsParameters)", properties: nil)
+        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnConnect", properties: nil)
         
-        let originalRequestId = UUID().uuidString
         self.webSocketController.connectWebRTCTransport(
-            originalRequestId: originalRequestId,
+            originalRequestId: UUID().uuidString,
             meetingRoomId: meetingRoomId ?? "unknown",
             transportId: transport.id,
             dtlsParameters: dtlsParameters
-        )
+        ).observe { result in
+            switch result {
+            case .success:
+                self.loggerController.sendLog(name: "DeviceReceiveTransport:connectWebRTCTransport succeed", properties: nil)
+            case .failure(let error):
+                self.loggerController.sendLog(name: "DeviceReceiveTransport:connectWebRTCTransport failed", properties: nil)
+            }
+        }
     }
     
     func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {

@@ -51,6 +51,7 @@ class DeviceController: DeviceControllerProtocol {
     private var rtpCapabilities: String?
     
     private var sendTransport: SendTransport?
+    private var producerId: String?
     private var producerTransportId: String?
     private var producer: Producer?
     
@@ -241,9 +242,8 @@ extension DeviceController: SendTransportDelegate {
     func onConnect(transport: any Transport, dtlsParameters: String) {
         self.loggerController.sendLog(name: "DeviceSendTransport:OnConnect:\(dtlsParameters)", properties: nil)
         
-        let originalRequestId = UUID().uuidString
         self.webSocketController.connectWebRTCTransport(
-            originalRequestId: originalRequestId,
+            originalRequestId: UUID().uuidString,
             meetingRoomId: meetingRoomId ?? "unknown",
             transportId: transport.id,
             dtlsParameters: dtlsParameters
@@ -296,22 +296,21 @@ extension DeviceController: SendTransportDelegate {
             rtpParameters: newRtpParameters,
             mediaType: mediaType
         ).observe { [weak self] result in
-            guard let self = self else { return }
+            guard let self else { return }
             
             var originalRequestIdFromServer: String?
             switch result {
             case .success(let message):
                 originalRequestIdFromServer = message.originalRequestId
+                let producer: [String: Any]? = message.data?["producer"] as? [String: Any]
+                self.producerId = producer?["id"] as? String
+                //        if (appData.mediaType === 'screen') setProducerIdScreen(producerId);
+                //        if (appData.mediaType === 'video') setProducerIdVideo(producerId);
+                //        if (appData.mediaType === 'audio') setProducerIdAudio(producerId);
             case .failure:
                 break
             }
             
-            //TODO: Store producer id from result of createWebRTCTransportProducer for resuming and closing producer
-    //        {\"event\":\"WEBRTC_TRANSPORT_PRODUCER_CREATED\",\"meetingRoomId\":\"0ee8aa1b-22bd-4bf3-8786-17bb311bab7a\",\"conversationId\":\"ea6cfb83-a84d-4d0c-a046-cf905745471a\",\"data\":{\"me\":{\"name\":\"Jimmy - 31/11:11\U202fAM\",\"id\":\"ec706c56-984a-41d4-8782-b456b86d6cdd\"},\"producer\":{\"id\":\"f9645b1f-7f20-4db2-b370-b4f1da97c5dc\",\"kind\":\"audio\",\"mediaType\":\"audio\"}}}";
-    //        const producerId = res.data.producer.id;
-    //        if (appData.mediaType === 'screen') setProducerIdScreen(producerId);
-    //        if (appData.mediaType === 'video') setProducerIdVideo(producerId);
-    //        if (appData.mediaType === 'audio') setProducerIdAudio(producerId);
             
             guard let mediaServerProducers = appData?["mediaServerProducers"] as? [[String: Any]] else {
                 self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
@@ -343,7 +342,7 @@ extension DeviceController: SendTransportDelegate {
                                 ])
                             }
                             
-                            self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce succeeds", properties: nil)
+                            self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce succeed", properties: nil)
                             //TODO: it should be after VIDEO
                             callback(originalRequestIdFromServer)
                         case .failure:
@@ -355,10 +354,6 @@ extension DeviceController: SendTransportDelegate {
                 //TODO: do for video
             }
         }
-        
-        self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
-            "error": "HABISSSSSSS"
-        ])
     }
     
     func onProduceData(transport: any Transport, sctpParameters: String, label: String, protocol dataProtocol: String, appData: String, callback: @escaping (String?) -> Void) {
