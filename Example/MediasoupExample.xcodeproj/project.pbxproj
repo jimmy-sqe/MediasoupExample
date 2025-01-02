@@ -21,7 +21,6 @@
 		AD66EE922D1E8C6500CED7FD /* DeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE912D1E8C6200CED7FD /* DeviceController.swift */; };
 		AD66EE942D1EA37C00CED7FD /* DeviceTransportParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE932D1EA37700CED7FD /* DeviceTransportParam.swift */; };
 		AD66EE982D1EAC3E00CED7FD /* DeviceReceiveTransportHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE972D1EAC3700CED7FD /* DeviceReceiveTransportHandler.swift */; };
-		AD66EE9B2D1EBFC600CED7FD /* MediaServerProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */; };
 		ADD4270F2D1E4B8800CC610A /* WebSocketSendEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD4270E2D1E4B8100CC610A /* WebSocketSendEvent.swift */; };
 		ADED4FBC2D1966D200344A65 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FBB2D1966B500344A65 /* AuthController.swift */; };
 		ADED4FBE2D19670400344A65 /* AuthAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED4FBD2D19670000344A65 /* AuthAPIData.swift */; };
@@ -93,6 +92,8 @@
 		ADED50602D19736300344A65 /* LoggerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED505F2D19735F00344A65 /* LoggerController.swift */; };
 		ADED50622D19769E00344A65 /* ClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED50612D19769C00344A65 /* ClientConfig.swift */; };
 		ADED50642D1976CB00344A65 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED50632D1976C800344A65 /* AppConfiguration.swift */; };
+		ADFDF1B12D26AEF400EC54A2 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFDF1B02D26AEEE00EC54A2 /* Future.swift */; };
+		ADFDF1B32D26AF3600EC54A2 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFDF1B22D26AF3300EC54A2 /* Promise.swift */; };
 		FF3AEE1B27F2D797001A81AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3AEE1A27F2D797001A81AB /* AppDelegate.swift */; };
 		FF3AEE1F27F2D797001A81AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3AEE1E27F2D797001A81AB /* ViewController.swift */; };
 		FF3AEE2227F2D797001A81AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF3AEE2027F2D797001A81AB /* Main.storyboard */; };
@@ -118,7 +119,6 @@
 		AD66EE912D1E8C6200CED7FD /* DeviceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceController.swift; sourceTree = "<group>"; };
 		AD66EE932D1EA37700CED7FD /* DeviceTransportParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTransportParam.swift; sourceTree = "<group>"; };
 		AD66EE972D1EAC3700CED7FD /* DeviceReceiveTransportHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceReceiveTransportHandler.swift; sourceTree = "<group>"; };
-		AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaServerProducer.swift; sourceTree = "<group>"; };
 		ADD4270E2D1E4B8100CC610A /* WebSocketSendEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketSendEvent.swift; sourceTree = "<group>"; };
 		ADED4FBB2D1966B500344A65 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		ADED4FBD2D19670000344A65 /* AuthAPIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIData.swift; sourceTree = "<group>"; };
@@ -190,6 +190,8 @@
 		ADED505F2D19735F00344A65 /* LoggerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerController.swift; sourceTree = "<group>"; };
 		ADED50612D19769C00344A65 /* ClientConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfig.swift; sourceTree = "<group>"; };
 		ADED50632D1976C800344A65 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		ADFDF1B02D26AEEE00EC54A2 /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
+		ADFDF1B22D26AF3300EC54A2 /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		FF3AEE1727F2D797001A81AB /* MediasoupExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediasoupExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3AEE1A27F2D797001A81AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF3AEE1E27F2D797001A81AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,8 @@
 		AD4217652D1A53380023520E /* WebSocket */ = {
 			isa = PBXGroup;
 			children = (
+				ADFDF1B22D26AF3300EC54A2 /* Promise.swift */,
+				ADFDF1B02D26AEEE00EC54A2 /* Future.swift */,
 				AD4217682D1A54920023520E /* WebSocketAPIData.swift */,
 				AD4217662D1A534F0023520E /* WebSocketController.swift */,
 			);
@@ -611,7 +615,6 @@
 			children = (
 				AD4217712D1A9F1B0023520E /* WebSocket */,
 				ADED505A2D196E6A00344A65 /* Auth.swift */,
-				AD66EE9A2D1EBFB600CED7FD /* MediaServerProducer.swift */,
 				AD42177B2D1AA9040023520E /* CommunicationMode.swift */,
 				AD4217792D1AA0CB0023520E /* Conversation.swift */,
 				AD42177E2D1AC02E0023520E /* ConversationStatus.swift */,
@@ -796,7 +799,6 @@
 				ADED50222D196B1600344A65 /* LocalStorage.swift in Sources */,
 				ADED50232D196B1600344A65 /* Analytic.swift in Sources */,
 				ADED50242D196B1600344A65 /* URLResponse.swift in Sources */,
-				AD66EE9B2D1EBFC600CED7FD /* MediaServerProducer.swift in Sources */,
 				ADED50252D196B1600344A65 /* AnalyticService.swift in Sources */,
 				AD4217702D1A9CBE0023520E /* WebSocketReceiveEvent.swift in Sources */,
 				ADED50262D196B1600344A65 /* NetworkProviderUtil.swift in Sources */,
@@ -849,6 +851,7 @@
 				ADED50462D196B1600344A65 /* JWTHandler.swift in Sources */,
 				ADED50642D1976CB00344A65 /* AppConfiguration.swift in Sources */,
 				ADED50472D196B1600344A65 /* NetworkAPIClient.swift in Sources */,
+				ADFDF1B12D26AEF400EC54A2 /* Future.swift in Sources */,
 				ADED50482D196B1600344A65 /* AnalyticsUtil.swift in Sources */,
 				ADED50492D196B1600344A65 /* UIViewController.swift in Sources */,
 				ADED504A2D196B1600344A65 /* NSRegularExpression.swift in Sources */,
@@ -857,6 +860,7 @@
 				ADED504D2D196B1600344A65 /* SDKConfigKey.swift in Sources */,
 				ADED504E2D196B1600344A65 /* PhoneNumberEncryptionUtil.swift in Sources */,
 				AD42176E2D1A9A6E0023520E /* WebSocketReceiveMessage.swift in Sources */,
+				ADFDF1B32D26AF3600EC54A2 /* Promise.swift in Sources */,
 				ADED504F2D196B1600344A65 /* ClientConfigModelResponse.swift in Sources */,
 				ADED50622D19769E00344A65 /* ClientConfig.swift in Sources */,
 				ADED50502D196B1600344A65 /* Time.swift in Sources */,

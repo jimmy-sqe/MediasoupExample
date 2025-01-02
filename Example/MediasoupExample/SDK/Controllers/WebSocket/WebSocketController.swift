@@ -12,7 +12,7 @@ protocol WebSocketControllerDelegate: AnyObject {
     func onWebSocketConnected()
     func onRequestToJoinApproved()
     func onUserJoinedMeetingRoom()
-    func onMediaServerProducersReceived(mediaServerProducers: [MediaServerProducer])
+    func onMediaServerProducersReceived(mediaServerProducers: [[String: Any]])
     func onRTPCapabilitiesReceived(rtpCapabilities: String)
     func onWebRTCTransportReceived(originalRequestId: String, id: String, iceParameters: String, iceCandidates: String, dtlsParameters: String)
 
@@ -28,8 +28,8 @@ protocol WebSocketControllerProtocol {
     func getRTPCapabilities(originalRequestId: String, meetingRoomId: String)
     func createWebRTCTransport(originalRequestId: String, meetingRoomId: String)
     func connectWebRTCTransport(originalRequestId: String, meetingRoomId: String, transportId: String, dtlsParameters: String)
-    func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String)
-    func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: String, mediaType: String)
+    func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage>
+    func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: String, mediaType: String) -> Future<WebSocketReceiveMessage>
     func resumeConsumer(originalRequestId: String, meetingRoomId: String, consumerId: String)
 
 }
@@ -41,6 +41,8 @@ enum WebSocketRequestType {
 
 class WebSocketController: WebSocketControllerProtocol {
     weak var delegate: WebSocketControllerDelegate?
+    
+    private var webSocketRequestQueue: [String: Promise<WebSocketReceiveMessage>] = [:]
     
     private let loggerController: LoggerControllerProtocol
     private var webSocketClient: WebSocketClientProtocol
@@ -95,7 +97,11 @@ class WebSocketController: WebSocketControllerProtocol {
         self.webSocketClient.send(request: request)
     }
     
-    func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String) {
+    func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage> {
+        
+        let promise = Promise<WebSocketReceiveMessage>()
+        self.webSocketRequestQueue[originalRequestId] = promise
+
         let request: WebSocketAPIData = .sendEvent(.createWebRTCTransportProducer, [
             "originalRequestId": originalRequestId,
             "meetingRoomId": meetingRoomId,
@@ -107,11 +113,17 @@ class WebSocketController: WebSocketControllerProtocol {
             ]
         ])
         
-        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
+        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: nil)
         self.webSocketClient.send(request: request)
+        
+        return promise
     }
     
-    func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: String, mediaType: String) {
+    func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: String, mediaType: String) -> Future<WebSocketReceiveMessage> {
+        
+        let promise = Promise<WebSocketReceiveMessage>()
+        self.webSocketRequestQueue[originalRequestId] = promise
+
         let request: WebSocketAPIData = .sendEvent(.createWebRTCTransportConsumer, [
             "originalRequestId": originalRequestId,
             "meetingRoomId": meetingRoomId,
@@ -124,8 +136,10 @@ class WebSocketController: WebSocketControllerProtocol {
             ]
         ])
         
-        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
+        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: nil)
         self.webSocketClient.send(request: request)
+        
+        return promise
     }
     
     func connectWebRTCTransport(originalRequestId: String, meetingRoomId: String, transportId: String, dtlsParameters: String) {
@@ -194,10 +208,8 @@ extension WebSocketController: WebSocketClientDelegate {
             delegate?.onUserJoinedMeetingRoom()
         case .mediaServerProducers:
             let producers = jsonObject?["producers"] as? [[String: Any]]
-            let metaData = producers?.first?["meta"] as? [[String: Any]]
-            if let metaData = metaData?.toData(),
-               let mediaServerProducers = try? JSONDecoder().decode([MediaServerProducer].self, from: metaData) {
-                delegate?.onMediaServerProducersReceived(mediaServerProducers: mediaServerProducers)
+            if let metaData = producers?.first?["meta"] as? [[String: Any]] {
+                delegate?.onMediaServerProducersReceived(mediaServerProducers: metaData)
             }
         case .rtpCapabilities:
             let data = jsonObject?["data"] as? [String: Any]
@@ -218,8 +230,19 @@ extension WebSocketController: WebSocketClientDelegate {
                 iceCandidates: iceCandidates ?? "unknown",
                 dtlsParameters: dtlsParameters ?? "unknown"
             )
-        case .unknown:
+        default:
             break
+        }
+        
+        if let originalRequestId = message.originalRequestId {
+            let promise = webSocketRequestQueue[originalRequestId]
+            let messageWithData = WebSocketReceiveMessage(
+                event: message.event,
+                originalRequestId: message.originalRequestId,
+                data: jsonObject?["data"] as? [String: Any]
+            )
+            promise?.resolve(with: messageWithData)
+            self.webSocketRequestQueue.removeValue(forKey: originalRequestId)
         }
     }
     

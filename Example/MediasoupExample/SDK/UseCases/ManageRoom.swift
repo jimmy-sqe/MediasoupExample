@@ -27,7 +27,7 @@ class ManageRoom {
         }
     }
     
-    private var mediaServerProducers: [MediaServerProducer]?
+    private var mediaServerProducers: [[String: Any]]?
     private let wsToken: String
     private let env: SqeCcEnvironment
     private let loggerController: LoggerControllerProtocol
@@ -126,8 +126,8 @@ class ManageRoom {
     
     func joinMeetingRoom() {
         guard let meetingRoomId else { return }
-        let originalRequestId = UUID().uuidString
         
+        let originalRequestId = UUID().uuidString
         webSocketController.joinMeetingRoom(originalRequestId: originalRequestId, meetingRoomId: meetingRoomId)
     }
     
@@ -192,9 +192,9 @@ extension ManageRoom: WebSocketControllerDelegate {
         self.onRoomStatusUpdated?("User Joined Meeting Room")
     }
     
-    func onMediaServerProducersReceived(mediaServerProducers: [MediaServerProducer]) {
+    func onMediaServerProducersReceived(mediaServerProducers: [[String: Any]]) {
         self.loggerController.sendLog(name: "ManageRoom:OnMediaServerProducersReceived", properties: [
-            "mediaServerProducers": mediaServerProducers.map(\.kind).joined(separator: ",")
+            "mediaServerProducers": mediaServerProducers
         ])
         
         self.mediaServerProducers = mediaServerProducers
@@ -216,7 +216,11 @@ extension ManageRoom: WebSocketControllerDelegate {
         switch key {
         case .webRTCSendTransport:
             self.deviceController.createSendTransport(param: param)
-            self.deviceController.createProducer(mediaServerProducers: self.mediaServerProducers)
+            if let mediaServerProducers = mediaServerProducers, !mediaServerProducers.isEmpty {
+                self.deviceController.createProducer(mediaServerProducers: mediaServerProducers)
+            } else {
+                self.loggerController.sendLog(name: "ManageRoom:CreateProducer failed", properties: ["error": "Invalid mediaServerProducers"])
+            }
         case .webRTCReceiveTransport:
             self.deviceController.createReceiveTransport(param: param)
         default:

@@ -11,15 +11,8 @@ struct WebSocketReceiveMessage {
     
     let event: WebSocketReceiveEvent
     let originalRequestId: String?
+    let data: [String: Any]?
 
-    init(
-        event: WebSocketReceiveEvent,
-        originalRequestId: String?
-    ) {
-        self.event = event
-        self.originalRequestId = originalRequestId
-    }
-    
 }
 
 extension WebSocketReceiveMessage: Codable {
@@ -37,7 +30,8 @@ extension WebSocketReceiveMessage: Codable {
 
         self.init(
             event: WebSocketReceiveEvent(rawValue: eventString) ?? .unknown,
-            originalRequestId: originalRequestId
+            originalRequestId: originalRequestId,
+            data: nil
         )
     }
 
