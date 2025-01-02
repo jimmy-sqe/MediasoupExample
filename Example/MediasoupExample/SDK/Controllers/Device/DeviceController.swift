@@ -251,7 +251,7 @@ extension DeviceController: SendTransportDelegate {
     }
     
     func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {
-        self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce:\(rtpParameters)", properties: nil)
+        self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce", properties: nil)
         
         guard let rtpParameters: [String: Any] = rtpParameters.data(using: .utf8)?.toDictionary() else {
             self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [

@@ -119,7 +119,7 @@ class WebSocketController: WebSocketControllerProtocol {
             ]
         ])
         
-        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: nil)
+        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
         self.webSocketClient.send(request: request)
         
         return promise
