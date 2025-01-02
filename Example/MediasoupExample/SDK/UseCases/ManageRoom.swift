@@ -36,7 +36,6 @@ class ManageRoom {
     private let conversationController: ConversationControllerProtocol
     private var webSocketController: WebSocketControllerProtocol
     private var deviceController: DeviceControllerProtocol
-    private var originalRequestIds = [WebSocketRequestType: String]()
 
     init(env: SqeCcEnvironment,
          wsToken: String,
@@ -127,23 +126,32 @@ class ManageRoom {
     func joinMeetingRoom() {
         guard let meetingRoomId else { return }
         
-        let originalRequestId = UUID().uuidString
-        webSocketController.joinMeetingRoom(originalRequestId: originalRequestId, meetingRoomId: meetingRoomId)
-    }
-    
-    func getRTPCapabilities() {
-        guard let meetingRoomId else { return }
-        let originalRequestId = UUID().uuidString
-        
-        webSocketController.getRTPCapabilities(originalRequestId: originalRequestId, meetingRoomId: meetingRoomId)
-    }
-    
-    func createWebRTCTransport(requestType: WebSocketRequestType) {
-        guard let meetingRoomId else { return }
-        let originalRequestId = UUID().uuidString
-        self.originalRequestIds[requestType] = originalRequestId
-        
-        webSocketController.createWebRTCTransport(originalRequestId: originalRequestId, meetingRoomId: meetingRoomId)
+        webSocketController
+            .joinMeetingRoom(originalRequestId: UUID().uuidString, meetingRoomId: meetingRoomId)
+            .chained { [weak self] _ in
+                guard let self else { return Promise<WebSocketReceiveMessage>() }
+                
+                self.loggerController.sendLog(name: "ManageRoom:OnUserJoinedMeetingRoom", properties: nil)
+                
+                self.onRoomStatusUpdated?("User Joined Meeting Room")
+
+                return self.webSocketController.getRTPCapabilities(originalRequestId: UUID().uuidString, meetingRoomId: meetingRoomId)
+            }
+            .observe { [weak self] result in
+                guard let self else { return }
+                
+                switch result {
+                case .success(let message):
+                    if let rtpCapabilitiesString = (message.data?["rtpCapabilities"] as? [String: Any])?.toJSONString() {
+                        self.loggerController.sendLog(name: "ManageRoom:getRTPCapabilities succeed", properties: ["rtpCapabilities": rtpCapabilitiesString])
+                        self.setupDevice(rtpCapabilities: rtpCapabilitiesString)
+                    } else {
+                        self.loggerController.sendLog(name: "ManageRoom:getRTPCapabilities failed", properties: ["error": "Invalid rtpCapabilities"])
+                    }
+                case .failure(let error):
+                    self.loggerController.sendLog(name: "ManageRoom:getRTPCapabilities failed", properties: ["error": error.localizedDescription])
+                }
+            }
     }
     
     private func createConversation() {
@@ -183,13 +191,6 @@ extension ManageRoom: WebSocketControllerDelegate {
         self.loggerController.sendLog(name: "ManageRoom:OnRequestToJoinApproved", properties: nil)
         
         self.joinMeetingRoom()
-        self.getRTPCapabilities()
-    }
-    
-    func onUserJoinedMeetingRoom() {
-        self.loggerController.sendLog(name: "ManageRoom:OnUserJoinedMeetingRoom", properties: nil)
-        
-        self.onRoomStatusUpdated?("User Joined Meeting Room")
     }
     
     func onMediaServerProducersReceived(mediaServerProducers: [[String: Any]]) {
@@ -200,41 +201,73 @@ extension ManageRoom: WebSocketControllerDelegate {
         self.mediaServerProducers = mediaServerProducers
     }
     
-    func onRTPCapabilitiesReceived(rtpCapabilities: String) {
-        self.loggerController.sendLog(name: "ManageRoom:OnRTPCapabilitiesReceived", properties: ["rtpCapabilities": rtpCapabilities])
-        
-        self.setupDevice(rtpCapabilities: rtpCapabilities)
-    }
-    
-    func onWebRTCTransportReceived(originalRequestId: String, id: String, iceParameters: String, iceCandidates: String, dtlsParameters: String) {
-        self.loggerController.sendLog(name: "ManageRoom:OnWebRTCTransportReceived", properties: ["id": id])
-        
-        let param = DeviceTransportParam(id: id, iceParameters: iceParameters, iceCandidates: iceCandidates, dtlsParameters: dtlsParameters)
-
-        let key = (self.originalRequestIds.first { $0.value == originalRequestId })?.key
-        
-        switch key {
-        case .webRTCSendTransport:
-            self.deviceController.createSendTransport(param: param)
-            if let mediaServerProducers = mediaServerProducers, !mediaServerProducers.isEmpty {
-                self.deviceController.createProducer(mediaServerProducers: mediaServerProducers)
-            } else {
-                self.loggerController.sendLog(name: "ManageRoom:CreateProducer failed", properties: ["error": "Invalid mediaServerProducers"])
-            }
-        case .webRTCReceiveTransport:
-            self.deviceController.createReceiveTransport(param: param)
-        default:
-            break
-        }
-    }
-    
 }
 
 extension ManageRoom: DeviceControllerDelegate {
     
     func onDeviceLoaded() {
-        self.createWebRTCTransport(requestType: .webRTCSendTransport)
-        self.createWebRTCTransport(requestType: .webRTCReceiveTransport)
+        guard let meetingRoomId else { return }
+        
+        var sendTransportParam: DeviceTransportParam?
+        var receiveTransportParam: DeviceTransportParam?
+        
+        webSocketController
+            .createWebRTCTransport(originalRequestId: UUID().uuidString, meetingRoomId: meetingRoomId)
+            .chained { [weak self] message in
+                guard let self else { return Promise<WebSocketReceiveMessage>() }
+                
+                let id = message.data?["id"] as? String ?? "unknown"
+                let iceParameters = message.data?["iceParameters"] as? String ?? "unknown"
+                let iceCandidates = message.data?["iceCandidates"] as? String ?? "unknown"
+                let dtlsParameters = message.data?["dtlsParameters"] as? String ?? "unknown"
+                
+                sendTransportParam = DeviceTransportParam(
+                    id: id,
+                    iceParameters: iceParameters,
+                    iceCandidates: iceCandidates,
+                    dtlsParameters: dtlsParameters
+                )
+                self.loggerController.sendLog(name: "ManageRoom:createWebRTCSendTransport succeed", properties: ["id": id])
+                
+                return self.webSocketController
+                    .createWebRTCTransport(originalRequestId: UUID().uuidString, meetingRoomId: meetingRoomId)
+            }
+            .observe { [weak self] result in
+                guard let self else { return }
+                
+                switch result {
+                case .success(let message):
+                    let id = message.data?["id"] as? String ?? "unknown"
+                    let iceParameters = message.data?["iceParameters"] as? String ?? "unknown"
+                    let iceCandidates = message.data?["iceCandidates"] as? String ?? "unknown"
+                    let dtlsParameters = message.data?["dtlsParameters"] as? String ?? "unknown"
+                    
+                    receiveTransportParam = DeviceTransportParam(
+                        id: id,
+                        iceParameters: iceParameters,
+                        iceCandidates: iceCandidates,
+                        dtlsParameters: dtlsParameters
+                    )
+                    self.loggerController.sendLog(name: "ManageRoom:createWebRTCReceiveTransport succeed", properties: ["id": id])
+                    
+                    guard let sendTransportParam, let receiveTransportParam else {
+                        self.loggerController.sendLog(name: "ManageRoom:transportParam failed", properties: ["error": "Invalid sendTransportParam and receiveTransportParam"])
+                        return
+                    }
+                    
+                    self.deviceController.createSendTransport(param: sendTransportParam)
+                    self.deviceController.createReceiveTransport(param: receiveTransportParam)
+                    
+                    guard let mediaServerProducers = self.mediaServerProducers, !mediaServerProducers.isEmpty else {
+                        self.loggerController.sendLog(name: "ManageRoom:mediaServerProducers failed", properties: ["error": "Invalid mediaServerProducers"])
+                        return
+                    }
+                    
+                    self.deviceController.createProducer(mediaServerProducers: mediaServerProducers)
+                case .failure(let error):
+                    self.loggerController.sendLog(name: "ManageRoom:createWebRTCReceiveTransport failed", properties: ["error": error.localizedDescription])
+                }
+            }
     }
     
 }
