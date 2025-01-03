@@ -49,15 +49,16 @@ class DeviceController: DeviceControllerProtocol {
 
     private var device: Device?
     
+    private var mediaServerProducers: [[String: Any]]?
     private var rtpCapabilities: String?
     
     private var sendTransport: SendTransport?
+    private var sendTransportParam: DeviceTransportParam?
     private var producerId: String?
-    private var producerTransportId: String?
     private var producer: Producer?
     
     private var receiveTransport: ReceiveTransport?
-    private var consumerTransportId: String?
+    private var receiveTransportParam: DeviceTransportParam?
     private var consumer: Consumer?
     // Create separate handler for receive transport because it has same method names with SendTransportDelegate
     private let deviceReceiveTransportHandler: DeviceReceiveTransportHandler
@@ -140,16 +141,16 @@ class DeviceController: DeviceControllerProtocol {
     func createSendTransport(param: DeviceTransportParam) {
         guard let device else { return }
         
-        self.loggerController.sendLog(name: "Device:CreateSendTransport", properties: [
-            "id": param.id,
-            "iceParameters": param.iceParameters,
-            "iceCandidates": param.iceCandidates,
-            "dtlsParameters": param.dtlsParameters
-        ])
+        self.sendTransportParam = param
         
-        self.producerTransportId = param.id
-
         do {
+            self.loggerController.sendLog(name: "Device:CreateSendTransport", properties: [
+                "id": param.id,
+                "iceParameters": param.iceParameters,
+                "iceCandidates": param.iceCandidates,
+                "dtlsParameters": param.dtlsParameters
+            ])
+            
             let sendTransport = try device.createSendTransport(
                 id: param.id,
                 iceParameters: param.iceParameters,
@@ -167,16 +168,16 @@ class DeviceController: DeviceControllerProtocol {
     func createReceiveTransport(param: DeviceTransportParam) {
         guard let device else { return }
         
-        self.loggerController.sendLog(name: "Device:CreateReceiveTransport", properties: [
-            "id": param.id,
-            "iceParameters": param.iceParameters,
-            "iceCandidates": param.iceCandidates,
-            "dtlsParameters": param.dtlsParameters
-        ])
+        self.receiveTransportParam = param
         
-        self.consumerTransportId = param.id
-
         do {
+            self.loggerController.sendLog(name: "Device:CreateReceiveTransport", properties: [
+                "id": param.id,
+                "iceParameters": param.iceParameters,
+                "iceCandidates": param.iceCandidates,
+                "dtlsParameters": param.dtlsParameters
+            ])
+            
             let receiveTransport = try device.createReceiveTransport(
                 id: param.id,
                 iceParameters: param.iceParameters,
@@ -194,17 +195,12 @@ class DeviceController: DeviceControllerProtocol {
     func createProducer(mediaServerProducers: [[String: Any]]) {
         guard let sendTransport, let audioTrack else { return }
         
-        let appData: [String: Any] = [
-            "mediaType": "audio",
-            "mediaServerProducers": mediaServerProducers
-        ]
-        self.loggerController.sendLog(name: "Device:CreateProducer", properties: [
-            "appData": appData.toJSONString() ?? "unknown"
-        ])
+        self.mediaServerProducers = mediaServerProducers
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             do {
-                let producer = try sendTransport.createProducer(for: audioTrack, encodings: nil, codecOptions: nil, codec: nil, appData: appData.toJSONString())
+                self.loggerController.sendLog(name: "Device:CreateProducer", properties: nil)
+                let producer = try sendTransport.createProducer(for: audioTrack, encodings: nil, codecOptions: nil, codec: nil, appData: nil)
                 self.producer = producer
                 
                 producer.delegate = self
@@ -254,7 +250,7 @@ extension DeviceController: SendTransportDelegate {
             originalRequestId: UUID().uuidString,
             meetingRoomId: meetingRoomId ?? "unknown",
             transportId: transport.id,
-            dtlsParameters: dtlsParameters
+            dtlsParameters: sendTransportParam?.dtlsParameters ?? "unknown"
         ).observe { result in
             switch result {
             case .success:
@@ -301,8 +297,16 @@ extension DeviceController: SendTransportDelegate {
             ]
         ) { _, new in new }
         
-        let appData = appData.toDictionary()
-        let mediaType = (appData?["mediaType"] as? String) ?? "unknown"
+        let mediaType: String = {
+            switch kind {
+            case .audio:
+                "audio"
+            case .video:
+                "video"
+            default:
+                "unknown"
+            }
+        }();
         
         self.webSocketController.createWebRTCTransportProducer(
             originalRequestId: UUID().uuidString,
@@ -327,7 +331,7 @@ extension DeviceController: SendTransportDelegate {
                 break
             }
             
-            guard let mediaServerProducers = appData?["mediaServerProducers"] as? [[String: Any]] else {
+            guard let mediaServerProducers = self.mediaServerProducers else {
                 self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
                     "appData": appData ?? "unknown",
                     "error": "Invalid mediaServerProducers"
@@ -342,7 +346,7 @@ extension DeviceController: SendTransportDelegate {
                     self.webSocketController.createWebRTCTransportConsumer(
                         originalRequestId: UUID().uuidString,
                         meetingRoomId: self.meetingRoomId ?? "unknown",
-                        consumerTransportId: self.consumerTransportId ?? "unknown",
+                        consumerTransportId: self.receiveTransportParam?.id ?? "unknown",
                         producerId: mediaServerProducer["id"] as? String ?? "unknown",
                         rtpCapabilities: self.rtpCapabilities ?? "unknown",
                         mediaType: mediaServerProducer["mediaType"] as? String ?? "unknown"

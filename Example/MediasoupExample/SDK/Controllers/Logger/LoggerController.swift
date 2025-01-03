@@ -18,7 +18,7 @@ class LoggerController: LoggerControllerProtocol {
         if let properties {
             logMessage += " with properties: \(properties as AnyObject)"
         }
-        NSLog(logMessage)
+        print(logMessage)
     }
     
 }
