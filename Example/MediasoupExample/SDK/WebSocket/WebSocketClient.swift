@@ -10,8 +10,12 @@ import NWWebSocket
 
 protocol WebSocketClientDelegate: AnyObject {
     func webSocketDidConnect()
+    func webSocketDidDisconnect()
+    func webSocketDidAttemptBetterPathMigration()
     func webSocketDidReceiveError(errorMessage: String)
+    func webSocketDidReceivePong()
     func webSocketDidReceiveMessage(message: String)
+    func webSocketDidReceiveMessage(data: Data)
 }
 
 protocol WebSocketClientProtocol {
@@ -65,12 +69,15 @@ extension WebSocketClient: WebSocketConnectionDelegate {
     }
     
     func webSocketDidDisconnect(connection: WebSocketConnection, closeCode: NWProtocolWebSocket.CloseCode, reason: Data?) {
+        delegate?.webSocketDidDisconnect()
     }
     
     func webSocketViabilityDidChange(connection: WebSocketConnection, isViable: Bool) {
+        delegate?.webSocketDidConnect()
     }
     
     func webSocketDidAttemptBetterPathMigration(result: Result<WebSocketConnection, NWError>) {
+        delegate?.webSocketDidAttemptBetterPathMigration()
     }
     
     func webSocketDidReceiveError(connection: WebSocketConnection, error: NWError) {
@@ -78,6 +85,7 @@ extension WebSocketClient: WebSocketConnectionDelegate {
     }
     
     func webSocketDidReceivePong(connection: WebSocketConnection) {
+        delegate?.webSocketDidReceivePong()
     }
     
     func webSocketDidReceiveMessage(connection: WebSocketConnection, string: String) {
@@ -85,5 +93,6 @@ extension WebSocketClient: WebSocketConnectionDelegate {
     }
     
     func webSocketDidReceiveMessage(connection: WebSocketConnection, data: Data) {
+        delegate?.webSocketDidReceiveMessage(data: data)
     }
 }

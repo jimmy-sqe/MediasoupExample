@@ -56,6 +56,7 @@ class WebSocketController: WebSocketControllerProtocol {
     }
     
     func disconnect() {
+        self.loggerController.sendLog(name: "WebSocket:Disconnect", properties: nil)
         self.webSocketClient.disconnect()
     }
     
@@ -178,16 +179,6 @@ class WebSocketController: WebSocketControllerProtocol {
 }
 
 extension WebSocketController: WebSocketClientDelegate {
-    func webSocketDidConnect() {
-        self.loggerController.sendLog(name: "WebSocket:DidConnect", properties: nil)
-    }
-    
-    func webSocketDidReceiveError(errorMessage: String) {
-        self.loggerController.sendLog(name: "WebSocket:DidReceiveError", properties: [
-            "errorMessage": errorMessage
-        ])
-    }
-    
     func webSocketDidReceiveMessage(message: String) {
         self.loggerController.sendLog(name: "WebSocket:DidReceiveMessage", properties: [
             "message": message
@@ -206,6 +197,34 @@ extension WebSocketController: WebSocketClientDelegate {
                 ])
             }
         }
+    }
+    
+    func webSocketDidConnect() {
+        self.loggerController.sendLog(name: "WebSocket:DidConnect", properties: nil)
+    }
+    
+    func webSocketDidDisconnect() {
+        self.loggerController.sendLog(name: "WebSocket:DidDisconnect", properties: nil)
+    }
+    
+    func webSocketDidAttemptBetterPathMigration() {
+        self.loggerController.sendLog(name: "WebSocket:DidAttemptBetterPathMigration", properties: nil)
+    }
+    
+    func webSocketDidReceivePong() {
+        self.loggerController.sendLog(name: "WebSocket:DidReceivePong", properties: nil)
+    }
+    
+    func webSocketDidReceiveMessage(data: Data) {
+        self.loggerController.sendLog(name: "WebSocket:DidReceiveMessage", properties: [
+            "data": data
+        ])
+    }
+    
+    func webSocketDidReceiveError(errorMessage: String) {
+        self.loggerController.sendLog(name: "WebSocket:DidReceiveError", properties: [
+            "errorMessage": errorMessage
+        ])
     }
     
     private func readMessage(message: WebSocketReceiveMessage, jsonObject: [String: Any]?) {
