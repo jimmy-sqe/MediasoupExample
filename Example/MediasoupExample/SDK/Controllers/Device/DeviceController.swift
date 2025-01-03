@@ -42,6 +42,7 @@ class DeviceController: DeviceControllerProtocol {
     private var isVideoConsumerCreated: Bool = false
 
     private let peerConnectionFactory = RTCPeerConnectionFactory()
+    private var peerConnection: RTCPeerConnection?
     private var mediaStream: RTCMediaStream?
     private var audioTrack: RTCAudioTrack?
     private var videoTrack: RTCVideoTrack?
@@ -90,6 +91,13 @@ class DeviceController: DeviceControllerProtocol {
         let mediaStream = peerConnectionFactory.mediaStream(withStreamId: "sqe_stream")
         self.mediaStream = mediaStream
         mediaStream.addAudioTrack(audioTrack)
+        
+        // Additional from ChatGPT
+//        let config = RTCConfiguration()
+//        let constraints = RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: nil)
+//        let peerConnection = peerConnectionFactory.peerConnection(with: config, constraints: constraints, delegate: nil)
+//        self.peerConnection = peerConnection
+//        peerConnection?.add(mediaStream)
     }
     
     func loadDevice(rtpCapabilities: String) {

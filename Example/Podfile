@@ -1,7 +1,26 @@
 platform :ios, '13.0'
+#flipperkit_version = '0.250.0'
 
 target 'MediasoupExample' do
-	use_frameworks!
+  
+  # It is likely that you'll only want to include Flipper in debug builds,
+  # in which case you add the `:configuration` directive:
+#  pod 'FlipperKit', '~>' + flipperkit_version, :configuration => 'Debug'
+#  pod 'FlipperKit/FlipperKitLayoutComponentKitSupport', '~>' + flipperkit_version, :configuration => 'Debug'
+#  pod 'FlipperKit/FlipperKitLayoutPlugin', '~>' + flipperkit_version, :configuration => 'Debug'
+#  pod 'FlipperKit/SKIOSNetworkPlugin', '~>' + flipperkit_version, :configuration => 'Debug'
+#  pod 'FlipperKit/FlipperKitUserDefaultsPlugin', '~>' + flipperkit_version, :configuration => 'Debug'
+#  pod 'FlipperKit/FlipperKitExamplePlugin', '~>' + flipperkit_version, :configuration => 'Debug'
+  # ...unfortunately at this time that means you'll need to explicitly mark
+  # transitive dependencies as being for debug build only as well:
+#  pod 'Flipper-DoubleConversion', :configuration => 'Debug'
+#  pod 'Flipper-Folly', :configuration => 'Debug'
+#  pod 'Flipper-Glog', :configuration => 'Debug'
+#  pod 'Flipper-PeerTalk', :configuration => 'Debug'
+#  pod 'CocoaLibEvent', :configuration => 'Debug'
+#  pod 'boost-for-react-native', :configuration => 'Debug'
+#  pod 'OpenSSL-Universal', :configuration => 'Debug'
+#  pod 'CocoaAsyncSocket', :configuration => 'Debug'
   
 	pod 'Mediasoup-Client-Swift', :path => '../'
 end
