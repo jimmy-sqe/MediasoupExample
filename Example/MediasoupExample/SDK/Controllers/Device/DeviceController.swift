@@ -240,14 +240,23 @@ class DeviceController: DeviceControllerProtocol {
 extension DeviceController: SendTransportDelegate {
     
     func onConnect(transport: any Transport, dtlsParameters: String) {
-        self.loggerController.sendLog(name: "DeviceSendTransport:OnConnect:\(dtlsParameters)", properties: nil)
+        self.loggerController.sendLog(name: "DeviceSendTransport:OnConnect", properties: nil)
         
         self.webSocketController.connectWebRTCTransport(
             originalRequestId: UUID().uuidString,
             meetingRoomId: meetingRoomId ?? "unknown",
             transportId: transport.id,
             dtlsParameters: dtlsParameters
-        )
+        ).observe { result in
+            switch result {
+            case .success:
+                self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport succeed", properties: nil)
+            case .failure(let error):
+                self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport failed", properties: [
+                    "error": error.localizedDescription
+                ])
+            }
+        }
     }
     
     func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {
@@ -285,11 +294,10 @@ extension DeviceController: SendTransportDelegate {
         ) { _, new in new }
         
         let appData = appData.toDictionary()
-        let originalRequestId = UUID().uuidString
         let mediaType = (appData?["mediaType"] as? String) ?? "unknown"
         
         self.webSocketController.createWebRTCTransportProducer(
-            originalRequestId: originalRequestId,
+            originalRequestId: UUID().uuidString,
             meetingRoomId: meetingRoomId ?? "unknown",
             producerTransportId: transport.id,
             kind: mediaType,
@@ -311,7 +319,6 @@ extension DeviceController: SendTransportDelegate {
                 break
             }
             
-            
             guard let mediaServerProducers = appData?["mediaServerProducers"] as? [[String: Any]] else {
                 self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
                     "appData": appData ?? "unknown",
@@ -325,7 +332,7 @@ extension DeviceController: SendTransportDelegate {
                     self.isAudioConsumerCreated = true
                     
                     self.webSocketController.createWebRTCTransportConsumer(
-                        originalRequestId: originalRequestId,
+                        originalRequestId: UUID().uuidString,
                         meetingRoomId: self.meetingRoomId ?? "unknown",
                         consumerTransportId: self.consumerTransportId ?? "unknown",
                         producerId: mediaServerProducer["id"] as? String ?? "unknown",
@@ -342,7 +349,8 @@ extension DeviceController: SendTransportDelegate {
                                 ])
                             }
                             
-                            self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce succeed", properties: nil)
+                            self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce succeed", properties: ["originalRequestIdFromServer": originalRequestIdFromServer ?? "unknown"])
+                            
                             //TODO: it should be after VIDEO
                             callback(originalRequestIdFromServer)
                         case .failure:
@@ -391,20 +399,20 @@ extension DeviceController: SendTransportDelegate {
                 appData: appData.toJSONString()
             )
             
+            self.loggerController.sendLog(name: "DeviceSendTransport:ConsumeConsumer succeed", properties: nil)
+            
             if consumer?.kind == .audio {
 //                const remAudio = new MediaStream();
 //                let remoteStreamAudio: any = document.getElementById('remote-audio');
 //                remAudio.addTrack(track);
 //                useVideoCallStore.getState().setRemoteAudioStream(remAudio);
 //                remoteStreamAudio.srcObject = remAudio;
-                self.loggerController.sendLog(name: "DeviceSendTransport:ConsumeConsumer succeeds", properties: nil)
             } else {
                 //TODO: for video
             }
             
-            let originalRequestId = UUID().uuidString
             self.webSocketController.resumeConsumer(
-                originalRequestId: originalRequestId,
+                originalRequestId: UUID().uuidString,
                 meetingRoomId: meetingRoomId ?? "unknown",
                 consumerId: consumerId
             )
