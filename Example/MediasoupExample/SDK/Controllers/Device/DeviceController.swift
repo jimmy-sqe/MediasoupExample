@@ -57,6 +57,7 @@ class DeviceController: DeviceControllerProtocol {
     private var sendTransport: SendTransport?
     private var sendTransportParam: DeviceTransportParam?
     private var producerId: String?
+    private var audioProducerId: String?
     private var producer: Producer?
     
     private var receiveTransport: ReceiveTransport?
@@ -328,10 +329,11 @@ extension DeviceController: SendTransportDelegate {
             
             let producer: [String: Any]? = message.data?["producer"] as? [String: Any]
             self.producerId = producer?["id"] as? String
-            //        if (appData.mediaType === 'screen') setProducerIdScreen(producerId);
-            //        if (appData.mediaType === 'video') setProducerIdVideo(producerId);
-            //        if (appData.mediaType === 'audio') setProducerIdAudio(producerId);
-            
+            if (mediaType == "audio") {
+                self.audioProducerId = self.producerId
+            }
+            // TODO: do for video
+
             guard let mediaServerProducers = self.mediaServerProducers else {
                 self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
                     "appData": appData,
