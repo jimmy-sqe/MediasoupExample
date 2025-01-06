@@ -10,8 +10,9 @@ import Foundation
 
 class ManageRoom {
     
-    var onRoomStatusUpdated: ((String) -> Void)? = nil
-    
+    var username: PassthroughSubject<String?, Never> = PassthroughSubject()
+    var roomStatus: PassthroughSubject<String?, Never> = PassthroughSubject()
+
     private let AUTH_TOKEN_KEY: String = "AUTH_TOKEN_KEY"
     
     private var authToken: String? {
@@ -61,6 +62,7 @@ class ManageRoom {
     
     deinit {
         self.webSocketController.disconnect()
+        self.roomStatus.send(completion: .finished)
     }
     
     func setup() {
@@ -118,7 +120,7 @@ class ManageRoom {
             switch result {
             case .success(let status):
                 self.meetingRoomId = status.meetingRoomId
-                self.onRoomStatusUpdated?(status.callJoinStatus.displayText)
+                self.roomStatus.send(status.callJoinStatus.displayText)
             case .failure:
                 break
             }
@@ -130,7 +132,7 @@ class ManageRoom {
         
         webSocketController
             .joinMeetingRoom(originalRequestId: UUID().uuidString, meetingRoomId: meetingRoomId)
-            .flatMap { [weak self] _ in
+            .flatMap { [weak self] message in
                 guard let self else {
                     return Future<WebSocketReceiveMessage, Never> { promise in
                         promise(.success(WebSocketReceiveMessage(event: .unknown)))
@@ -139,7 +141,12 @@ class ManageRoom {
 
                 self.loggerController.sendLog(name: "ManageRoom:joinMeetingRoom succeed", properties: nil)
 
-                self.onRoomStatusUpdated?("User Joined Meeting Room")
+                let username: String? = {
+                    let joiningUser = message.data?["joiningUser"] as? [String: Any]
+                    return joiningUser?["name"] as? String
+                }();
+                self.username.send(username)
+                self.roomStatus.send("Joined")
 
                 return self.webSocketController.getRTPCapabilities(originalRequestId: UUID().uuidString, meetingRoomId: meetingRoomId)
             }
@@ -202,6 +209,9 @@ extension ManageRoom: WebSocketControllerDelegate {
         self.mediaServerProducers = mediaServerProducers
     }
     
+    func onMediaServerError(errorMessage: String) {
+        self.roomStatus.send("Error: \(errorMessage)")
+    }
 }
 
 extension ManageRoom: DeviceControllerDelegate {

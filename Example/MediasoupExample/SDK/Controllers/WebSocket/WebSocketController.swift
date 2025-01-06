@@ -13,6 +13,7 @@ protocol WebSocketControllerDelegate: AnyObject {
     func onWebSocketConnected()
     func onRequestToJoinApproved()
     func onMediaServerProducersReceived(mediaServerProducers: [[String: Any]])
+    func onMediaServerError(errorMessage: String)
 
 }
 
@@ -241,6 +242,9 @@ extension WebSocketController: WebSocketClientDelegate {
             if let metaData = producers?.first?["meta"] as? [[String: Any]] {
                 delegate?.onMediaServerProducersReceived(mediaServerProducers: metaData)
             }
+        case .mediaServerError:
+            let errorMessage = jsonObject?["errorMessage"] as? String
+            delegate?.onMediaServerError(errorMessage: errorMessage ?? "unknown")
         case .webRTCTransport:
             let data = jsonObject?["data"] as? [String: Any]
             let webRTCResponse = data?["webrtcResponse"] as? [String: Any]

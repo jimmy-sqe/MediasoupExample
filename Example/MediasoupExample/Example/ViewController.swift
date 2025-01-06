@@ -1,8 +1,12 @@
+
+import Combine
 import UIKit
 
 final class ViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
+    
+    private var cancellables = Set<AnyCancellable>()
     
     private let manageRoom = ManageRoom(env: .staging, wsToken: "e6776bf9-ca05-4b57-94db-5003949f81e5", loggerController: LoggerController(), storage: LocalStorage())
     
@@ -28,13 +32,17 @@ final class ViewController: UIViewController {
         
         manageRoom.setup()
         
-        manageRoom.onRoomStatusUpdated = { [weak self] status in
-            guard let self else { return }
-            
+        manageRoom.username.sink { [weak self] name in
             DispatchQueue.main.async {
-                self.statusLabel.text = status
+                self?.nameLabel.text = name
             }
-        }
+        }.store(in: &cancellables)
+        
+        manageRoom.roomStatus.sink { [weak self] status in
+            DispatchQueue.main.async {
+                self?.statusLabel.text = status
+            }
+        }.store(in: &cancellables)
     }
     
 }
