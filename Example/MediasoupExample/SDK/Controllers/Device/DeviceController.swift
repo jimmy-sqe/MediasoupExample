@@ -6,6 +6,7 @@
 //
 
 import AVFoundation
+import Combine
 import Mediasoup
 import WebRTC
 
@@ -38,6 +39,7 @@ class DeviceController: DeviceControllerProtocol {
         }
     }
     
+    private var cancellables = Set<AnyCancellable>()
     private var isAudioConsumerCreated: Bool = false
     private var isVideoConsumerCreated: Bool = false
 
@@ -253,17 +255,10 @@ extension DeviceController: SendTransportDelegate {
                     meetingRoomId: self.meetingRoomId ?? "unknown",
                     transportId: transport.id,
                     dtlsParameters: self.sendTransportParam?.dtlsParameters ?? "unknown"
-                ).observe { result in
-                    switch result {
-                    case .success:
-                        self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport succeed", properties: nil)
-                    case .failure(let error):
-                        self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport failed", properties: [
-                            "error": error.localizedDescription
-                        ])
-                    }
+                ).sink { _ in
+                    self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport succeed", properties: nil)
                     continuation.resume()
-                }
+                }.store(in: &self.cancellables)
             }
         }
     }
@@ -322,30 +317,24 @@ extension DeviceController: SendTransportDelegate {
             kind: mediaType,
             rtpParameters: newRtpParameters,
             mediaType: mediaType
-        ).observe { [weak self] result in
+        ).sink { [weak self] message in
             guard let self else { return }
             
-            var originalRequestIdFromServer: String?
-            switch result {
-            case .success(let message):
-                originalRequestIdFromServer = message.originalRequestId
-                
-                self.loggerController.sendLog(name: "DeviceSendTransport:createWebRTCTransportProducer succeed", properties: [
-                    "originalRequestIdFromServer": originalRequestIdFromServer,
-                ])
-                
-                let producer: [String: Any]? = message.data?["producer"] as? [String: Any]
-                self.producerId = producer?["id"] as? String
-                //        if (appData.mediaType === 'screen') setProducerIdScreen(producerId);
-                //        if (appData.mediaType === 'video') setProducerIdVideo(producerId);
-                //        if (appData.mediaType === 'audio') setProducerIdAudio(producerId);
-            case .failure:
-                break
-            }
+            let originalRequestIdFromServer: String = message.originalRequestId ?? "unknown"
+            
+            self.loggerController.sendLog(name: "DeviceSendTransport:createWebRTCTransportProducer succeed", properties: [
+                "originalRequestIdFromServer": originalRequestIdFromServer,
+            ])
+            
+            let producer: [String: Any]? = message.data?["producer"] as? [String: Any]
+            self.producerId = producer?["id"] as? String
+            //        if (appData.mediaType === 'screen') setProducerIdScreen(producerId);
+            //        if (appData.mediaType === 'video') setProducerIdVideo(producerId);
+            //        if (appData.mediaType === 'audio') setProducerIdAudio(producerId);
             
             guard let mediaServerProducers = self.mediaServerProducers else {
                 self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
-                    "appData": appData ?? "unknown",
+                    "appData": appData,
                     "error": "Invalid mediaServerProducers"
                 ])
                 return
@@ -362,33 +351,27 @@ extension DeviceController: SendTransportDelegate {
                         producerId: mediaServerProducer["id"] as? String ?? "unknown",
                         rtpCapabilities: self.rtpCapabilities ?? "unknown",
                         mediaType: mediaServerProducer["mediaType"] as? String ?? "unknown"
-                    ).observe { result in
-                        switch result {
-                        case .success(let message):
-                            if let consumer = message.data?["consumer"] as? [String: Any] {
-                                self.consumeConsumer(consumer: consumer)
-                            } else {
-                                self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
-                                    "error": "Invalid consumer"
-                                ])
-                            }
-                            
-                            self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce succeed", properties: ["originalRequestIdFromServer": originalRequestIdFromServer ?? "unknown"])
-                            
-                            //TODO: it should be after VIDEO
-                            self.loggerController.sendLog(name: "DeviceSendTransport:callback", properties: [
-                                "originalRequestIdFromServer": originalRequestIdFromServer,
+                    ).sink { message in
+                        if let consumer = message.data?["consumer"] as? [String: Any] {
+                            self.consumeConsumer(consumer: consumer)
+                        } else {
+                            self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
+                                "error": "Invalid consumer"
                             ])
-                            callback(originalRequestIdFromServer)
-                        case .failure:
-                            break
                         }
-                    }
+                        
+                        self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce succeed", properties: nil)
+                        
+                        //TODO: it should be after VIDEO
+                        
+                        self.loggerController.sendLog(name: "DeviceSendTransport:callback", properties: nil)
+                        callback(originalRequestIdFromServer)
+                    }.store(in: &self.cancellables)
                 }
                 
                 //TODO: do for video
             }
-        }
+        }.store(in: &cancellables)
     }
     
     func onProduceData(transport: any Transport, sctpParameters: String, label: String, protocol dataProtocol: String, appData: String, callback: @escaping (String?) -> Void) {

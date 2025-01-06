@@ -12,6 +12,12 @@ struct WebSocketReceiveMessage {
     let event: WebSocketReceiveEvent
     let originalRequestId: String?
     let data: [String: Any]?
+    
+    init(event: WebSocketReceiveEvent, originalRequestId: String? = nil, data: [String: Any]? = nil) {
+        self.event = event
+        self.originalRequestId = originalRequestId
+        self.data = data
+    }
 
 }
 

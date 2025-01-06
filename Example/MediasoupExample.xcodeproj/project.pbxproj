@@ -93,8 +93,6 @@
 		ADED50602D19736300344A65 /* LoggerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED505F2D19735F00344A65 /* LoggerController.swift */; };
 		ADED50622D19769E00344A65 /* ClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED50612D19769C00344A65 /* ClientConfig.swift */; };
 		ADED50642D1976CB00344A65 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED50632D1976C800344A65 /* AppConfiguration.swift */; };
-		ADFDF1B12D26AEF400EC54A2 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFDF1B02D26AEEE00EC54A2 /* Future.swift */; };
-		ADFDF1B32D26AF3600EC54A2 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFDF1B22D26AF3300EC54A2 /* Promise.swift */; };
 		FF3AEE1B27F2D797001A81AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3AEE1A27F2D797001A81AB /* AppDelegate.swift */; };
 		FF3AEE1F27F2D797001A81AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3AEE1E27F2D797001A81AB /* ViewController.swift */; };
 		FF3AEE2227F2D797001A81AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF3AEE2027F2D797001A81AB /* Main.storyboard */; };
@@ -192,8 +190,6 @@
 		ADED505F2D19735F00344A65 /* LoggerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerController.swift; sourceTree = "<group>"; };
 		ADED50612D19769C00344A65 /* ClientConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfig.swift; sourceTree = "<group>"; };
 		ADED50632D1976C800344A65 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
-		ADFDF1B02D26AEEE00EC54A2 /* Future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
-		ADFDF1B22D26AF3300EC54A2 /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		FF3AEE1727F2D797001A81AB /* MediasoupExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediasoupExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3AEE1A27F2D797001A81AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF3AEE1E27F2D797001A81AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -236,8 +232,6 @@
 		AD4217652D1A53380023520E /* WebSocket */ = {
 			isa = PBXGroup;
 			children = (
-				ADFDF1B22D26AF3300EC54A2 /* Promise.swift */,
-				ADFDF1B02D26AEEE00EC54A2 /* Future.swift */,
 				AD4217682D1A54920023520E /* WebSocketAPIData.swift */,
 				AD4217662D1A534F0023520E /* WebSocketController.swift */,
 			);
@@ -873,7 +867,6 @@
 				ADED50462D196B1600344A65 /* JWTHandler.swift in Sources */,
 				ADED50642D1976CB00344A65 /* AppConfiguration.swift in Sources */,
 				ADED50472D196B1600344A65 /* NetworkAPIClient.swift in Sources */,
-				ADFDF1B12D26AEF400EC54A2 /* Future.swift in Sources */,
 				ADED50482D196B1600344A65 /* AnalyticsUtil.swift in Sources */,
 				ADED50492D196B1600344A65 /* UIViewController.swift in Sources */,
 				ADED504A2D196B1600344A65 /* NSRegularExpression.swift in Sources */,
@@ -882,7 +875,6 @@
 				ADED504D2D196B1600344A65 /* SDKConfigKey.swift in Sources */,
 				ADED504E2D196B1600344A65 /* PhoneNumberEncryptionUtil.swift in Sources */,
 				AD42176E2D1A9A6E0023520E /* WebSocketReceiveMessage.swift in Sources */,
-				ADFDF1B32D26AF3600EC54A2 /* Promise.swift in Sources */,
 				ADED504F2D196B1600344A65 /* ClientConfigModelResponse.swift in Sources */,
 				ADED50622D19769E00344A65 /* ClientConfig.swift in Sources */,
 				ADED50502D196B1600344A65 /* Time.swift in Sources */,

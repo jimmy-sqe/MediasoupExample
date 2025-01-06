@@ -5,6 +5,7 @@
 //  Created by Jimmy Suhartono on 27/12/24.
 //
 
+import Combine
 import Foundation
 import Mediasoup
 
@@ -12,6 +13,7 @@ class DeviceReceiveTransportHandler {
     
     var meetingRoomId: String?
     
+    private var cancellables = Set<AnyCancellable>()
     private let loggerController: LoggerControllerProtocol
     private let webSocketController: WebSocketControllerProtocol
 
@@ -33,14 +35,9 @@ extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
             meetingRoomId: meetingRoomId ?? "unknown",
             transportId: transport.id,
             dtlsParameters: dtlsParameters
-        ).observe { result in
-            switch result {
-            case .success:
-                self.loggerController.sendLog(name: "DeviceReceiveTransport:connectWebRTCTransport succeed", properties: nil)
-            case .failure(let error):
-                self.loggerController.sendLog(name: "DeviceReceiveTransport:connectWebRTCTransport failed", properties: nil)
-            }
-        }
+        ).sink { _ in
+            self.loggerController.sendLog(name: "DeviceReceiveTransport:connectWebRTCTransport succeed", properties: nil)
+        }.store(in: &cancellables)
     }
     
     func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {
