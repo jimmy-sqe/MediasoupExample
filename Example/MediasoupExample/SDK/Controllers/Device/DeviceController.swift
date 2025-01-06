@@ -197,7 +197,7 @@ class DeviceController: DeviceControllerProtocol {
         
         self.mediaServerProducers = mediaServerProducers
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
             do {
                 self.loggerController.sendLog(name: "Device:CreateProducer", properties: nil)
                 let producer = try sendTransport.createProducer(for: audioTrack, encodings: nil, codecOptions: nil, codec: nil, appData: nil)
@@ -246,19 +246,24 @@ extension DeviceController: SendTransportDelegate {
     func onConnect(transport: any Transport, dtlsParameters: String) {
         self.loggerController.sendLog(name: "DeviceSendTransport:OnConnect", properties: nil)
         
-        self.webSocketController.connectWebRTCTransport(
-            originalRequestId: UUID().uuidString,
-            meetingRoomId: meetingRoomId ?? "unknown",
-            transportId: transport.id,
-            dtlsParameters: sendTransportParam?.dtlsParameters ?? "unknown"
-        ).observe { result in
-            switch result {
-            case .success:
-                self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport succeed", properties: nil)
-            case .failure(let error):
-                self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport failed", properties: [
-                    "error": error.localizedDescription
-                ])
+        Task.synchronous {
+            await withCheckedContinuation { continuation in
+                self.webSocketController.connectWebRTCTransport(
+                    originalRequestId: UUID().uuidString,
+                    meetingRoomId: self.meetingRoomId ?? "unknown",
+                    transportId: transport.id,
+                    dtlsParameters: self.sendTransportParam?.dtlsParameters ?? "unknown"
+                ).observe { result in
+                    switch result {
+                    case .success:
+                        self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport succeed", properties: nil)
+                    case .failure(let error):
+                        self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport failed", properties: [
+                            "error": error.localizedDescription
+                        ])
+                    }
+                    continuation.resume()
+                }
             }
         }
     }
@@ -308,8 +313,10 @@ extension DeviceController: SendTransportDelegate {
             }
         }();
         
+        let originalRequestId = UUID().uuidString
+        
         self.webSocketController.createWebRTCTransportProducer(
-            originalRequestId: UUID().uuidString,
+            originalRequestId: originalRequestId,
             meetingRoomId: meetingRoomId ?? "unknown",
             producerTransportId: transport.id,
             kind: mediaType,
@@ -322,6 +329,11 @@ extension DeviceController: SendTransportDelegate {
             switch result {
             case .success(let message):
                 originalRequestIdFromServer = message.originalRequestId
+                
+                self.loggerController.sendLog(name: "DeviceSendTransport:createWebRTCTransportProducer succeed", properties: [
+                    "originalRequestIdFromServer": originalRequestIdFromServer,
+                ])
+                
                 let producer: [String: Any]? = message.data?["producer"] as? [String: Any]
                 self.producerId = producer?["id"] as? String
                 //        if (appData.mediaType === 'screen') setProducerIdScreen(producerId);
@@ -364,6 +376,9 @@ extension DeviceController: SendTransportDelegate {
                             self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce succeed", properties: ["originalRequestIdFromServer": originalRequestIdFromServer ?? "unknown"])
                             
                             //TODO: it should be after VIDEO
+                            self.loggerController.sendLog(name: "DeviceSendTransport:callback", properties: [
+                                "originalRequestIdFromServer": originalRequestIdFromServer,
+                            ])
                             callback(originalRequestIdFromServer)
                         case .failure:
                             break
