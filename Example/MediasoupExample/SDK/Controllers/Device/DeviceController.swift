@@ -23,7 +23,7 @@ protocol DeviceControllerProtocol {
     
     func checkAudioPermission()
     func setup()
-    func loadDevice(rtpCapabilities: String)
+    func loadDevice(rtpCapabilities: [String: Any])
     func createSendTransport(param: DeviceTransportParam)
     func createReceiveTransport(param: DeviceTransportParam)
     func createProducer(mediaServerProducers: [[String: Any]])
@@ -52,7 +52,7 @@ class DeviceController: DeviceControllerProtocol {
     private var device: Device?
     
     private var mediaServerProducers: [[String: Any]]?
-    private var rtpCapabilities: String?
+    private var rtpCapabilities: [String: Any]?
     
     private var sendTransport: SendTransport?
     private var sendTransportParam: DeviceTransportParam?
@@ -103,7 +103,7 @@ class DeviceController: DeviceControllerProtocol {
 //        peerConnection?.add(mediaStream)
     }
     
-    func loadDevice(rtpCapabilities: String) {
+    func loadDevice(rtpCapabilities: [String: Any]) {
         self.loggerController.sendLog(name: "Device:LoadDevice", properties: nil)
         
         guard AVCaptureDevice.authorizationStatus(for: .audio) == .authorized else {
@@ -117,7 +117,7 @@ class DeviceController: DeviceControllerProtocol {
             let device = Device()
             self.device = device
             self.rtpCapabilities = rtpCapabilities
-            try device.load(with: rtpCapabilities)
+            try device.load(with: rtpCapabilities.toJSONString() ?? "unknown")
             
             let isDeviceLoaded = device.isLoaded()
             if isDeviceLoaded {
@@ -349,7 +349,7 @@ extension DeviceController: SendTransportDelegate {
                         meetingRoomId: self.meetingRoomId ?? "unknown",
                         consumerTransportId: self.receiveTransportParam?.id ?? "unknown",
                         producerId: mediaServerProducer["id"] as? String ?? "unknown",
-                        rtpCapabilities: self.rtpCapabilities ?? "unknown",
+                        rtpCapabilities: self.rtpCapabilities ?? ["unknown": ""],
                         mediaType: mediaServerProducer["mediaType"] as? String ?? "unknown"
                     ).sink { message in
                         if let consumer = message.data?["consumer"] as? [String: Any] {
@@ -388,8 +388,7 @@ extension DeviceController: SendTransportDelegate {
             guard let consumerId = consumer["id"] as? String,
                   let producerId = consumer["producerId"] as? String,
                   let kind = consumer["kind"] as? String,
-                  let rtpParameters = consumer["rtpParameters"] as? String,
-                  let codecOptions = consumer["codecOptions"] as? String else {
+                  let rtpParameters = consumer["rtpParameters"] as? [String: Any] else {
                 self.loggerController.sendLog(name: "DeviceSendTransport:ConsumeConsumer failed", properties: [
                     "error": "Invalid consumer"
                 ])
@@ -397,16 +396,12 @@ extension DeviceController: SendTransportDelegate {
                 return
             }
             
-            let appData = [
-                "codecOptions": codecOptions
-            ]
-            
             let consumer = try self.receiveTransport?.consume(
                 consumerId: consumerId,
                 producerId: producerId,
                 kind: kind == "audio" ? MediaKind.audio : MediaKind.video,
-                rtpParameters: rtpParameters,
-                appData: appData.toJSONString()
+                rtpParameters: rtpParameters.toJSONString() ?? "unknown",
+                appData: nil
             )
             
             self.loggerController.sendLog(name: "DeviceSendTransport:ConsumeConsumer succeed", properties: nil)

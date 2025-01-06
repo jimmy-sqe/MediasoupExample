@@ -153,9 +153,9 @@ class ManageRoom {
             .sink { [weak self] message in
                 guard let self else { return }
                 
-                if let rtpCapabilitiesString = (message.data?["rtpCapabilities"] as? [String: Any])?.toJSONString() {
-                    self.loggerController.sendLog(name: "ManageRoom:getRTPCapabilities succeed", properties: ["rtpCapabilities": rtpCapabilitiesString])
-                    self.setupDevice(rtpCapabilities: rtpCapabilitiesString)
+                if let rtpCapabilities = message.data?["rtpCapabilities"] as? [String: Any] {
+                    self.loggerController.sendLog(name: "ManageRoom:getRTPCapabilities succeed", properties: ["rtpCapabilities": rtpCapabilities])
+                    self.setupDevice(rtpCapabilities: rtpCapabilities)
                 } else {
                     self.loggerController.sendLog(name: "ManageRoom:getRTPCapabilities failed", properties: ["error": "Invalid rtpCapabilities"])
                 }
@@ -179,7 +179,7 @@ class ManageRoom {
         }
     }
     
-    private func setupDevice(rtpCapabilities: String) {
+    private func setupDevice(rtpCapabilities: [String: Any]) {
         self.deviceController.setup()
         
         self.deviceController.loadDevice(rtpCapabilities: rtpCapabilities)
