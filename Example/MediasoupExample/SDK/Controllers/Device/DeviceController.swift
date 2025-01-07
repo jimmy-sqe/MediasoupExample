@@ -255,7 +255,7 @@ extension DeviceController: SendTransportDelegate {
                     originalRequestId: UUID().uuidString,
                     meetingRoomId: self.meetingRoomId ?? "unknown",
                     transportId: transport.id,
-                    dtlsParameters: self.sendTransportParam?.dtlsParameters ?? "unknown"
+                    dtlsParameters: dtlsParameters
                 ).sink { _ in
                     self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport succeed", properties: nil)
                     continuation.resume()
@@ -309,10 +309,8 @@ extension DeviceController: SendTransportDelegate {
             }
         }();
         
-        let originalRequestId = UUID().uuidString
-        
         self.webSocketController.createWebRTCTransportProducer(
-            originalRequestId: originalRequestId,
+            originalRequestId: UUID().uuidString,
             meetingRoomId: meetingRoomId ?? "unknown",
             producerTransportId: transport.id,
             kind: mediaType,

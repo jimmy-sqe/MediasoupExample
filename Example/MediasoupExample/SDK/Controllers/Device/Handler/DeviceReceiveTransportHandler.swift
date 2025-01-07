@@ -30,18 +30,23 @@ extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
     func onConnect(transport: any Transport, dtlsParameters: String) {
         self.loggerController.sendLog(name: "DeviceReceiveTransport:OnConnect", properties: nil)
         
-        self.webSocketController.connectWebRTCTransport(
-            originalRequestId: UUID().uuidString,
-            meetingRoomId: meetingRoomId ?? "unknown",
-            transportId: transport.id,
-            dtlsParameters: dtlsParameters
-        ).sink { _ in
-            self.loggerController.sendLog(name: "DeviceReceiveTransport:connectWebRTCTransport succeed", properties: nil)
-        }.store(in: &cancellables)
+        Task.synchronous {
+            await withCheckedContinuation { continuation in
+                self.webSocketController.connectWebRTCTransport(
+                    originalRequestId: UUID().uuidString,
+                    meetingRoomId: self.meetingRoomId ?? "unknown",
+                    transportId: transport.id,
+                    dtlsParameters: dtlsParameters
+                ).sink { _ in
+                    self.loggerController.sendLog(name: "DeviceReceiveTransport:connectWebRTCTransport succeed", properties: nil)
+                    continuation.resume()
+                }.store(in: &self.cancellables)
+            }
+        }
     }
     
     func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {
-        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnProduce:\(kind)", properties: nil)
+        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnProduce", properties: nil)
     }
     
     func onProduceData(transport: any Transport, sctpParameters: String, label: String, protocol dataProtocol: String, appData: String, callback: @escaping (String?) -> Void) {
