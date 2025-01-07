@@ -36,7 +36,7 @@ extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
                     originalRequestId: UUID().uuidString,
                     meetingRoomId: self.meetingRoomId ?? "unknown",
                     transportId: transport.id,
-                    dtlsParameters: dtlsParameters
+                    dtlsParameters: dtlsParameters.toDictionary() ?? ["unknown": "unknown"]
                 ).sink { _ in
                     self.loggerController.sendLog(name: "DeviceReceiveTransport:connectWebRTCTransport succeed", properties: nil)
                     continuation.resume()

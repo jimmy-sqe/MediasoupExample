@@ -255,7 +255,7 @@ extension DeviceController: SendTransportDelegate {
                     originalRequestId: UUID().uuidString,
                     meetingRoomId: self.meetingRoomId ?? "unknown",
                     transportId: transport.id,
-                    dtlsParameters: dtlsParameters
+                    dtlsParameters: dtlsParameters.toDictionary() ?? ["unknown": "unknown"]
                 ).sink { _ in
                     self.loggerController.sendLog(name: "DeviceSendTransport:connectWebRTCTransport succeed", properties: nil)
                     continuation.resume()
@@ -267,7 +267,7 @@ extension DeviceController: SendTransportDelegate {
     func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {
         self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce", properties: nil)
         
-        guard let rtpParameters: [String: Any] = rtpParameters.data(using: .utf8)?.toDictionary() else {
+        guard let rtpParameters: [String: Any] = rtpParameters.toDictionary() else {
             self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
                 "error": "Invalid rtpParameters"
             ])
