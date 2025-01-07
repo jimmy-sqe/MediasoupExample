@@ -30,6 +30,7 @@ protocol WebSocketControllerProtocol {
     func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never>
     func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never>
     func resumeConsumer(originalRequestId: String, meetingRoomId: String, consumerId: String) -> Future<WebSocketReceiveMessage, Never>
+    func restartIce(originalRequestId: String, meetingRoomId: String, transportId: String) -> Future<WebSocketReceiveMessage, Never>
 
 }
 
@@ -176,6 +177,21 @@ class WebSocketController: WebSocketControllerProtocol {
         }
     }
     
+    func restartIce(originalRequestId: String, meetingRoomId: String, transportId: String) -> Future<WebSocketReceiveMessage, Never> {
+        return Future<WebSocketReceiveMessage, Never>() { promise in
+            self.webSocketRequestQueue[originalRequestId] = promise
+
+            let request: WebSocketAPIData = .sendEvent(.restartICE, [
+                "originalRequestId": originalRequestId,
+                "meetingRoomId": meetingRoomId,
+                "transportId": transportId
+            ])
+            
+            self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
+            self.webSocketClient.send(request: request)
+        }
+    }
+    
 }
 
 extension WebSocketController: WebSocketClientDelegate {
@@ -261,7 +277,6 @@ extension WebSocketController: WebSocketClientDelegate {
                 event: message.event,
                 originalRequestId: message.originalRequestId,
                 data: [
-                    "originalRequestId": message.originalRequestId ?? "unknown",
                     "id": id ?? "unknown",
                     "iceParameters": iceParameters ?? "unknown",
                     "iceCandidates": iceCandidates ?? "unknown",

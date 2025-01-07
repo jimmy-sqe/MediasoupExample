@@ -55,6 +55,47 @@ extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
     
     func onConnectionStateChange(transport: any Transport, connectionState: TransportConnectionState) {
         self.loggerController.sendLog(name: "DeviceReceiveTransport:OnConnectionStateChange:\(connectionState)", properties: nil)
+        
+        switch connectionState {
+        case .disconnected, .failed:
+            restartIce(transportId: transport.id);
+        default:
+            //TODO: Implement timeout please refer to FE implementation
+            break
+        }
     }
     
+    private func restartIce(transportId: String) {
+        self.loggerController.sendLog(name: "DeviceReceiveTransport:RestartIce", properties: [
+            "transportId": transportId
+        ])
+        
+        //TODO: Implement timeout please refer to FE implementation
+        self.webSocketController.restartIce(
+            originalRequestId: UUID().uuidString,
+            meetingRoomId: self.meetingRoomId ?? "unknown",
+            transportId: transportId
+        ).sink { [weak self] message in
+            guard let self,
+                  let iceParameters = message.data?["iceParameters"] as? String else {
+                self?.loggerController.sendLog(name: "DeviceSendTransport:RestartIce failed", properties: [
+                    "transportId": transportId,
+                    "error": "Invalid iceParameters"
+                ])
+                return
+            }
+            
+            do {
+//                try self.receiveTransport?.restartICE(with: iceParameters)
+                self.loggerController.sendLog(name: "DeviceSendTransport:RestartIce succeed", properties: [
+                    "transportId": transportId
+                ])
+            } catch {
+                self.loggerController.sendLog(name: "DeviceSendTransport:RestartIce failed", properties: [
+                    "transportId": transportId,
+                    "error": error.localizedDescription
+                ])
+            }
+        }.store(in: &cancellables)
+    }
 }

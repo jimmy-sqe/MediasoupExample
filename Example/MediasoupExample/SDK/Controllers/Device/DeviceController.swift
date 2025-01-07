@@ -298,24 +298,13 @@ extension DeviceController: SendTransportDelegate {
             ]
         ) { _, new in new }
         
-        let mediaType: String = {
-            switch kind {
-            case .audio:
-                "audio"
-            case .video:
-                "video"
-            default:
-                "unknown"
-            }
-        }();
-        
         self.webSocketController.createWebRTCTransportProducer(
             originalRequestId: UUID().uuidString,
             meetingRoomId: meetingRoomId ?? "unknown",
             producerTransportId: transport.id,
-            kind: mediaType,
+            kind: kind.string,
             rtpParameters: newRtpParameters,
-            mediaType: mediaType
+            mediaType: kind.string
         ).sink { [weak self] message in
             guard let self else { return }
             
@@ -327,7 +316,7 @@ extension DeviceController: SendTransportDelegate {
             
             let producer: [String: Any]? = message.data?["producer"] as? [String: Any]
             self.producerId = producer?["id"] as? String
-            if (mediaType == "audio") {
+            if (kind.string == "audio") {
                 self.audioProducerId = self.producerId
             }
             // TODO: do for video
@@ -382,6 +371,14 @@ extension DeviceController: SendTransportDelegate {
     
     func onConnectionStateChange(transport: any Transport, connectionState: TransportConnectionState) {
         self.loggerController.sendLog(name: "DeviceSendTransport:OnConnectionStateChange:\(connectionState)", properties: nil)
+        
+        switch connectionState {
+        case .disconnected, .failed:
+            restartIce(transportId: transport.id);
+        default:
+            //TODO: Implement timeout please refer to FE implementation
+            break
+        }
     }
     
     private func consumeConsumer(consumer: [String: Any]) {
@@ -439,6 +436,41 @@ extension DeviceController: SendTransportDelegate {
             }
         }
     }
+    
+    private func restartIce(transportId: String) {
+        self.loggerController.sendLog(name: "DeviceSendTransport:RestartIce", properties: [
+            "transportId": transportId
+        ])
+        
+        //TODO: Implement timeout please refer to FE implementation
+        self.webSocketController.restartIce(
+            originalRequestId: UUID().uuidString,
+            meetingRoomId: self.meetingRoomId ?? "unknown",
+            transportId: transportId
+        ).sink { [weak self] message in
+            guard let self,
+                  let iceParameters = message.data?["iceParameters"] as? String else {
+                self?.loggerController.sendLog(name: "DeviceSendTransport:RestartIce failed", properties: [
+                    "transportId": transportId,
+                    "error": "Invalid iceParameters"
+                ])
+                return
+            }
+            
+            do {
+                try self.sendTransport?.restartICE(with: iceParameters)
+                self.loggerController.sendLog(name: "DeviceSendTransport:RestartIce succeed", properties: [
+                    "transportId": transportId
+                ])
+            } catch {
+                self.loggerController.sendLog(name: "DeviceSendTransport:RestartIce failed", properties: [
+                    "transportId": transportId,
+                    "error": error.localizedDescription
+                ])
+            }
+        }.store(in: &cancellables)
+    }
+    
 }
 
 extension DeviceController: ProducerDelegate {

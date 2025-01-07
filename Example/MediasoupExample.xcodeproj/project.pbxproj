@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2807034EC31AB148452735C1 /* libPods-MediasoupExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE0A82640617DBF57776996 /* libPods-MediasoupExample.a */; };
 		AD053DEB2D2B6C80004491BB /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD053DEA2D2B6C7E004491BB /* Task.swift */; };
+		AD08200C2D2CDEE900F55371 /* MediaKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD08200B2D2CDEE600F55371 /* MediaKind.swift */; };
 		AD4217672D1A53540023520E /* WebSocketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4217662D1A534F0023520E /* WebSocketController.swift */; };
 		AD4217692D1A549C0023520E /* WebSocketAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4217682D1A54920023520E /* WebSocketAPIData.swift */; };
 		AD42176C2D1A57580023520E /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD42176B2D1A57540023520E /* WebSocketClient.swift */; };
@@ -106,6 +107,7 @@
 		7FE0A82640617DBF57776996 /* libPods-MediasoupExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MediasoupExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D585EBF83F0B1E68E365F1F /* Pods-MediasoupExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediasoupExample.release.xcconfig"; path = "Target Support Files/Pods-MediasoupExample/Pods-MediasoupExample.release.xcconfig"; sourceTree = "<group>"; };
 		AD053DEA2D2B6C7E004491BB /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		AD08200B2D2CDEE600F55371 /* MediaKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKind.swift; sourceTree = "<group>"; };
 		AD4217662D1A534F0023520E /* WebSocketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketController.swift; sourceTree = "<group>"; };
 		AD4217682D1A54920023520E /* WebSocketAPIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketAPIData.swift; sourceTree = "<group>"; };
 		AD42176B2D1A57540023520E /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 				ADED4FDC2D196B1600344A65 /* Date.swift */,
 				ADED4FDD2D196B1600344A65 /* Dictionary.swift */,
 				ADED4FDE2D196B1600344A65 /* Digest.swift */,
+				AD08200B2D2CDEE600F55371 /* MediaKind.swift */,
 				ADED4FDF2D196B1600344A65 /* FileManager.swift */,
 				ADED4FE02D196B1600344A65 /* NSRegularExpression.swift */,
 				ADED4FE12D196B1600344A65 /* String.swift */,
@@ -827,6 +830,7 @@
 				ADED502D2D196B1600344A65 /* DeviceInfoGenerator.swift in Sources */,
 				ADED502E2D196B1600344A65 /* SDKConfigurationAPIData.swift in Sources */,
 				ADED502F2D196B1600344A65 /* Digest.swift in Sources */,
+				AD08200C2D2CDEE900F55371 /* MediaKind.swift in Sources */,
 				ADED50302D196B1600344A65 /* FileManager.swift in Sources */,
 				ADED50312D196B1600344A65 /* AuthenticationBaseCoordinator.swift in Sources */,
 				ADED50322D196B1600344A65 /* ConfigFileError.swift in Sources */,
