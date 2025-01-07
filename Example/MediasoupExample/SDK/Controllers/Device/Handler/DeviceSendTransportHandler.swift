@@ -14,7 +14,6 @@ class DeviceSendTransportHandler {
     var meetingRoomId: String?
     
     private var isAudioConsumerCreated: Bool = false
-    private var isVideoConsumerCreated: Bool = false
 
     private var rtpCapabilities: [String: Any]?
     private var mediaServerProducers: [[String: Any]]?
@@ -59,8 +58,6 @@ class DeviceSendTransportHandler {
     }
     
 }
-
-
 
 extension DeviceSendTransportHandler: SendTransportDelegate {
     
