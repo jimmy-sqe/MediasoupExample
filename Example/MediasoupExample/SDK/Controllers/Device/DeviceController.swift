@@ -352,8 +352,10 @@ extension DeviceController: SendTransportDelegate {
                         rtpCapabilities: self.rtpCapabilities ?? ["unknown": ""],
                         mediaType: mediaServerProducer["mediaType"] as? String ?? "unknown"
                     ).sink { message in
-                        if let consumer = message.data?["consumer"] as? [String: Any] {
+                        if let consumer = message.data?["consumer"] as? [String: Any],
+                           let consumerId = consumer["id"] as? String {
                             self.consumeConsumer(consumer: consumer)
+                            self.resumeConsumer(consumerId: consumerId)
                         } else {
                             self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
                                 "error": "Invalid consumer"
@@ -392,7 +394,6 @@ extension DeviceController: SendTransportDelegate {
                 self.loggerController.sendLog(name: "DeviceSendTransport:ConsumeConsumer failed", properties: [
                     "error": "Invalid consumer"
                 ])
-                
                 return
             }
             
@@ -415,20 +416,29 @@ extension DeviceController: SendTransportDelegate {
             } else {
                 //TODO: for video
             }
-            
-            self.webSocketController.resumeConsumer(
-                originalRequestId: UUID().uuidString,
-                meetingRoomId: meetingRoomId ?? "unknown",
-                consumerId: consumerId
-            )
         } catch {
             self.loggerController.sendLog(name: "DeviceSendTransport:ConsumeConsumer failed", properties: [
                 "error": error.localizedDescription
             ])
         }
-
     }
     
+    private func resumeConsumer(consumerId: String) {
+        self.loggerController.sendLog(name: "DeviceSendTransport:ResumeConsumer", properties: nil)
+
+        Task.synchronous {
+            await withCheckedContinuation { continuation in
+                self.webSocketController.resumeConsumer(
+                    originalRequestId: UUID().uuidString,
+                    meetingRoomId: self.meetingRoomId ?? "unknown",
+                    consumerId: consumerId
+                ).sink { _ in
+                    self.loggerController.sendLog(name: "DeviceSendTransport:ResumeConsumer succeed", properties: nil)
+                    continuation.resume()
+                }.store(in: &self.cancellables)
+            }
+        }
+    }
 }
 
 extension DeviceController: ProducerDelegate {

@@ -15,6 +15,7 @@ enum WebSocketReceiveEvent: String, Codable {
     case mediaServerProducers = "MEDIA_SERVER_PRODUCERS"
     case mediaServerError = "MEDIA_SERVER_ERROR"
     case userConnectedWebRTCTransport = "USER_CONNECTED_WEBRTC_TRANSPORT"
+    case resumedConsumerStream = "RESUMED_CONSUMER_STREAM"
     case webRTCTransportProducerCreated = "WEBRTC_TRANSPORT_PRODUCER_CREATED"
     case webRTCTransportConsumerCreated = "WEBRTC_TRANSPORT_CONSUMER_CREATED"
 

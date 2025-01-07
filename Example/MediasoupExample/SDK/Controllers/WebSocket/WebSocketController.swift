@@ -29,7 +29,7 @@ protocol WebSocketControllerProtocol {
     func connectWebRTCTransport(originalRequestId: String, meetingRoomId: String, transportId: String, dtlsParameters: String) -> Future<WebSocketReceiveMessage, Never>
     func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never>
     func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never>
-    func resumeConsumer(originalRequestId: String, meetingRoomId: String, consumerId: String)
+    func resumeConsumer(originalRequestId: String, meetingRoomId: String, consumerId: String) -> Future<WebSocketReceiveMessage, Never>
 
 }
 
@@ -161,15 +161,19 @@ class WebSocketController: WebSocketControllerProtocol {
         }
     }
     
-    func resumeConsumer(originalRequestId: String, meetingRoomId: String, consumerId: String) {
-        let request: WebSocketAPIData = .sendEvent(.resumeConsumerStreamRequest, [
-            "originalRequestId": originalRequestId,
-            "meetingRoomId": meetingRoomId,
-            "consumerId": consumerId
-        ])
-        
-        self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
-        self.webSocketClient.send(request: request)
+    func resumeConsumer(originalRequestId: String, meetingRoomId: String, consumerId: String) -> Future<WebSocketReceiveMessage, Never> {
+        return Future<WebSocketReceiveMessage, Never>() { promise in
+            self.webSocketRequestQueue[originalRequestId] = promise
+
+            let request: WebSocketAPIData = .sendEvent(.resumeConsumerStreamRequest, [
+                "originalRequestId": originalRequestId,
+                "meetingRoomId": meetingRoomId,
+                "consumerId": consumerId
+            ])
+            
+            self.loggerController.sendLog(name: "WebSocket:Send:\(request.parameters.bodyParameters?["event"] ?? "unknown")", properties: request.parameters.bodyParameters)
+            self.webSocketClient.send(request: request)
+        }
     }
     
 }
