@@ -240,7 +240,9 @@ class DeviceController: DeviceControllerProtocol {
 extension DeviceController: SendTransportDelegate {
     
     func onConnect(transport: any Transport, dtlsParameters: String) {
-        self.loggerController.sendLog(name: "DeviceSendTransport:OnConnect", properties: nil)
+        self.loggerController.sendLog(name: "DeviceSendTransport:OnConnect", properties: [
+            "transportId": transport.id
+        ])
         
         Task.synchronous {
             await withCheckedContinuation { continuation in
@@ -258,7 +260,9 @@ extension DeviceController: SendTransportDelegate {
     }
     
     func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {
-        self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce", properties: nil)
+        self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce", properties: [
+            "transportId": transport.id
+        ])
         
         guard let rtpParameters: [String: Any] = rtpParameters.toDictionary() else {
             self.loggerController.sendLog(name: "DeviceSendTransport:OnProduce failed", properties: [
@@ -359,11 +363,15 @@ extension DeviceController: SendTransportDelegate {
     }
     
     func onProduceData(transport: any Transport, sctpParameters: String, label: String, protocol dataProtocol: String, appData: String, callback: @escaping (String?) -> Void) {
-        self.loggerController.sendLog(name: "DeviceSendTransport:OnProduceData:\(label)", properties: nil)
+        self.loggerController.sendLog(name: "DeviceSendTransport:OnProduceData:\(label)", properties: [
+            "transportId": transport.id
+        ])
     }
     
     func onConnectionStateChange(transport: any Transport, connectionState: TransportConnectionState) {
-        self.loggerController.sendLog(name: "DeviceSendTransport:OnConnectionStateChange:\(connectionState)", properties: nil)
+        self.loggerController.sendLog(name: "DeviceSendTransport:OnConnectionStateChange:\(connectionState)", properties: [
+            "transportId": transport.id
+        ])
         
         switch connectionState {
         case .disconnected, .failed:

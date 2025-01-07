@@ -35,7 +35,9 @@ class DeviceReceiveTransportHandler {
 extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
     
     func onConnect(transport: any Transport, dtlsParameters: String) {
-        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnConnect", properties: nil)
+        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnConnect", properties: [
+            "transportId": transport.id
+        ])
         
         Task.synchronous {
             await withCheckedContinuation { continuation in
@@ -53,15 +55,21 @@ extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
     }
     
     func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {
-        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnProduce", properties: nil)
+        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnProduce", properties: [
+            "transportId": transport.id
+        ])
     }
     
     func onProduceData(transport: any Transport, sctpParameters: String, label: String, protocol dataProtocol: String, appData: String, callback: @escaping (String?) -> Void) {
-        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnProduceData:\(label)", properties: nil)
+        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnProduceData:\(label)", properties: [
+            "transportId": transport.id
+        ])
     }
     
     func onConnectionStateChange(transport: any Transport, connectionState: TransportConnectionState) {
-        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnConnectionStateChange:\(connectionState)", properties: nil)
+        self.loggerController.sendLog(name: "DeviceReceiveTransport:OnConnectionStateChange:\(connectionState)", properties: [
+            "transportId": transport.id
+        ])
         
         switch connectionState {
         case .disconnected, .failed:
