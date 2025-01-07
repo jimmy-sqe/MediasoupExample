@@ -157,7 +157,7 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
                         meetingRoomId: self.meetingRoomId ?? "unknown",
                         consumerTransportId: self.consumerTransportId ?? "unknown",
                         producerId: mediaServerProducer["id"] as? String ?? "unknown",
-                        rtpCapabilities: self.rtpCapabilities ?? ["unknown": ""],
+                        rtpCapabilities: self.rtpCapabilities ?? ["unknown": "unknown"],
                         mediaType: mediaServerProducer["mediaType"] as? String ?? "unknown"
                     ).sink { message in
                         if let consumer = message.data?["consumer"] as? [String: Any],
@@ -223,6 +223,7 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
                 kind: MediaKind(rawValue: kind),
                 rtpParameters: rtpParameters.toJSONString() ?? "unknown",
                 appData: nil
+                //TODO: should pass codecOptions for VIDEO
             )
             self.consumer = consumer
             
