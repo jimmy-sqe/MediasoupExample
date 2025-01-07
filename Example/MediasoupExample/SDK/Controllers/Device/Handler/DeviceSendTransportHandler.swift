@@ -225,16 +225,6 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
             self.consumer = consumer
             
             self.loggerController.sendLog(name: "DeviceSendTransport:ConsumeConsumer succeed", properties: nil)
-            
-            if consumer?.kind == .audio {
-//                const remAudio = new MediaStream();
-//                let remoteStreamAudio: any = document.getElementById('remote-audio');
-//                remAudio.addTrack(track);
-//                useVideoCallStore.getState().setRemoteAudioStream(remAudio);
-//                remoteStreamAudio.srcObject = remAudio;
-            } else {
-                //TODO: for video
-            }
         } catch {
             self.loggerController.sendLog(name: "DeviceSendTransport:ConsumeConsumer failed", properties: [
                 "error": error.localizedDescription
