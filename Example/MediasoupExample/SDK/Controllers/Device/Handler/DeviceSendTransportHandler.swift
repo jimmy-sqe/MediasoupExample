@@ -72,7 +72,6 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
         Task.synchronous {
             await withCheckedContinuation { continuation in
                 self.webSocketController.connectWebRTCTransport(
-                    originalRequestId: UUID().uuidString,
                     meetingRoomId: self.meetingRoomId ?? "unknown",
                     transportId: transport.id,
                     dtlsParameters: dtlsParameters.toDictionary() ?? ["unknown": "unknown"]
@@ -121,7 +120,6 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
         ) { _, new in new }
         
         self.webSocketController.createWebRTCTransportProducer(
-            originalRequestId: UUID().uuidString,
             meetingRoomId: meetingRoomId ?? "unknown",
             producerTransportId: transport.id,
             kind: kind.rawValue,
@@ -156,7 +154,6 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
                     self.isAudioConsumerCreated = true
                     
                     self.webSocketController.createWebRTCTransportConsumer(
-                        originalRequestId: UUID().uuidString,
                         meetingRoomId: self.meetingRoomId ?? "unknown",
                         consumerTransportId: self.consumerTransportId ?? "unknown",
                         producerId: mediaServerProducer["id"] as? String ?? "unknown",
@@ -253,7 +250,6 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
         Task.synchronous {
             await withCheckedContinuation { continuation in
                 self.webSocketController.resumeConsumer(
-                    originalRequestId: UUID().uuidString,
                     meetingRoomId: self.meetingRoomId ?? "unknown",
                     consumerId: consumerId
                 ).sink { _ in
@@ -271,7 +267,6 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
         
         //TODO: Implement timeout please refer to FE implementation
         self.webSocketController.restartIce(
-            originalRequestId: UUID().uuidString,
             meetingRoomId: self.meetingRoomId ?? "unknown",
             transportId: transportId
         ).sink { [weak self] message in

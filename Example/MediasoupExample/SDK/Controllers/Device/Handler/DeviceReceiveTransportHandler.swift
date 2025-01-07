@@ -42,7 +42,6 @@ extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
         Task.synchronous {
             await withCheckedContinuation { continuation in
                 self.webSocketController.connectWebRTCTransport(
-                    originalRequestId: UUID().uuidString,
                     meetingRoomId: self.meetingRoomId ?? "unknown",
                     transportId: transport.id,
                     dtlsParameters: dtlsParameters.toDictionary() ?? ["unknown": "unknown"]
@@ -87,7 +86,6 @@ extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
         
         //TODO: Implement timeout please refer to FE implementation
         self.webSocketController.restartIce(
-            originalRequestId: UUID().uuidString,
             meetingRoomId: self.meetingRoomId ?? "unknown",
             transportId: transportId
         ).sink { [weak self] message in

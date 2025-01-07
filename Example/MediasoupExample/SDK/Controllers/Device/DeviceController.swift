@@ -32,6 +32,7 @@ protocol DeviceControllerProtocol {
 class DeviceController: DeviceControllerProtocol {
     
     weak var delegate: DeviceControllerDelegate?
+    
     var meetingRoomId: String? {
         didSet {
             self.deviceSendTransportHandler.meetingRoomId = meetingRoomId

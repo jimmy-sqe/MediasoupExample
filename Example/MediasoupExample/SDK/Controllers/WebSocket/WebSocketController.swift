@@ -14,7 +14,7 @@ protocol WebSocketControllerDelegate: AnyObject {
     func onRequestToJoinApproved()
     func onMediaServerProducersReceived(mediaServerProducers: [[String: Any]])
     func onMediaServerError(errorMessage: String)
-
+    
 }
 
 protocol WebSocketControllerProtocol {
@@ -23,15 +23,15 @@ protocol WebSocketControllerProtocol {
     
     func connect(wsToken: String, cwToken: String)
     func disconnect()
-    func joinMeetingRoom(originalRequestId: String, meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never>
-    func getRTPCapabilities(originalRequestId: String, meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never>
-    func createWebRTCTransport(originalRequestId: String, meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never>
-    func connectWebRTCTransport(originalRequestId: String, meetingRoomId: String, transportId: String, dtlsParameters: [String: Any]) -> Future<WebSocketReceiveMessage, Never>
-    func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never>
-    func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never>
-    func resumeConsumer(originalRequestId: String, meetingRoomId: String, consumerId: String) -> Future<WebSocketReceiveMessage, Never>
-    func restartIce(originalRequestId: String, meetingRoomId: String, transportId: String) -> Future<WebSocketReceiveMessage, Never>
-
+    func joinMeetingRoom(meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never>
+    func getRTPCapabilities(meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never>
+    func createWebRTCTransport(meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never>
+    func connectWebRTCTransport(meetingRoomId: String, transportId: String, dtlsParameters: [String: Any]) -> Future<WebSocketReceiveMessage, Never>
+    func createWebRTCTransportProducer(meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never>
+    func createWebRTCTransportConsumer(meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never>
+    func resumeConsumer(meetingRoomId: String, consumerId: String) -> Future<WebSocketReceiveMessage, Never>
+    func restartIce(meetingRoomId: String, transportId: String) -> Future<WebSocketReceiveMessage, Never>
+    
 }
 
 class WebSocketController: WebSocketControllerProtocol {
@@ -41,11 +41,11 @@ class WebSocketController: WebSocketControllerProtocol {
     
     private let loggerController: LoggerControllerProtocol
     private var webSocketClient: WebSocketClientProtocol
-
+    
     init(baseUrl: String,
          loggerController: LoggerControllerProtocol,
          webSocketClient: WebSocketClientProtocol? = nil) {
-         
+        
         self.loggerController = loggerController
         self.webSocketClient = webSocketClient ?? WebSocketClient(baseUrl: baseUrl)
     }
@@ -63,8 +63,9 @@ class WebSocketController: WebSocketControllerProtocol {
         self.webSocketClient.disconnect()
     }
     
-    func joinMeetingRoom(originalRequestId: String, meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never> {
+    func joinMeetingRoom(meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never> {
         return Future<WebSocketReceiveMessage, Never>() { promise in
+            let originalRequestId = UUID().uuidString
             self.webSocketRequestQueue[originalRequestId] = promise
             
             let request: WebSocketAPIData = .sendEvent(.joinMeetingRoom, [
@@ -77,8 +78,9 @@ class WebSocketController: WebSocketControllerProtocol {
         }
     }
     
-    func getRTPCapabilities(originalRequestId: String, meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never> {
+    func getRTPCapabilities(meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never> {
         return Future<WebSocketReceiveMessage, Never>() { promise in
+            let originalRequestId = UUID().uuidString
             self.webSocketRequestQueue[originalRequestId] = promise
             
             let request: WebSocketAPIData = .sendEvent(.getRTPCabilities, [
@@ -91,8 +93,9 @@ class WebSocketController: WebSocketControllerProtocol {
         }
     }
     
-    func createWebRTCTransport(originalRequestId: String, meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never> {
+    func createWebRTCTransport(meetingRoomId: String) -> Future<WebSocketReceiveMessage, Never> {
         return Future<WebSocketReceiveMessage, Never>() { promise in
+            let originalRequestId = UUID().uuidString
             self.webSocketRequestQueue[originalRequestId] = promise
             
             let request: WebSocketAPIData = .sendEvent(.createWebRTCTransport, [
@@ -105,8 +108,9 @@ class WebSocketController: WebSocketControllerProtocol {
         }
     }
     
-    func createWebRTCTransportProducer(originalRequestId: String, meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never> {
+    func createWebRTCTransportProducer(meetingRoomId: String, producerTransportId: String, kind: String, rtpParameters: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never> {
         return Future<WebSocketReceiveMessage, Never>() { promise in
+            let originalRequestId = UUID().uuidString
             self.webSocketRequestQueue[originalRequestId] = promise
             
             let request: WebSocketAPIData = .sendEvent(.createWebRTCTransportProducer, [
@@ -125,8 +129,9 @@ class WebSocketController: WebSocketControllerProtocol {
         }
     }
     
-    func createWebRTCTransportConsumer(originalRequestId: String, meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never> {
+    func createWebRTCTransportConsumer(meetingRoomId: String, consumerTransportId: String, producerId: String, rtpCapabilities: [String: Any], mediaType: String) -> Future<WebSocketReceiveMessage, Never> {
         return Future<WebSocketReceiveMessage, Never>() { promise in
+            let originalRequestId = UUID().uuidString
             self.webSocketRequestQueue[originalRequestId] = promise
             
             let request: WebSocketAPIData = .sendEvent(.createWebRTCTransportConsumer, [
@@ -146,8 +151,9 @@ class WebSocketController: WebSocketControllerProtocol {
         }
     }
     
-    func connectWebRTCTransport(originalRequestId: String, meetingRoomId: String, transportId: String, dtlsParameters: [String: Any]) -> Future<WebSocketReceiveMessage, Never> {
+    func connectWebRTCTransport(meetingRoomId: String, transportId: String, dtlsParameters: [String: Any]) -> Future<WebSocketReceiveMessage, Never> {
         return Future<WebSocketReceiveMessage, Never>() { promise in
+            let originalRequestId = UUID().uuidString
             self.webSocketRequestQueue[originalRequestId] = promise
             
             let request: WebSocketAPIData = .sendEvent(.connectWebRTCTransport, [
@@ -162,10 +168,11 @@ class WebSocketController: WebSocketControllerProtocol {
         }
     }
     
-    func resumeConsumer(originalRequestId: String, meetingRoomId: String, consumerId: String) -> Future<WebSocketReceiveMessage, Never> {
+    func resumeConsumer(meetingRoomId: String, consumerId: String) -> Future<WebSocketReceiveMessage, Never> {
         return Future<WebSocketReceiveMessage, Never>() { promise in
+            let originalRequestId = UUID().uuidString
             self.webSocketRequestQueue[originalRequestId] = promise
-
+            
             let request: WebSocketAPIData = .sendEvent(.resumeConsumerStreamRequest, [
                 "originalRequestId": originalRequestId,
                 "meetingRoomId": meetingRoomId,
@@ -177,10 +184,11 @@ class WebSocketController: WebSocketControllerProtocol {
         }
     }
     
-    func restartIce(originalRequestId: String, meetingRoomId: String, transportId: String) -> Future<WebSocketReceiveMessage, Never> {
+    func restartIce(meetingRoomId: String, transportId: String) -> Future<WebSocketReceiveMessage, Never> {
         return Future<WebSocketReceiveMessage, Never>() { promise in
+            let originalRequestId = UUID().uuidString
             self.webSocketRequestQueue[originalRequestId] = promise
-
+            
             let request: WebSocketAPIData = .sendEvent(.restartICE, [
                 "originalRequestId": originalRequestId,
                 "meetingRoomId": meetingRoomId,

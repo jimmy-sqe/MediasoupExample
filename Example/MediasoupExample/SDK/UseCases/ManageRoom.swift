@@ -131,7 +131,7 @@ class ManageRoom {
         guard let meetingRoomId else { return }
         
         webSocketController
-            .joinMeetingRoom(originalRequestId: UUID().uuidString, meetingRoomId: meetingRoomId)
+            .joinMeetingRoom(meetingRoomId: meetingRoomId)
             .flatMap { [weak self] message in
                 guard let self else {
                     return Future<WebSocketReceiveMessage, Never> { promise in
@@ -148,7 +148,7 @@ class ManageRoom {
                 self.username.send(username)
                 self.roomStatus.send("Joined")
 
-                return self.webSocketController.getRTPCapabilities(originalRequestId: UUID().uuidString, meetingRoomId: meetingRoomId)
+                return self.webSocketController.getRTPCapabilities(meetingRoomId: meetingRoomId)
             }
             .sink { [weak self] message in
                 guard let self else { return }
@@ -223,7 +223,7 @@ extension ManageRoom: DeviceControllerDelegate {
         var receiveTransportParam: DeviceTransportParam?
         
         webSocketController
-            .createWebRTCTransport(originalRequestId: UUID().uuidString, meetingRoomId: meetingRoomId)
+            .createWebRTCTransport(meetingRoomId: meetingRoomId)
             .flatMap { [weak self] message in
                 guard let self else {
                     return Future<WebSocketReceiveMessage, Never> { promise in
@@ -245,8 +245,7 @@ extension ManageRoom: DeviceControllerDelegate {
                 )
                 self.loggerController.sendLog(name: "ManageRoom:createWebRTCSendTransport succeed", properties: ["id": id])
                 
-                return self.webSocketController
-                    .createWebRTCTransport(originalRequestId: UUID().uuidString, meetingRoomId: meetingRoomId)
+                return self.webSocketController.createWebRTCTransport(meetingRoomId: meetingRoomId)
             }.sink { [weak self] message in
                 guard let self else { return }
                 
