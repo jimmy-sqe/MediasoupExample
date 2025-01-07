@@ -245,17 +245,12 @@ extension DeviceSendTransportHandler: SendTransportDelegate {
     private func resumeConsumer(consumerId: String) {
         self.loggerController.sendLog(name: "DeviceSendTransport:ResumeConsumer", properties: nil)
 
-        Task.synchronous {
-            await withCheckedContinuation { continuation in
-                self.webSocketController.resumeConsumer(
-                    meetingRoomId: self.meetingRoomId ?? "unknown",
-                    consumerId: consumerId
-                ).sink { _ in
-                    self.loggerController.sendLog(name: "DeviceSendTransport:ResumeConsumer succeed", properties: nil)
-                    continuation.resume()
-                }.store(in: &self.cancellables)
-            }
-        }
+        self.webSocketController.resumeConsumer(
+            meetingRoomId: self.meetingRoomId ?? "unknown",
+            consumerId: consumerId
+        ).sink { _ in
+            self.loggerController.sendLog(name: "DeviceSendTransport:ResumeConsumer succeed", properties: nil)
+        }.store(in: &self.cancellables)
     }
     
     private func restartIce(transportId: String) {

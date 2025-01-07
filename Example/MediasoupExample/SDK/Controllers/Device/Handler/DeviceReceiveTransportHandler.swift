@@ -39,18 +39,13 @@ extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
             "transportId": transport.id
         ])
         
-        Task.synchronous {
-            await withCheckedContinuation { continuation in
-                self.webSocketController.connectWebRTCTransport(
-                    meetingRoomId: self.meetingRoomId ?? "unknown",
-                    transportId: transport.id,
-                    dtlsParameters: dtlsParameters.toDictionary() ?? ["unknown": "unknown"]
-                ).sink { _ in
-                    self.loggerController.sendLog(name: "DeviceReceiveTransport:connectWebRTCTransport succeed", properties: nil)
-                    continuation.resume()
-                }.store(in: &self.cancellables)
-            }
-        }
+        self.webSocketController.connectWebRTCTransport(
+            meetingRoomId: self.meetingRoomId ?? "unknown",
+            transportId: transport.id,
+            dtlsParameters: dtlsParameters.toDictionary() ?? ["unknown": "unknown"]
+        ).sink { _ in
+            self.loggerController.sendLog(name: "DeviceReceiveTransport:connectWebRTCTransport succeed", properties: nil)
+        }.store(in: &self.cancellables)
     }
     
     func onProduce(transport: any Transport, kind: MediaKind, rtpParameters: String, appData: String, callback: @escaping (String?) -> Void) {
