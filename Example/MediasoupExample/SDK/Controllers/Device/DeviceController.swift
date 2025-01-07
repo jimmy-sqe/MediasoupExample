@@ -95,13 +95,6 @@ class DeviceController: DeviceControllerProtocol {
         let mediaStream = peerConnectionFactory.mediaStream(withStreamId: "sqe_stream")
         self.mediaStream = mediaStream
         mediaStream.addAudioTrack(audioTrack)
-        
-        // Additional from ChatGPT
-//        let config = RTCConfiguration()
-//        let constraints = RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: nil)
-//        let peerConnection = peerConnectionFactory.peerConnection(with: config, constraints: constraints, delegate: nil)
-//        self.peerConnection = peerConnection
-//        peerConnection?.add(mediaStream)
     }
     
     func loadDevice(rtpCapabilities: [String: Any]) {
@@ -188,8 +181,8 @@ class DeviceController: DeviceControllerProtocol {
                 dtlsParameters: param.dtlsParameters,
                 sctpParameters: nil,
                 appData: nil)
-            receiveTransport.delegate = self.deviceReceiveTransportHandler
             self.receiveTransport = receiveTransport
+            self.deviceReceiveTransportHandler.setReceiveTransport(receiveTransport)
         } catch {
             self.handleError(subject: "Device:CreateReceiveTransport", error: error)
         }

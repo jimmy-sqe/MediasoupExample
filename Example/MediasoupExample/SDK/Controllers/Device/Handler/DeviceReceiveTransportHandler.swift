@@ -13,6 +13,8 @@ class DeviceReceiveTransportHandler {
     
     var meetingRoomId: String?
     
+    private var receiveTransport: ReceiveTransport?
+    
     private var cancellables = Set<AnyCancellable>()
     private let loggerController: LoggerControllerProtocol
     private let webSocketController: WebSocketControllerProtocol
@@ -21,6 +23,11 @@ class DeviceReceiveTransportHandler {
          webSocketController: WebSocketControllerProtocol) {
         self.loggerController = loggerController
         self.webSocketController = webSocketController
+    }
+    
+    func setReceiveTransport(_ receiveTransport: ReceiveTransport) {
+        self.receiveTransport = receiveTransport
+        self.receiveTransport?.delegate = self
     }
     
 }
@@ -78,7 +85,7 @@ extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
         ).sink { [weak self] message in
             guard let self,
                   let iceParameters = message.data?["iceParameters"] as? String else {
-                self?.loggerController.sendLog(name: "DeviceSendTransport:RestartIce failed", properties: [
+                self?.loggerController.sendLog(name: "DeviceReceiveTransport:RestartIce failed", properties: [
                     "transportId": transportId,
                     "error": "Invalid iceParameters"
                 ])
@@ -86,12 +93,12 @@ extension DeviceReceiveTransportHandler: ReceiveTransportDelegate {
             }
             
             do {
-//                try self.receiveTransport?.restartICE(with: iceParameters)
-                self.loggerController.sendLog(name: "DeviceSendTransport:RestartIce succeed", properties: [
+                try self.receiveTransport?.restartICE(with: iceParameters)
+                self.loggerController.sendLog(name: "DeviceReceiveTransport:RestartIce succeed", properties: [
                     "transportId": transportId
                 ])
             } catch {
-                self.loggerController.sendLog(name: "DeviceSendTransport:RestartIce failed", properties: [
+                self.loggerController.sendLog(name: "DeviceReceiveTransport:RestartIce failed", properties: [
                     "transportId": transportId,
                     "error": error.localizedDescription
                 ])
