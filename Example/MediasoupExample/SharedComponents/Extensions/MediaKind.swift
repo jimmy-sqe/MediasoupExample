@@ -9,7 +9,7 @@ import Mediasoup
 
 extension MediaKind {
     
-    var string: String {
+    var rawValue: String {
         switch self {
         case .audio:
             return "audio"
@@ -17,6 +17,14 @@ extension MediaKind {
             return "video"
         default:
             return "unknown"
+        }
+    }
+    
+    init(rawValue: String) {
+        if rawValue == "audio" {
+            self = .audio
+        } else {
+            self = .video
         }
     }
     
