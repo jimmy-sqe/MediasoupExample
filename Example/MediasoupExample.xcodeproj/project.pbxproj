@@ -374,6 +374,7 @@
 			children = (
 				ADED4FC92D196B1600344A65 /* Constants */,
 				ADED4FCC2D196B1600344A65 /* Services */,
+				ADED50612D19769C00344A65 /* ClientConfig.swift */,
 				ADED4FCD2D196B1600344A65 /* ClientConfigHandler.swift */,
 				ADED4FCE2D196B1600344A65 /* ClientConfigModelResponse.swift */,
 				ADED4FCF2D196B1600344A65 /* ClientConfigRequestParam.swift */,
@@ -412,7 +413,6 @@
 				ADED4FDC2D196B1600344A65 /* Date.swift */,
 				ADED4FDD2D196B1600344A65 /* Dictionary.swift */,
 				ADED4FDE2D196B1600344A65 /* Digest.swift */,
-				AD08200B2D2CDEE600F55371 /* MediaKind.swift */,
 				ADED4FDF2D196B1600344A65 /* FileManager.swift */,
 				ADED4FE02D196B1600344A65 /* NSRegularExpression.swift */,
 				ADED4FE12D196B1600344A65 /* String.swift */,
@@ -637,8 +637,8 @@
 			isa = PBXGroup;
 			children = (
 				ADED50632D1976C800344A65 /* AppConfiguration.swift */,
-				ADED50612D19769C00344A65 /* ClientConfig.swift */,
 				ADED4FC02D196A8000344A65 /* SqeCcEnvironment.swift */,
+				AD08200B2D2CDEE600F55371 /* MediaKind.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";

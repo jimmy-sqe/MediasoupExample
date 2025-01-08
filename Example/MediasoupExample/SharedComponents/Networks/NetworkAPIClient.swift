@@ -15,7 +15,7 @@ class NetworkAPIClientImpl: NetworkAPIClient {
         self.networkManager = networkManager
     }
     
-    func call<T: Codable>(request: NetworkAPIData, basePath: String, keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy, completionHandler: @escaping ((Result<T, NetworkError>) -> Void)) {
+    func call<T: Codable>(request: NetworkAPIData, basePath: String, completionHandler: @escaping ((Result<T, NetworkError>) -> Void)) {
         self.networkManager.startRequest(request: request, basePath: basePath) { (data, response, error) in
             
             if let error = error {

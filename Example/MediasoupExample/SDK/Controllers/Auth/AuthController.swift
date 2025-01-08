@@ -31,7 +31,7 @@ class AuthController: AuthControllerProtocol {
         self.loggerController.sendLog(name: "API:doAuth", properties: nil)
         
         let apiData = AuthAPIData.auth(requestParam, wsToken)
-        apiClient.call(request: apiData, basePath: baseUrl, keyDecodingStrategy: .convertFromSnakeCase) { [weak self] (result: Result<Auth, NetworkError>) in
+        apiClient.call(request: apiData, basePath: baseUrl) { [weak self] (result: Result<Auth, NetworkError>) in
             switch result {
             case .success(let auth):
                 self?.loggerController.sendLog(name: "API:doAuth succeed", properties: ["token": auth.token])

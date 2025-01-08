@@ -24,7 +24,7 @@ class ServerTimeServiceImpl: ServerTimeService {
     func getTime(timeoutInMilliseconds: TimeInterval, completion: @escaping (Result<Time, NetworkError>) -> Void) {
         let apiData = SDKConfigurationAPIData.getTime(timeoutInMilliseconds)
         
-        apiClient.call(request: apiData, basePath: baseUrl, keyDecodingStrategy: .convertFromSnakeCase) { (result: Result<Time, NetworkError>) in
+        apiClient.call(request: apiData, basePath: baseUrl) { (result: Result<Time, NetworkError>) in
             switch result {
             case .success:
                 completion(result)

@@ -10,6 +10,5 @@ import Foundation
 protocol NetworkAPIClient {
     func call<T: Codable>(request: NetworkAPIData,
                            basePath: String,
-                           keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy,
                            completionHandler: @escaping ((Result<T, NetworkError>) -> Void))
 }

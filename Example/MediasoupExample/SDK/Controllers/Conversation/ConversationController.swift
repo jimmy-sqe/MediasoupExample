@@ -32,7 +32,7 @@ class ConversationController: ConversationControllerProtocol {
         self.loggerController.sendLog(name: "API:createConversation", properties: nil)
         
         let apiData = ConversationAPIData.createConversation(authToken, wsToken)
-        apiClient.call(request: apiData, basePath: baseUrl, keyDecodingStrategy: .convertFromSnakeCase) { [weak self] (result: Result<ConversationData, NetworkError>) in
+        apiClient.call(request: apiData, basePath: baseUrl) { [weak self] (result: Result<ConversationData, NetworkError>) in
             switch result {
             case .success(let conversationData):
                 if let firstConversation = conversationData.data.first {
@@ -52,7 +52,7 @@ class ConversationController: ConversationControllerProtocol {
         self.loggerController.sendLog(name: "API:selectCommunicationMode", properties: nil)
         
         let apiData = ConversationAPIData.selectCommunicationMode(authToken, wsToken, communicationMode)
-        apiClient.call(request: apiData, basePath: baseUrl, keyDecodingStrategy: .convertFromSnakeCase) { [weak self] (result: Result<EmptyResponse, NetworkError>) in
+        apiClient.call(request: apiData, basePath: baseUrl) { [weak self] (result: Result<EmptyResponse, NetworkError>) in
             switch result {
             case .success(let emptyResponse):
                 self?.loggerController.sendLog(name: "API:selectCommunicationMode succeed", properties: nil)
@@ -73,7 +73,7 @@ class ConversationController: ConversationControllerProtocol {
         self.loggerController.sendLog(name: "API:checkStatus", properties: nil)
         
         let apiData = ConversationAPIData.checkStatus(authToken)
-        apiClient.call(request: apiData, basePath: baseUrl, keyDecodingStrategy: .convertFromSnakeCase) { [weak self] (result: Result<ConversationStatus, NetworkError>) in
+        apiClient.call(request: apiData, basePath: baseUrl) { [weak self] (result: Result<ConversationStatus, NetworkError>) in
             switch result {
             case .success(let conversationStatus):
                 self?.loggerController.sendLog(name: "API:checkStatus succeed", properties: ["meetingRoomId": conversationStatus.meetingRoomId])

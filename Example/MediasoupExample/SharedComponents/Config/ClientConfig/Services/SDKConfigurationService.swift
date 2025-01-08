@@ -28,6 +28,6 @@ class SDKConfigurationServiceImpl: SDKConfigurationService {
                              completion: @escaping (Result<ClientConfigResponse, NetworkError>) -> Void) {
         let apiData = SDKConfigurationAPIData.getConfiguration(requestParam, signature)
         
-        apiClient.call(request: apiData, basePath: baseUrl, keyDecodingStrategy: .convertFromSnakeCase, completionHandler: completion)
+        apiClient.call(request: apiData, basePath: baseUrl, completionHandler: completion)
     }
 }
