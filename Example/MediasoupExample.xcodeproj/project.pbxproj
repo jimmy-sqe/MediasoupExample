@@ -233,6 +233,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AD18471E2D2FD8E900791B89 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD08200B2D2CDEE600F55371 /* MediaKind.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		AD4217652D1A53380023520E /* WebSocket */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				ADED50652D1976DD00344A65 /* Dependencies */,
+				AD18471E2D2FD8E900791B89 /* Extensions */,
 				ADED4FBA2D19669000344A65 /* Controllers */,
 				ADED50592D196E5F00344A65 /* Models */,
 				ADED4FA62D1964A000344A65 /* UseCases */,
@@ -638,7 +647,6 @@
 			children = (
 				ADED50632D1976C800344A65 /* AppConfiguration.swift */,
 				ADED4FC02D196A8000344A65 /* SqeCcEnvironment.swift */,
-				AD08200B2D2CDEE600F55371 /* MediaKind.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
